@@ -1,7 +1,16 @@
+import { useEffect } from "react";
+import { usePruebaContext } from "./context/PruebaContext";
+
 function App() {
+  const { getValues } = usePruebaContext();
+
+  useEffect(() => {
+    getValues();
+  }, []);
+
   return (
     <>
-      <h1>Hola mundo</h1>
+      <h1>{import.meta.env.VITE_BACKEND_URL}</h1>
     </>
   );
 }
