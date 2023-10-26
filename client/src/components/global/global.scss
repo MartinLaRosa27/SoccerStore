@@ -6,6 +6,39 @@ $colorHover: #353535;
   max-height: 75px;
   background-color: $violetaUno !important;
 
+  .user-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .cart {
+      margin-right: 30px;
+
+      svg {
+        font-size: 2rem;
+      }
+
+      span {
+        margin-left: 2px;
+        background-color: rgb(227, 68, 68);
+        padding: 8px;
+        border-radius: 50%;
+        padding-top: 0;
+      }
+    }
+
+    @media (max-width: 991px) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .cart {
+        margin-bottom: 2px;
+      }
+    }
+  }
+
   @media (max-width: 991px) {
     .navbar-collapse {
       background-color: rgb(194, 164, 223, 0.95);
@@ -21,6 +54,7 @@ $colorHover: #353535;
     color: $negro;
     text-transform: uppercase;
     font-style: italic;
+
     &:hover {
       color: $colorHover;
     }

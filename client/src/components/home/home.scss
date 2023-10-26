@@ -1,3 +1,19 @@
+#home {
+  .ofertas {
+    width: 40%;
+    display: flex;
+    margin: auto;
+  }
+
+  @media (max-width: 768px) {
+    .ofertas {
+      width: 90%;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+  }
+}
+
 #CarouselBanner-home {
   img {
     width: 100%;

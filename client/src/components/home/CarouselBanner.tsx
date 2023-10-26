@@ -1,7 +1,7 @@
 import Carousel from "react-bootstrap/Carousel";
-import bannerUno from "../../assets/img/banners/bannerUno.webp";
-import bannerDos from "../../assets/img/banners/bannerDos.webp";
-import bannerTres from "../../assets/img/banners/bannerTres.webp";
+import bannerUno from "../../assets/img/home/banners/bannerUno.webp";
+import bannerDos from "../../assets/img/home/banners/bannerDos.webp";
+import bannerTres from "../../assets/img/home/banners/bannerTres.webp";
 
 function CarouselBanner() {
   const banners = [
