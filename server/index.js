@@ -6,6 +6,7 @@ const { DBConnection } = require("./config/DBConnection");
 
 DBConnection();
 
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
