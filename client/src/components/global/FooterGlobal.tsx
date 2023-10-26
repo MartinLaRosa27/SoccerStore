@@ -1,17 +1,19 @@
 import { AiOutlineInstagram, AiOutlineFacebook } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
+import "./global.scss";
 
 function FooterGlobal() {
   return (
     <footer
       className="text-center text-lg-start text-dark"
       style={{ backgroundColor: "#ECEFF1" }}
+      id="FooterGlobal-global"
     >
       <section
         className="d-flex justify-content-between p-4 text-dark"
         style={{ backgroundColor: "#c2a4df" }}
       >
-        <div className="me-5">
+        <div>
           Dirección General de Defensa y Protección al Consumidor, para
           consultas y/o denuncias{" "}
           <a href="#!" className="text-dark fw-bold">
@@ -71,7 +73,7 @@ function FooterGlobal() {
               </p>
             </div>
 
-            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 redes">
               <h6 className="text-uppercase fw-bold">nuestras redes</h6>
               <hr
                 className="mb-4 mt-0 d-inline-block mx-auto"
@@ -127,7 +129,7 @@ function FooterGlobal() {
                 <i className="fas fa-envelope mr-3"></i> soccerstore@example.com
               </p>
               <p>
-                <i className="fas fa-phone mr-3"></i> +60 11 1111 2222
+                <i className="fas fa-phone mr-3"></i> +56 11 1111 2222
               </p>
             </div>
           </div>

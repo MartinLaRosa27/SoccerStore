@@ -29,3 +29,11 @@ $colorHover: #353535;
     margin-right: 50px;
   }
 }
+
+#FooterGlobal-global {
+  @media (max-width: 768px) {
+    .redes {
+      display: none;
+    }
+  }
+}
