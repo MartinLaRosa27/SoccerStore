@@ -8,16 +8,19 @@ $colorHover: #353535;
 
   @media (max-width: 991px) {
     .navbar-collapse {
-      background-color: $violetaUno;
+      background-color: rgb(194, 164, 223, 0.95);
       border: 1px solid $colorHover;
       padding: 10px;
       border-radius: 12px;
+      z-index: 999;
     }
   }
 
   a {
     font-weight: bold;
     color: $negro;
+    text-transform: uppercase;
+    font-style: italic;
     &:hover {
       color: $colorHover;
     }

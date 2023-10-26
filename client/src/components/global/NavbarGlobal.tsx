@@ -14,8 +14,10 @@ function NavbarGlobal() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
+
             <Nav.Link href="#link">Camisetas</Nav.Link>
             <Nav.Link href="#link">Shorts</Nav.Link>
+            <Nav.Link href="#link">Ofertas</Nav.Link>
 
             <NavDropdown title="Calzado" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Botines</NavDropdown.Item>
