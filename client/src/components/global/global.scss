@@ -1,0 +1,31 @@
+$violetaUno: #c2a4df;
+$negro: #0b0b0b;
+$colorHover: #353535;
+
+#NavbarGlobal-global {
+  max-height: 75px;
+  background-color: $violetaUno !important;
+
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      background-color: $violetaUno;
+      border: 1px solid $colorHover;
+      padding: 10px;
+      border-radius: 12px;
+    }
+  }
+
+  a {
+    font-weight: bold;
+    color: $negro;
+    &:hover {
+      color: $colorHover;
+    }
+  }
+
+  img {
+    height: auto;
+    width: 50px;
+    margin-right: 50px;
+  }
+}
