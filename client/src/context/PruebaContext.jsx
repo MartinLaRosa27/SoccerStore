@@ -18,7 +18,7 @@ export const PruebaContext = ({ children }) => {
     `;
     await axios
       .post(
-        `http://${import.meta.env.VITE_BACKEND_URL}`,
+        `${import.meta.env.VITE_BACKEND_URL}`,
         {
           query: print(GET_VALUES),
         },
