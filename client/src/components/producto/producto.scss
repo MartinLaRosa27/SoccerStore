@@ -8,7 +8,7 @@ $dark: #4e4e4e;
     margin: auto;
     overflow: hidden;
     width: 50%;
-    height: 400px;
+    height: 450px;
     background: $white;
     box-shadow: 5px 5px 15px rgba($violetaUno, 0.5);
     border-radius: 10px;
@@ -37,6 +37,7 @@ $dark: #4e4e4e;
     width: 275px;
     height: 200px;
     margin-top: 47px;
+    margin-bottom: 10px;
   }
 
   .slideshow-buttons {
@@ -58,12 +59,15 @@ $dark: #4e4e4e;
   .one {
     left: 22%;
   }
+
   .two {
     left: 27%;
   }
+
   .three {
     left: 32%;
   }
+
   .four {
     left: 37%;
   }
@@ -106,6 +110,7 @@ $dark: #4e4e4e;
     letter-spacing: 1px;
     color: $white;
     cursor: pointer;
+
     &:hover {
       background: $violetaUno;
       transition: all 0.4s ease-in-out;
@@ -128,6 +133,7 @@ $dark: #4e4e4e;
     grid-gap: 4px;
     margin-left: 20px;
     margin-top: 5px;
+
     &:hover {
       cursor: pointer;
     }
@@ -145,6 +151,7 @@ $dark: #4e4e4e;
     border: 1px solid $violetaUno;
     font-size: 0.7em;
     text-align: center;
+
     &:hover {
       background: $violetaUno;
       color: $white;
@@ -155,5 +162,28 @@ $dark: #4e4e4e;
   .focus {
     background: $violetaUno;
     color: $white;
+  }
+
+  @media (max-width: 965px) {
+    .container-prod {
+      height: 500px;
+      width: 95%;
+    }
+
+    .product {
+      width: 50%;
+      height: 100%;
+      top: 5%;
+      left: 50%;
+    }
+
+    .info {
+      width: 50%;
+
+      img {
+        width: 175px;
+        height: 150px;
+      }
+    }
   }
 }
