@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import "./global.scss";
 
 function NavbarGlobal() {
@@ -19,13 +19,17 @@ function NavbarGlobal() {
             <Nav.Link href="#">Camisetas</Nav.Link>
             <Nav.Link href="#">Shorts</Nav.Link>
             <Nav.Link href="#">Botines</Nav.Link>
-            <Nav.Link href="#">Ofertas</Nav.Link>
+            {/* <Nav.Link href="#">Ofertas</Nav.Link> */}
           </Nav>
 
           <div className="user-info">
+            <Nav.Link className="cart">
+              <span className="search-text">Buscar producto</span>
+              <AiOutlineSearch />
+            </Nav.Link>
             <Nav.Link href="#" className="cart">
               <AiOutlineShoppingCart />
-              <span>3</span>
+              <span className="num-item">3</span>
             </Nav.Link>
             <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
               <NavDropdown.Item href="#">mis compras</NavDropdown.Item>

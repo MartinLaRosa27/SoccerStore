@@ -1,10 +1,9 @@
-$violetaUno: #c2a4df;
+$violetaUno: #b57aed;
 $negro: #0b0b0b;
-$colorHover: #353535;
 
 #NavbarGlobal-global {
   max-height: 75px;
-  background-color: $violetaUno !important;
+  background-color: rgb(241, 241, 241) !important;
 
   .user-info {
     display: flex;
@@ -15,16 +14,21 @@ $colorHover: #353535;
     .cart {
       margin-right: 30px;
 
+      .search-text {
+        display: none;
+      }
+
       svg {
         font-size: 2rem;
       }
 
-      span {
+      .num-item {
         margin-left: 2px;
-        background-color: rgb(227, 68, 68);
+        background-color: $violetaUno;
         padding: 8px;
         border-radius: 50%;
         padding-top: 0;
+        color: $negro !important;
       }
     }
 
@@ -34,15 +38,23 @@ $colorHover: #353535;
       align-items: flex-start;
 
       .cart {
-        margin-bottom: 2px;
+        &:last-of-type {
+          margin-top: 4px;
+          margin-bottom: 6px;
+        }
+
+        .search-text {
+          display: inline;
+          margin-right: 5px;
+        }
       }
     }
   }
 
   @media (max-width: 991px) {
     .navbar-collapse {
-      background-color: rgb(194, 164, 223, 0.95);
-      border: 1px solid $colorHover;
+      background-color: rgb(241, 241, 241, 0.95);
+      border: 1px solid #353535;
       padding: 10px;
       border-radius: 12px;
       z-index: 999;
@@ -56,7 +68,7 @@ $colorHover: #353535;
     font-style: italic;
 
     &:hover {
-      color: $colorHover;
+      color: $violetaUno;
     }
   }
 

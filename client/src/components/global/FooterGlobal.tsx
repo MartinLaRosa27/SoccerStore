@@ -118,10 +118,10 @@ function FooterGlobal() {
                 </p>
                 <p>
                   <i className="fas fa-envelope mr-3"></i>{" "}
-                  soccerstore@example.com
+                  martinlarosa27@gmail.com
                 </p>
                 <p>
-                  <i className="fas fa-phone mr-3"></i> +56 11 1111 2222
+                  <i className="fas fa-phone mr-3"></i> +54 11 3789-0253
                 </p>
               </div>
             </div>
@@ -130,9 +130,30 @@ function FooterGlobal() {
 
         <div
           className="text-center p-3 fw-bold"
-          style={{ backgroundColor: "#F1F1F1" }}
+          style={{
+            backgroundColor: "#F1F1F1",
+            display: "flex",
+            flexDirection: "column",
+          }}
         >
-          SoccerStore© 2023
+          <span>SoccerStore© 2023</span>
+          <span className="mt-2">
+            Desarrollado por:{" "}
+            <a
+              href="https://www.linkedin.com/in/martin-la-rosa/"
+              className="text-dark mt-2 fw-bold"
+              target="_blank"
+            >
+              Martín La Rosa
+            </a>
+          </span>
+          <a
+            href="https://github.com/MartinLaRosa27/SoccerStore"
+            className="text-dark mt-2"
+            target="_blank"
+          >
+            Ver repositorio del proyecto
+          </a>
         </div>
       </div>
     </footer>
