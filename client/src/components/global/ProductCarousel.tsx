@@ -25,7 +25,7 @@ function ProductCarousel(props: { categoria: String }) {
 
   return (
     <div id="ProductCarousel-global">
-      <h2 className="container">{props.categoria}</h2>
+      <h3 className="container">{props.categoria}</h3>
       <Carousel responsive={responsive}>
         <ProductCard />
         <ProductCard />

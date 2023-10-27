@@ -259,6 +259,7 @@ $negro: #0b0b0b;
   .info-inner .p-company {
     display: block;
     font-weight: bold;
+    color: #252525;
   }
 
   .info-inner .p-name {
@@ -370,11 +371,10 @@ $negro: #0b0b0b;
 #ProductCarousel-global {
   padding: 20px 0;
 
-  h2 {
+  h3 {
     color: $violetaUno;
     font-weight: bold;
     text-transform: uppercase;
-    text-align: center;
     margin-bottom: 15px;
     font-style: italic;
   }

@@ -1,0 +1,159 @@
+$white: #f5f5f5;
+$violetaUno: #b57aed;
+$dark: #4e4e4e;
+
+#Product {
+  .container-prod {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    width: 50%;
+    height: 400px;
+    background: $white;
+    box-shadow: 5px 5px 15px rgba($violetaUno, 0.5);
+    border-radius: 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  p {
+    font-size: 0.8em;
+    color: $violetaUno;
+    letter-spacing: 1px;
+  }
+
+  h1 {
+    font-size: 1.2em;
+    color: $dark;
+    margin-top: -5px;
+  }
+
+  h2 {
+    color: $violetaUno;
+    margin-top: -5px;
+  }
+
+  img {
+    width: 275px;
+    height: 200px;
+    margin-top: 47px;
+  }
+
+  .slideshow-buttons {
+    top: 70%;
+    display: none;
+  }
+
+  .one,
+  .two,
+  .three,
+  .four {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $violetaUno;
+  }
+
+  .one {
+    left: 22%;
+  }
+  .two {
+    left: 27%;
+  }
+  .three {
+    left: 32%;
+  }
+  .four {
+    left: 37%;
+  }
+
+  .product {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    top: 10%;
+    left: 60%;
+
+    .marca {
+      text-transform: uppercase;
+    }
+
+    .price {
+      margin: 10px 0;
+    }
+  }
+
+  .desc {
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 17px;
+    color: $dark;
+    font-size: 0.8em;
+    margin-right: 25px;
+    text-align: justify;
+  }
+
+  button {
+    background: darken($violetaUno, 10%);
+    padding: 10px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    margin: -1px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $white;
+    cursor: pointer;
+    &:hover {
+      background: $violetaUno;
+      transition: all 0.4s ease-in-out;
+    }
+  }
+
+  .add {
+    width: 67%;
+  }
+
+  .like {
+    width: 22%;
+  }
+
+  .sizes {
+    display: grid;
+    color: $violetaUno;
+    grid-template-columns: repeat(auto-fill, 30px);
+    width: 60%;
+    grid-gap: 4px;
+    margin-left: 20px;
+    margin-top: 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .pick {
+    margin-top: 11px;
+    margin-bottom: 0;
+    margin-left: 20px;
+  }
+
+  .size {
+    font-weight: bold;
+    padding: 9px;
+    border: 1px solid $violetaUno;
+    font-size: 0.7em;
+    text-align: center;
+    &:hover {
+      background: $violetaUno;
+      color: $white;
+      transition: all 0.4s ease-in-out;
+    }
+  }
+
+  .focus {
+    background: $violetaUno;
+    color: $white;
+  }
+}

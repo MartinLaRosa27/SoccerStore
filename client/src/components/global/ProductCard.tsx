@@ -12,7 +12,7 @@ function ProductCard() {
           />
           <div className="img-info">
             <div className="info-inner">
-              <span className="p-name">River Plate</span>
+              <span className="p-name">River Plate LOCAL</span>
               <span className="p-company">Adidas</span>
             </div>
             <div className="a-size">
