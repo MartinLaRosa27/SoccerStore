@@ -7,8 +7,8 @@ function Home() {
   return (
     <div id="home">
       <CarouselBanner />
-      <h1>{import.meta.env.VITE_BACKEND_URL}</h1>
-      <ProductCarousel />
+      <ProductCarousel categoria="camisetas"/>
+      <ProductCarousel categoria="shorts" />
       <img src={cuotas} alt="Mejores ofertas" className="ofertas" />
     </div>
   );

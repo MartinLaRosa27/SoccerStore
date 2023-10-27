@@ -13,9 +13,10 @@ function App() {
 
   return (
     <>
+      <h1>{import.meta.env.VITE_BACKEND_URL}</h1>
       <NavbarGlobal />
       <Home />
-      <FooterGlobal/>
+      <FooterGlobal />
     </>
   );
 }
