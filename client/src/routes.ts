@@ -1,4 +1,4 @@
-import Producto from "./components/producto";
+import Precarrito from "./components/precarrito";
 import Home from "./components/home";
 
 export const routes = [
@@ -8,8 +8,13 @@ export const routes = [
     isLoged: false,
   },
   {
-    path: "/producto/:id",
-    component: Producto,
+    path: "/precarrito/:id",
+    component: Precarrito,
+    isLoged: false,
+  },
+  {
+    path: "*",
+    component: Home,
     isLoged: false,
   },
 ];

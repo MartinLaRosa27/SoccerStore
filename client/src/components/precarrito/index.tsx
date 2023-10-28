@@ -1,10 +1,15 @@
+import { useEffect } from "react";
 import ProductCarousel from "../global/ProductCarousel";
-import "./producto.scss";
+import "./precarrito.scss";
 
-function Producto() {
+function Precarrito() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
-      <div id="Product">
+      <div id="Precarrito">
         <div className="container-prod">
           <div className="info">
             <div className="images">
@@ -44,4 +49,4 @@ function Producto() {
   );
 }
 
-export default Producto;
+export default Precarrito;

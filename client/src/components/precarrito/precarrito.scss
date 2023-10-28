@@ -1,8 +1,8 @@
 $white: #f5f5f5;
 $violetaUno: #b57aed;
-$dark: #4e4e4e;
+$negro: #252525;
 
-#Product {
+#Precarrito {
   .container-prod {
     position: relative;
     margin: auto;
@@ -24,7 +24,7 @@ $dark: #4e4e4e;
 
   h1 {
     font-size: 1.2em;
-    color: $dark;
+    color: $negro;
     margin-top: -5px;
   }
 
@@ -92,7 +92,7 @@ $dark: #4e4e4e;
     text-transform: none;
     letter-spacing: 0;
     margin-bottom: 17px;
-    color: $dark;
+    color: $negro;
     font-size: 0.8em;
     margin-right: 25px;
     text-align: justify;

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./global.scss";
 
 function ProductCard() {
@@ -25,12 +26,12 @@ function ProductCard() {
           <div className="h-bg">
             <div className="h-bg-inner"></div>
           </div>
-          <a className="cart" href="#">
+          <NavLink className="cart" to={`/precarrito/${10}`}>
             <span className="price">$12,00</span>
             <span className="add-to-cart">
               <span className="txt">Ver producto</span>
             </span>
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>

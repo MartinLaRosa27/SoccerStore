@@ -1,25 +1,28 @@
+import { NavLink } from "react-router-dom";
+import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import logoSimple from "../../assets/img/global/logo-simple.webp";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import "./global.scss";
 
 function NavbarGlobal() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary" id="NavbarGlobal-global">
       <Container>
-        <img src={logoSimple} alt="SoccerStore" title="home" />
+        <NavLink to="/">
+          <img src={logoSimple} alt="SoccerStore" title="home" />
+        </NavLink>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#">Camisetas</Nav.Link>
-            <Nav.Link href="#">Shorts</Nav.Link>
-            <Nav.Link href="#">Botines</Nav.Link>
-            {/* <Nav.Link href="#">Ofertas</Nav.Link> */}
+            <NavLink to={"/"}>Camisetas</NavLink>
+            <NavLink to={"/"}>Shorts</NavLink>
+            <NavLink to={"/"}>Botines</NavLink>
+            {/* <NavLink to={"/"}>Ofertas</NavLink> */}
           </Nav>
 
           <div className="user-info">
