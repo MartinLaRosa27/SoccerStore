@@ -1,3 +1,6 @@
+require("../models/Categoria");
+require("../models/Marca");
+require("../models/Producto");
 const { DBConfiguration } = require("./DBConfiguration");
 
 module.exports.DBConnection = () => {
