@@ -1,24 +1,25 @@
 import { NavLink } from "react-router-dom";
 import "./global.scss";
 
-function ProductCard() {
+function ProductCard(props: { producto: any }) {
   return (
     <div id="ProductCard-global">
       <div className="el-wrapper">
         <div className="box-up">
-          <img
-            className="img"
-            src="https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw9f2fbc64/products/ADHT3679/ADHT3679-1.JPG"
-            alt=""
-          />
+          <img className="img" src={props.producto.urlImg} alt="" />
           <div className="img-info">
             <div className="info-inner">
-              <span className="p-name">River Plate LOCAL</span>
-              <span className="p-company">Adidas</span>
+              <span className="p-name">{props.producto.nombre}</span>
+              <span className="p-company">{props.producto.nombreMarca}</span>
             </div>
             <div className="a-size">
               <strong>Talles disponibles:</strong>
-              <span className="size">S , M , L , XL</span>
+              <span className="size">
+                {props.producto.talleS ? "S, " : ""}
+                {props.producto.talleM ? "M, " : ""}
+                {props.producto.talleL ? "L, " : ""}
+                {props.producto.talleXL ? "XL" : ""}
+              </span>
             </div>
           </div>
         </div>
@@ -26,7 +27,7 @@ function ProductCard() {
           <div className="h-bg">
             <div className="h-bg-inner"></div>
           </div>
-          <NavLink className="cart" to={`/precarrito/${10}`}>
+          <NavLink className="cart" to={`/precarrito/${props.producto._id}`}>
             <span className="price">$12,00</span>
             <span className="add-to-cart">
               <span className="txt">Ver producto</span>

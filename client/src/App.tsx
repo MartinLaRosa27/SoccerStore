@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { usePruebaContext } from "./context/PruebaContext";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { routes } from "./routes";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -7,12 +5,6 @@ import NavbarGlobal from "./components/global/NavbarGlobal";
 import FooterGlobal from "./components/global/FooterGlobal";
 
 function App() {
-  const { getValues } = usePruebaContext();
-
-  useEffect(() => {
-    getValues();
-  }, []);
-
   return (
     <BrowserRouter>
       <NavbarGlobal />

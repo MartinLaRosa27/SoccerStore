@@ -10,8 +10,25 @@ module.exports.typeDefs = gql`
     contendio: String
   }
 
+  type categoriaType {
+    _id: String
+    nombre: String
+  }
+
+  type productoType {
+    _id: String
+    nombre: String
+    urlImg: String
+    precio: Float
+    talleS: Int
+    talleM: Int
+    talleL: Int
+    talleXL: Int
+  }
+
   type Query {
-    getPrueba: [pruebaType]
+    getCategorias: [categoriaType]
+    getProductoPorCategoria(categoria: Int): [productoType]
   }
 
   type Mutation {

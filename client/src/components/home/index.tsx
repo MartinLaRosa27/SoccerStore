@@ -12,8 +12,8 @@ function Home() {
   return (
     <div id="home">
       <CarouselBanner />
-      <ProductCarousel categoria="camisetas" />
-      <ProductCarousel categoria="shorts" />
+      <ProductCarousel categoria="camisetas" categoriaId={1} />
+      <ProductCarousel categoria="shorts" categoriaId={2} />
       <img src={cuotas} alt="Mejores ofertas" className="ofertas" />
     </div>
   );

@@ -1,9 +1,22 @@
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Carousel from "react-multi-carousel";
+import { useProductoContext } from "../../context/ProductoContext";
 import "./global.scss";
 import "react-multi-carousel/lib/styles.css";
 
-function ProductCarousel(props: { categoria: String }) {
+function ProductCarousel(props: { categoria: String; categoriaId: number }) {
+  const { getProductoPorCategoria } = useProductoContext();
+  const [productos, setProductos] = useState<any[]>([]);
+
+  useEffect(() => {
+    callGetProductoPorCategoria();
+  }, []);
+
+  const callGetProductoPorCategoria = async () => {
+    setProductos(await getProductoPorCategoria(props.categoriaId));
+  };
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -27,14 +40,10 @@ function ProductCarousel(props: { categoria: String }) {
     <div id="ProductCarousel-global">
       <h3 className="container">{props.categoria}</h3>
       <Carousel responsive={responsive}>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {productos.length > 0 &&
+          productos.map((producto, i) => {
+            return <ProductCard key={i} producto={producto}/>;
+          })}
       </Carousel>
     </div>
   );

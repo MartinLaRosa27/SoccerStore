@@ -5,32 +5,34 @@ import gql from "graphql-tag";
 import axios from "axios";
 const Context = createContext();
 
-export const PruebaContext = ({ children }) => {
+export const ProductoContext = ({ children }) => {
   // ---------------------------------------------------------------------------
-  const getValues = async (token) => {
-    const GET_VALUES = gql`
-      query GetPrueba {
-        getPrueba {
+  const getProductoPorCategoria = async (cateogoriaId) => {
+    let categorias = [];
+    const GET_PRODUCTO_X_CATEGORIA = gql`
+      query GetProductoPorCategoria($categoria: Int) {
+        getProductoPorCategoria(categoria: $categoria) {
           _id
-          contendio
+          nombre
+          urlImg
+          precio
+          talleS
+          talleM
+          talleL
+          talleXL
         }
       }
     `;
     await axios
-      .post(
-        `${import.meta.env.VITE_BACKEND_URL}`,
-        {
-          query: print(GET_VALUES),
+      .post(`${import.meta.env.VITE_BACKEND_URL}`, {
+        query: print(GET_PRODUCTO_X_CATEGORIA),
+        variables: {
+          categoria: cateogoriaId,
         },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      )
+      })
       .then((res) => {
         if (!res.data.errors) {
-          console.log(res.data.data.getPrueba);
+          categorias = res.data.data.getProductoPorCategoria;
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
@@ -45,13 +47,14 @@ export const PruebaContext = ({ children }) => {
       .catch((e) => {
         console.log(e);
       });
+    return categorias;
   };
 
   // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
-        getValues,
+        getProductoPorCategoria,
       }}
     >
       {children}
@@ -59,6 +62,6 @@ export const PruebaContext = ({ children }) => {
   );
 };
 
-export const usePruebaContext = () => {
+export const useProductoContext = () => {
   return useContext(Context);
 };

@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
+import { useCategoriaContext } from "../../context/CategoriaContext";
 import logoSimple from "../../assets/img/global/logo-simple.webp";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -8,6 +10,17 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "./global.scss";
 
 function NavbarGlobal() {
+  const { getCategorias } = useCategoriaContext();
+  const [categorias, setCategorias] = useState<any[]>([]);
+
+  useEffect(() => {
+    callGetCategorias();
+  }, []);
+
+  const callGetCategorias = async () => {
+    setCategorias(await getCategorias());
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary" id="NavbarGlobal-global">
       <Container>
@@ -18,11 +31,17 @@ function NavbarGlobal() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <NavLink to={"/"}>Camisetas</NavLink>
-            <NavLink to={"/"}>Shorts</NavLink>
-            <NavLink to={"/"}>Botines</NavLink>
-            {/* <NavLink to={"/"}>Ofertas</NavLink> */}
+          <Nav
+            className="me-auto contenedor-opt"
+          >
+            {categorias.length > 0 &&
+              categorias.map((categoria, i) => {
+                return (
+                  <NavLink to={"/"} key={i}>
+                    {categoria.nombre}
+                  </NavLink>
+                );
+              })}
           </Nav>
 
           <div className="user-info">
