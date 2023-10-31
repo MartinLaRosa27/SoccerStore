@@ -38,7 +38,11 @@ export const ProductoContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
-          categorias = res.data.data.getProductoPorCategoria;
+          if (res.data.data.getProductoPorCategoria.length > 0) {
+            categorias = res.data.data.getProductoPorCategoria;
+          } else {
+            window.location.href = "/";
+          }
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
@@ -46,6 +50,7 @@ export const ProductoContext = ({ children }) => {
               color: "#fff",
               fontWeight: "bold",
               textAlign: "center",
+              marginTop: "80px",
             },
           });
         }
@@ -88,7 +93,11 @@ export const ProductoContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
-          producto = res.data.data.getProductoPorId;
+          if (res.data.data.getProductoPorId.length > 0) {
+            producto = res.data.data.getProductoPorId;
+          } else {
+            window.location.href = "/";
+          }
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
@@ -96,6 +105,7 @@ export const ProductoContext = ({ children }) => {
               color: "#fff",
               fontWeight: "bold",
               textAlign: "center",
+              marginTop: "80px",
             },
           });
         }

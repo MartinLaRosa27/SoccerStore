@@ -12,6 +12,7 @@ function Categoria() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setProducto([]);
     callGetProductoPorCategoria();
   }, [categoriaId]);
 

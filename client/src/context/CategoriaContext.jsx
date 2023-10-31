@@ -31,6 +31,7 @@ export const CategoriaContext = ({ children }) => {
               color: "#fff",
               fontWeight: "bold",
               textAlign: "center",
+              marginTop: "80px",
             },
           });
         }

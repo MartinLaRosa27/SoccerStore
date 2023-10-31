@@ -13,6 +13,7 @@ function Precarrito() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setProducto([]);
     callGetProductoPorId();
   }, [productoId]);
 
@@ -22,7 +23,7 @@ function Precarrito() {
 
   return (
     <>
-      {producto.length > 0 && (
+      {producto.length > 0 && !producto[0].error && (
         <>
           <div id="Precarrito">
             <div className="container-prod">
