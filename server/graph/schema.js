@@ -20,6 +20,8 @@ module.exports.typeDefs = gql`
     nombre: String
     urlImg: String
     precio: Float
+    categoriaNombre: String
+    marcaNombre: String
     talleS: Int
     talleM: Int
     talleL: Int

@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { formatPrecio } from "../../helpers/formatPrecio";
 import "./global.scss";
 
 function ProductCard(props: { producto: any }) {
@@ -10,7 +11,7 @@ function ProductCard(props: { producto: any }) {
           <div className="img-info">
             <div className="info-inner">
               <span className="p-name">{props.producto.nombre}</span>
-              <span className="p-company">{props.producto.nombreMarca}</span>
+              <span className="p-company">{props.producto.marcaNombre}</span>
             </div>
             <div className="a-size">
               <strong>Talles disponibles:</strong>
@@ -28,7 +29,7 @@ function ProductCard(props: { producto: any }) {
             <div className="h-bg-inner"></div>
           </div>
           <NavLink className="cart" to={`/precarrito/${props.producto._id}`}>
-            <span className="price">$12,00</span>
+            <span className="price">${formatPrecio(props.producto.precio)}</span>
             <span className="add-to-cart">
               <span className="txt">Ver producto</span>
             </span>

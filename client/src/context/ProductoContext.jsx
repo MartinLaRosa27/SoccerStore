@@ -15,6 +15,8 @@ export const ProductoContext = ({ children }) => {
           _id
           nombre
           urlImg
+          marcaNombre
+          categoriaNombre
           precio
           talleS
           talleM
@@ -33,6 +35,7 @@ export const ProductoContext = ({ children }) => {
       .then((res) => {
         if (!res.data.errors) {
           categorias = res.data.data.getProductoPorCategoria;
+          console.log(categorias);
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
