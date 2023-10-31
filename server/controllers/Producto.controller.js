@@ -5,7 +5,8 @@ const { QueryTypes } = require("sequelize");
 module.exports.getProductoPorCategoria = async (categoria) => {
   try {
     const productos = await Producto.sequelize.query(
-      `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre FROM productos AS p 
+      `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre
+      FROM productos AS p 
       INNER JOIN categoria AS c ON c._id = p.categoriumId
       INNER JOIN marcas AS m ON m._id = p.marcaId
       WHERE categoriumId = "${categoria}";`,
@@ -23,16 +24,17 @@ module.exports.getProductoPorCategoria = async (categoria) => {
 // ---------------------------------------------------------------------------
 module.exports.getProductoPorId = async (idProducto) => {
   try {
-    const productos = await Producto.sequelize.query(
-      `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre FROM productos AS p 
+    const producto = await Producto.sequelize.query(
+      `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre
+      FROM productos AS p 
       INNER JOIN categoria AS c ON c._id = p.categoriumId
       INNER JOIN marcas AS m ON m._id = p.marcaId
-      WHERE categoriumId = "${categoria}";`,
+      WHERE p._id = ${idProducto};`,
       {
         type: QueryTypes.SELECT,
       }
     );
-    return productos;
+    return producto;
   } catch (e) {
     console.log(e);
     throw new Error("ERROR");

@@ -1,7 +1,8 @@
-const { getPrueba, postPrueba } = require("../controllers/Prueba.controller");
+const { postPrueba } = require("../controllers/Prueba.controller");
 const { getCategorias } = require("../controllers/Categoria.controller");
 const {
   getProductoPorCategoria,
+  getProductoPorId,
 } = require("../controllers/Producto.controller");
 
 module.exports.resolvers = {
@@ -12,6 +13,10 @@ module.exports.resolvers = {
 
     getProductoPorCategoria: (root, { categoria }, context) => {
       return getProductoPorCategoria(categoria);
+    },
+
+    getProductoPorId: (root, { idProducto }, context) => {
+      return getProductoPorId(idProducto);
     },
   },
 

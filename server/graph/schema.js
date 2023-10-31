@@ -26,11 +26,15 @@ module.exports.typeDefs = gql`
     talleM: Int
     talleL: Int
     talleXL: Int
+    marcaId: Int
+    categoriumId: Int
+    cantidad: Int
   }
 
   type Query {
     getCategorias: [categoriaType]
     getProductoPorCategoria(categoria: Int): [productoType]
+    getProductoPorId(idProducto: Int): [productoType]
   }
 
   type Mutation {
