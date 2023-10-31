@@ -12,7 +12,12 @@ const Producto = DBConfiguration.define("producto", {
     type: Sequelize.STRING(255),
     allowNull: false,
   },
-  
+
+  descripcion: {
+    type: Sequelize.STRING(1000),
+    allowNull: false,
+  },
+
   urlImg: {
     type: Sequelize.STRING(1000),
     allowNull: false,

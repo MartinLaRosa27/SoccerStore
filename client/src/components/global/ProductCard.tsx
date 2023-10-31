@@ -29,7 +29,9 @@ function ProductCard(props: { producto: any }) {
             <div className="h-bg-inner"></div>
           </div>
           <NavLink className="cart" to={`/precarrito/${props.producto._id}`}>
-            <span className="price">${formatPrecio(props.producto.precio)}</span>
+            <span className="price">
+              ${formatPrecio(props.producto.precio)}
+            </span>
             <span className="add-to-cart">
               <span className="txt">Ver producto</span>
             </span>

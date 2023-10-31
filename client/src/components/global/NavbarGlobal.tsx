@@ -31,13 +31,11 @@ function NavbarGlobal() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav
-            className="me-auto contenedor-opt"
-          >
+          <Nav className="me-auto contenedor-opt">
             {categorias.length > 0 &&
               categorias.map((categoria, i) => {
                 return (
-                  <NavLink to={"/"} key={i}>
+                  <NavLink to={`/categoria/${categoria._id}`} key={i}>
                     {categoria.nombre}
                   </NavLink>
                 );

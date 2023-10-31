@@ -18,6 +18,7 @@ module.exports.typeDefs = gql`
   type productoType {
     _id: String
     nombre: String
+    descripcion: String
     urlImg: String
     precio: Float
     categoriaNombre: String

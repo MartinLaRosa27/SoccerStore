@@ -14,6 +14,7 @@ export const ProductoContext = ({ children }) => {
         getProductoPorCategoria(categoria: $categoria) {
           _id
           nombre
+          descripcion
           urlImg
           marcaNombre
           categoriaNombre
@@ -56,13 +57,14 @@ export const ProductoContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
-  const getProductoPorgetProductoPorIdCategoria = async (idProducto) => {
+  const getProductoPorId = async (idProducto) => {
     let producto = {};
     const GET_PRODUCTO_X_ID = gql`
       query GetProductoPorId($idProducto: Int) {
         getProductoPorId(idProducto: $idProducto) {
           _id
           nombre
+          descripcion
           urlImg
           precio
           categoriaNombre
@@ -109,7 +111,7 @@ export const ProductoContext = ({ children }) => {
     <Context.Provider
       value={{
         getProductoPorCategoria,
-        getProductoPorgetProductoPorIdCategoria,
+        getProductoPorId,
       }}
     >
       {children}

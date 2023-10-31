@@ -2,29 +2,28 @@ import { useEffect, useState } from "react";
 import { useProductoContext } from "../../context/ProductoContext";
 import { formatPrecio } from "../../helpers/formatPrecio";
 import { useParams } from "react-router-dom";
-import ProductCarousel from "../global/ProductCarousel";
-import "./precarrito.scss";
 import Spinner from "../global/Spinner";
+import "./categoria.scss";
 
-function Precarrito() {
-  const { getProductoPorId } = useProductoContext();
-  const { productoId }: any = useParams();
+function Categoria() {
+  const { getProductoPorCategoria } = useProductoContext();
+  const { categoriaId }: any = useParams();
   const [producto, setProducto] = useState<any[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    callGetProductoPorId();
-  }, [productoId]);
+    callGetProductoPorCategoria();
+  }, [categoriaId]);
 
-  const callGetProductoPorId = async () => {
-    setProducto(await getProductoPorId(Number(productoId)));
+  const callGetProductoPorCategoria = async () => {
+    setProducto(await getProductoPorCategoria(Number(categoriaId)));
   };
 
   return (
     <>
       {producto.length > 0 && (
         <>
-          <div id="Precarrito">
+          <div id="Categoria">
             <div className="container-prod">
               <div className="info">
                 <div className="images">
@@ -56,10 +55,6 @@ function Precarrito() {
               </div>
             </div>
           </div>
-          <ProductCarousel
-            categoria="Prductos similares"
-            categoriaId={producto[0].categoriumId}
-          />
         </>
       )}
       {producto.length == 0 && <Spinner />}
@@ -67,4 +62,4 @@ function Precarrito() {
   );
 }
 
-export default Precarrito;
+export default Categoria;
