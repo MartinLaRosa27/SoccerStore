@@ -1,13 +1,20 @@
+import { useState } from "react";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { routes } from "./routes";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavbarGlobal from "./components/global/NavbarGlobal";
 import FooterGlobal from "./components/global/FooterGlobal";
+import Buscador from "./components/global/Buscador";
 
 function App() {
+  const [showBuscador, setShowBuscador] = useState<boolean>(false);
+
   return (
     <BrowserRouter>
-      <NavbarGlobal />
+      <NavbarGlobal
+        showBuscador={showBuscador}
+        setShowBuscador={setShowBuscador}
+      />
       <Switch>
         {routes.map((route, i) => (
           <Route exact path={route.path} key={i}>
@@ -16,6 +23,7 @@ function App() {
         ))}
       </Switch>
       <FooterGlobal />
+      <Buscador showBuscador={showBuscador} setShowBuscador={setShowBuscador} />
       <FloatingWhatsApp
         phoneNumber="+54 11 3789-0253"
         accountName="Martín Gabriel La Rosa"
