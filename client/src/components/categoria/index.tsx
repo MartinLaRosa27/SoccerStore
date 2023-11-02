@@ -7,7 +7,8 @@ import ProductCard from "../global/ProductCard";
 import FiltrosCategoria from "./FiltrosCategoria";
 
 function Categoria() {
-  const { getProductoPorCategoria } = useProductoContext();
+  const { getProductoPorCategoria, getProductoPorCategoriaConFiltro } =
+    useProductoContext();
   const { categoriaId }: any = useParams();
   const [filtro, setFiltro] = useState<String>("Filtrar por:");
   const [productos, setProductos] = useState<any[]>([]);
@@ -22,13 +23,28 @@ function Categoria() {
   useEffect(() => {
     if (productos.length > 0) {
       if (filtro == "Menor precio") {
-        setProductos(productos.sort((a, b) => a.precio - b.precio));
+        callGetProductoPorCategoriaConFiltro("Menor precio");
+      }
+      if (filtro == "Mayor precio") {
+        callGetProductoPorCategoriaConFiltro("Mayor precio");
+      }
+      if (filtro == "Más nuevos") {
+        callGetProductoPorCategoriaConFiltro("Más nuevos");
+      }
+      if (filtro == "Más viejos") {
+        callGetProductoPorCategoriaConFiltro("Más viejos");
       }
     }
   }, [filtro]);
 
   const callGetProductoPorCategoria = async () => {
     setProductos(await getProductoPorCategoria(Number(categoriaId)));
+  };
+
+  const callGetProductoPorCategoriaConFiltro = async (filtro: String) => {
+    setProductos(
+      await getProductoPorCategoriaConFiltro(Number(categoriaId), filtro)
+    );
   };
 
   return (
