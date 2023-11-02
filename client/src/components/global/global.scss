@@ -393,7 +393,17 @@ $negro: #252525;
   }
 }
 
-#Buscador-global {
-  padding-top: 1000px;
-  display: none !important;
+.btn-buscador-global {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(215, 215, 215);
+  border-width: 1px 1px 1px 0;
+  border-radius: 4px;
+
+  &:hover{
+    cursor: pointer;
+    background-color: $violetaUno;
+    transition: 0.3s;
+  }
 }
