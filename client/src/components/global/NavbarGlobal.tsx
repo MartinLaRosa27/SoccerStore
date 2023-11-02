@@ -9,7 +9,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./global.scss";
 
-function NavbarGlobal() {
+function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
   const { getCategorias } = useCategoriaContext();
   const [categorias, setCategorias] = useState<any[]>([]);
 
@@ -43,7 +43,10 @@ function NavbarGlobal() {
           </Nav>
 
           <div className="user-info">
-            <Nav.Link className="cart">
+            <Nav.Link
+              className="cart"
+              onClick={() => props.setShowBuscador(!props.showBuscador)}
+            >
               <span className="search-text">Buscar producto</span>
               <AiOutlineSearch />
             </Nav.Link>
