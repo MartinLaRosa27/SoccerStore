@@ -1,11 +1,12 @@
-import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 
-function FiltrosCategoria(props: { nombreCategoria: String }) {
-  const [texto, setTexto] = useState<String>("Filtrar por:");
-
+function FiltrosCategoria(props: {
+  nombreCategoria: String;
+  setFiltro: any;
+  filtro: String;
+}) {
   const handleClick = (mensaje: String) => {
-    setTexto(mensaje);
+    props.setFiltro(mensaje);
   };
 
   return (
@@ -13,11 +14,11 @@ function FiltrosCategoria(props: { nombreCategoria: String }) {
       <h3 className="mb-3">{props.nombreCategoria}</h3>
       <Dropdown>
         <Dropdown.Toggle
-          variant="success"
+          variant="secondary"
           id="dropdown-basic"
-          className="w-100"
+          className="w-100 fw-bold text-uppercase fw-italic"
         >
-          {texto}
+          {props.filtro}
         </Dropdown.Toggle>
 
         <Dropdown.Menu className="w-100 text-center">
