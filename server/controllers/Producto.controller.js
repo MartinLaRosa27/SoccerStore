@@ -9,7 +9,8 @@ module.exports.getProductoPorCategoria = async (categoria) => {
       FROM productos AS p 
       INNER JOIN categoria AS c ON c._id = p.categoriumId
       INNER JOIN marcas AS m ON m._id = p.marcaId
-      WHERE categoriumId = "${categoria}";`,
+      WHERE categoriumId = "${categoria}"
+      ORDER BY _id DESC;`,
       {
         type: QueryTypes.SELECT,
       }

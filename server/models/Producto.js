@@ -3,7 +3,7 @@ const { DBConfiguration } = require("../config/DBConfiguration");
 
 const Producto = DBConfiguration.define("producto", {
   _id: {
-    type: Sequelize.STRING(16),
+    type: Sequelize.INTEGER(11),
     primaryKey: true,
     allowNull: false,
   },

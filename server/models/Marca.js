@@ -4,7 +4,7 @@ const { DBConfiguration } = require("../config/DBConfiguration");
 
 const Marca = DBConfiguration.define("marca", {
   _id: {
-    type: Sequelize.STRING(16),
+    type: Sequelize.INTEGER(11),
     primaryKey: true,
     allowNull: false,
   },
