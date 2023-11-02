@@ -12,8 +12,8 @@ module.exports.resolvers = {
       return getCategorias();
     },
 
-    getProductoPorCategoria: (root, { categoria }, context) => {
-      return getProductoPorCategoria(categoria);
+    getProductoPorCategoria: (root, { categoria, limite }, context) => {
+      return getProductoPorCategoria(categoria, limite);
     },
 
     getProductoPorCategoriaConFiltros: (

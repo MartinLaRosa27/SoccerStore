@@ -2,19 +2,37 @@ const Producto = require("../models/Producto");
 const { QueryTypes } = require("sequelize");
 
 // ---------------------------------------------------------------------------
-module.exports.getProductoPorCategoria = async (categoria) => {
+module.exports.getProductoPorCategoria = async (categoria, limite) => {
   try {
-    const productos = await Producto.sequelize.query(
-      `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre
-      FROM productos AS p 
-      INNER JOIN categoria AS c ON c._id = p.categoriumId
-      INNER JOIN marcas AS m ON m._id = p.marcaId
-      WHERE categoriumId = "${categoria}"
-      ORDER BY _id DESC;`,
-      {
-        type: QueryTypes.SELECT,
-      }
-    );
+    let productos;
+
+    if (limite > 0) {
+      productos = await Producto.sequelize.query(
+        `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre
+        FROM productos AS p 
+        INNER JOIN categoria AS c ON c._id = p.categoriumId
+        INNER JOIN marcas AS m ON m._id = p.marcaId
+        WHERE categoriumId = ${categoria}
+        ORDER BY _id DESC
+        LIMIT ${limite};`,
+        {
+          type: QueryTypes.SELECT,
+        }
+      );
+    } else {
+      productos = await Producto.sequelize.query(
+        `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre
+        FROM productos AS p 
+        INNER JOIN categoria AS c ON c._id = p.categoriumId
+        INNER JOIN marcas AS m ON m._id = p.marcaId
+        WHERE categoriumId = ${categoria}
+        ORDER BY _id DESC;`,
+        {
+          type: QueryTypes.SELECT,
+        }
+      );
+    }
+
     return productos;
   } catch (e) {
     console.log(e);
@@ -56,7 +74,7 @@ module.exports.getProductoPorCategoriaConFiltros = async (
         FROM productos AS p 
         INNER JOIN categoria AS c ON c._id = p.categoriumId
         INNER JOIN marcas AS m ON m._id = p.marcaId
-        WHERE categoriumId = "${categoria}"
+        WHERE categoriumId = ${categoria}
         ORDER BY precio ASC;`,
         {
           type: QueryTypes.SELECT,
@@ -70,7 +88,7 @@ module.exports.getProductoPorCategoriaConFiltros = async (
         FROM productos AS p 
         INNER JOIN categoria AS c ON c._id = p.categoriumId
         INNER JOIN marcas AS m ON m._id = p.marcaId
-        WHERE categoriumId = "${categoria}"
+        WHERE categoriumId = ${categoria}
         ORDER BY precio DESC;`,
         {
           type: QueryTypes.SELECT,
@@ -84,7 +102,7 @@ module.exports.getProductoPorCategoriaConFiltros = async (
         FROM productos AS p 
         INNER JOIN categoria AS c ON c._id = p.categoriumId
         INNER JOIN marcas AS m ON m._id = p.marcaId
-        WHERE categoriumId = "${categoria}"
+        WHERE categoriumId = ${categoria}
         ORDER BY _id DESC;`,
         {
           type: QueryTypes.SELECT,
@@ -98,7 +116,7 @@ module.exports.getProductoPorCategoriaConFiltros = async (
         FROM productos AS p 
         INNER JOIN categoria AS c ON c._id = p.categoriumId
         INNER JOIN marcas AS m ON m._id = p.marcaId
-        WHERE categoriumId = "${categoria}"
+        WHERE categoriumId = ${categoria}
         ORDER BY _id ASC;`,
         {
           type: QueryTypes.SELECT,

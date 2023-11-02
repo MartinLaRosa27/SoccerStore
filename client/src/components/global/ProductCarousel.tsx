@@ -14,7 +14,7 @@ function ProductCarousel(props: { categoria: String; categoriaId: number }) {
   }, []);
 
   const callGetProductoPorCategoria = async () => {
-    setProductos(await getProductoPorCategoria(props.categoriaId));
+    setProductos(await getProductoPorCategoria(props.categoriaId, 6));
   };
 
   const responsive = {

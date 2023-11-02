@@ -7,11 +7,11 @@ const Context = createContext();
 
 export const ProductoContext = ({ children }) => {
   // ---------------------------------------------------------------------------
-  const getProductoPorCategoria = async (cateogoriaId) => {
+  const getProductoPorCategoria = async (categoria, limite) => {
     let categorias = [];
     const GET_PRODUCTO_X_CATEGORIA = gql`
-      query GetProductoPorCategoria($categoria: Int) {
-        getProductoPorCategoria(categoria: $categoria) {
+      query GetProductoPorCategoria($categoria: Int, $limite: Int) {
+        getProductoPorCategoria(categoria: $categoria, limite: $limite) {
           _id
           nombre
           descripcion
@@ -33,7 +33,8 @@ export const ProductoContext = ({ children }) => {
       .post(`${import.meta.env.VITE_BACKEND_URL}`, {
         query: print(GET_PRODUCTO_X_CATEGORIA),
         variables: {
-          categoria: cateogoriaId,
+          categoria,
+          limite,
         },
       })
       .then((res) => {

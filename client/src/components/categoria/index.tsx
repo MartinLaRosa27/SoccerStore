@@ -38,7 +38,7 @@ function Categoria() {
   }, [filtro]);
 
   const callGetProductoPorCategoria = async () => {
-    setProductos(await getProductoPorCategoria(Number(categoriaId)));
+    setProductos(await getProductoPorCategoria(Number(categoriaId), 0));
   };
 
   const callGetProductoPorCategoriaConFiltro = async (filtro: String) => {
