@@ -206,13 +206,13 @@ $negro: #252525;
     text-align: center;
 
     @media (max-width: 767px) {
-      height: 200px;
+      height: 240px;
     }
   }
 
   .el-wrapper .img {
-    padding: 20px 0;
     width: 85%;
+    background-color: rebeccapurple;
     height: auto;
     -webkit-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
     -moz-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
@@ -276,7 +276,9 @@ $negro: #252525;
   .info-inner .p-name {
     font-family: "PT Sans", sans-serif;
     font-size: 18px;
-    color: #323232;
+    color: $violetaUno;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   .info-inner .p-company {
@@ -363,7 +365,7 @@ $negro: #252525;
     display: block;
     position: absolute;
     top: 50%;
-    left: 110%;
+    left: 120%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
