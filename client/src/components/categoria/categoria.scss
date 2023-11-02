@@ -1,3 +1,17 @@
+$white: #f5f5f5;
+$violetaUno: #b57aed;
+$negro: #252525;
+
 #Categoria {
-    overflow: hidden;
+  overflow: hidden;
+  margin: 30px 0 30px;
+}
+
+#FiltrosCategoria-categoria {
+  h3 {
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: bold;
+    color: $negro;
+  }
 }

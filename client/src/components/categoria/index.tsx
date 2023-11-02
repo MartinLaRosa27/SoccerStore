@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Spinner from "../global/Spinner";
 import "./categoria.scss";
 import ProductCard from "../global/ProductCard";
+import FiltrosCategoria from "./FiltrosCategoria";
 
 function Categoria() {
   const { getProductoPorCategoria } = useProductoContext();
@@ -24,6 +25,7 @@ function Categoria() {
     <div id="Categoria">
       {productos.length > 0 && (
         <>
+        <FiltrosCategoria nombreCategoria={productos[0].categoriaNombre}/>
           <div className="row row-cols-2 row-cols-md-5 g-4">
             {productos.map((producto, i) => {
               return <ProductCard key={i} producto={producto} />;
