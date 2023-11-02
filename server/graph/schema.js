@@ -27,6 +27,10 @@ module.exports.typeDefs = gql`
     talleM: Int
     talleL: Int
     talleXL: Int
+    talle37: Int
+    talle39: Int
+    talle41: Int
+    talle43: Int
     marcaId: Int
     categoriumId: Int
     cantidad: Int

@@ -32,12 +32,21 @@ function Precarrito() {
                   <img src={producto[0].urlImg} />
                 </div>
                 <p className="pick">Selecciona talle:</p>
-                <div className="sizes">
-                  {producto[0].talleS ? <div className="size">S</div> : ""}
-                  {producto[0].talleM ? <div className="size">M</div> : ""}
-                  {producto[0].talleL ? <div className="size">L</div> : ""}
-                  {producto[0].talleXL ? <div className="size">XL</div> : ""}
-                </div>
+                {producto[0].categoriumId != 3 ? (
+                  <div className="sizes">
+                    {producto[0].talleS ? <div className="size">S</div> : ""}
+                    {producto[0].talleM ? <div className="size">M</div> : ""}
+                    {producto[0].talleL ? <div className="size">L</div> : ""}
+                    {producto[0].talleXL ? <div className="size">XL</div> : ""}
+                  </div>
+                ) : (
+                  <div className="sizes">
+                    {producto[0].talle37 ? <div className="size">37</div> : ""}
+                    {producto[0].talle39 ? <div className="size">39</div> : ""}
+                    {producto[0].talle41 ? <div className="size">41</div> : ""}
+                    {producto[0].talle43 ? <div className="size">43</div> : ""}
+                  </div>
+                )}
               </div>
 
               <div className="product">

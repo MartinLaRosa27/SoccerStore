@@ -76,6 +76,42 @@ const Producto = DBConfiguration.define("producto", {
     },
     default: 0,
   },
+
+  talle37: {
+    type: Sequelize.INTEGER(1),
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+    default: 0,
+  },
+
+  talle39: {
+    type: Sequelize.INTEGER(1),
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+    default: 0,
+  },
+
+  talle41: {
+    type: Sequelize.INTEGER(1),
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+    default: 0,
+  },
+
+  talle43: {
+    type: Sequelize.INTEGER(1),
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+    default: 0,
+  },
 });
 
 module.exports = Producto;

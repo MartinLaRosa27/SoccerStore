@@ -23,6 +23,10 @@ export const ProductoContext = ({ children }) => {
           talleM
           talleL
           talleXL
+          talle37
+          talle39
+          talle41
+          talle43
           categoriumId
           marcaId
           cantidad
@@ -79,6 +83,10 @@ export const ProductoContext = ({ children }) => {
           talleM
           talleL
           talleXL
+          talle37
+          talle39
+          talle41
+          talle43
           categoriumId
           marcaId
           cantidad
@@ -140,6 +148,10 @@ export const ProductoContext = ({ children }) => {
           talleM
           talleL
           talleXL
+          talle37
+          talle39
+          talle41
+          talle43
           marcaId
           categoriumId
           cantidad
