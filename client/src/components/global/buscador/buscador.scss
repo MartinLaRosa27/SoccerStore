@@ -21,19 +21,31 @@ $negro: #252525;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     border: 2px solid $violetaUno;
     border-radius: 12px;
     overflow: hidden;
     margin: 10px 0 10px;
 
+    &:hover {
+      cursor: pointer;
+      background-color: #e2e2e2;
+      transition: 0.3s;
+      border: 2px solid $negro;
+    }
+
     img {
       width: 90px;
       height: 90px;
+
+      @media (max-width: 768px) {
+        width: 70px;
+        height: 70px;
+      }
     }
 
     div {
-      margin-right: 40px;
+      margin-left: 10px;
 
       p {
         margin: 0;

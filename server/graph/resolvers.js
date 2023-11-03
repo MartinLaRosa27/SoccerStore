@@ -25,8 +25,8 @@ module.exports.resolvers = {
       return getProductoPorCategoriaConFiltros(categoria, filtro);
     },
 
-    getProductoPorNombre: (root, { nombre }, context) => {
-      return getProductoPorNombre(nombre);
+    getProductoPorNombre: (root, { nombre, limite }, context) => {
+      return getProductoPorNombre(nombre, limite);
     },
 
     getProductoPorId: (root, { idProducto }, context) => {

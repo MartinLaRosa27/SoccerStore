@@ -1,10 +1,18 @@
 import { formatPrecio } from "../../../helpers/formatPrecio";
 import { useHistory } from "react-router-dom";
 
-function BuscadorResultado(props: { producto: any }) {
+function BuscadorResultado(props: {
+  producto: any;
+  setShowBuscador: any;
+  setBuscar: any;
+  setProductos: any;
+}) {
   let history = useHistory();
 
   const onClick = () => {
+    props.setBuscar("");
+    props.setProductos([]);
+    props.setShowBuscador(false);
     history.push(`/precarrito/${props.producto._id}`);
   };
 

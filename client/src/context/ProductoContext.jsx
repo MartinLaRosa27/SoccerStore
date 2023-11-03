@@ -192,11 +192,11 @@ export const ProductoContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
-  const getProductoPorNombre = async (nombre) => {
+  const getProductoPorNombre = async (nombre, limite) => {
     let producto = {};
     const GET_PRODUCTO_X_NOMBRE = gql`
-      query GetProductoPorNombre($nombre: String) {
-        getProductoPorNombre(nombre: $nombre) {
+      query GetProductoPorNombre($nombre: String, $limite: Int) {
+        getProductoPorNombre(nombre: $nombre, limite: $limite) {
           _id
           nombre
           descripcion
@@ -223,6 +223,7 @@ export const ProductoContext = ({ children }) => {
         query: print(GET_PRODUCTO_X_NOMBRE),
         variables: {
           nombre,
+          limite,
         },
       })
       .then((res) => {

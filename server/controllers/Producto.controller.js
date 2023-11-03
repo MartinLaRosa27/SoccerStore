@@ -132,19 +132,34 @@ module.exports.getProductoPorCategoriaConFiltros = async (
 };
 
 // ---------------------------------------------------------------------------
-module.exports.getProductoPorNombre = async (nombre) => {
+module.exports.getProductoPorNombre = async (nombre, limite) => {
   try {
-    const producto = await Producto.sequelize.query(
-      `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre
-      FROM productos AS p 
-      INNER JOIN categoria AS c ON c._id = p.categoriumId
-      INNER JOIN marcas AS m ON m._id = p.marcaId
-      WHERE p.nombre LIKE "%${nombre}%"
-      LIMIT 5;`,
-      {
-        type: QueryTypes.SELECT,
-      }
-    );
+    let producto = [];
+    if (limite > 0) {
+      producto = await Producto.sequelize.query(
+        `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre
+        FROM productos AS p 
+        INNER JOIN categoria AS c ON c._id = p.categoriumId
+        INNER JOIN marcas AS m ON m._id = p.marcaId
+        WHERE p.nombre LIKE "%${nombre}%"
+        LIMIT ${limite};`,
+        {
+          type: QueryTypes.SELECT,
+        }
+      );
+    } else {
+      producto = await Producto.sequelize.query(
+        `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre
+        FROM productos AS p 
+        INNER JOIN categoria AS c ON c._id = p.categoriumId
+        INNER JOIN marcas AS m ON m._id = p.marcaId
+        WHERE p.nombre LIKE "%${nombre}%";`,
+        {
+          type: QueryTypes.SELECT,
+        }
+      );
+    }
+
     return producto;
   } catch (e) {
     console.log(e);

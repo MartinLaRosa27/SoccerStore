@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useProductoContext } from "../../../context/ProductoContext";
 import Modal from "react-bootstrap/Modal";
 import "./buscador.scss";
 import BuscadorResultado from "./BuscadorResultado";
 
 function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
-  const [buscar, setBuscar] = useState<string>();
+  const { getProductoPorNombre } = useProductoContext();
+  const [productos, setProductos] = useState<any[]>([]);
+  const [buscar, setBuscar] = useState<string>("");
+
+  useEffect(() => {
+    if (buscar.length > 0) {
+      callGetProductoPorNombre();
+    }
+  }, [buscar]);
+
+  const callGetProductoPorNombre = async () => {
+    setProductos(await getProductoPorNombre(buscar, 4));
+  };
 
   return (
     <div id="Buscador-global">
@@ -35,8 +48,21 @@ function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
             </div>
           </div>
 
-          {/* <BuscadorResultado producto={10}/> */}
-          
+          {productos.length > 0 && (
+            <>
+              {productos.map((producto, i) => {
+                return (
+                  <BuscadorResultado
+                    producto={producto}
+                    setShowBuscador={props.setShowBuscador}
+                    setBuscar={setBuscar}
+                    setProductos={setProductos}
+                    key={i}
+                  />
+                );
+              })}
+            </>
+          )}
         </Modal.Body>
       </Modal>
     </div>
