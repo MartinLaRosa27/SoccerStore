@@ -1,6 +1,7 @@
 require("../models/Categoria");
 require("../models/Marca");
 require("../models/Producto");
+require("../models/Usuario");
 const { DBConfiguration } = require("./DBConfiguration");
 
 module.exports.DBConnection = () => {
