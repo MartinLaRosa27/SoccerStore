@@ -7,7 +7,7 @@ function ProductCard(props: { producto: any }) {
     <div id="ProductCard-global">
       <div className="el-wrapper">
         <div className="box-up">
-          <img className="img" src={props.producto.urlImg} alt="" />
+          <img className="img" src={props.producto.urlImg} alt={props.producto.nombre} />
           <div className="img-info">
             <div className="info-inner">
               <span className="p-name">{props.producto.nombre}</span>

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import Modal from "react-bootstrap/Modal";
-import "./global.scss";
+import "./buscador.scss";
+import BuscadorResultado from "./BuscadorResultado";
 
 function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
   const [buscar, setBuscar] = useState<string>();
@@ -11,7 +12,7 @@ function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
       <Modal
         show={props.showBuscador}
         onHide={() => props.setShowBuscador(false)}
-        style={{ marginTop: "100px", zIndex: "11111" }}
+        style={{ marginTop: "75px", zIndex: "11111" }}
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
@@ -33,6 +34,9 @@ function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
               <AiOutlineSearch />
             </div>
           </div>
+
+          {/* <BuscadorResultado producto={10}/> */}
+          
         </Modal.Body>
       </Modal>
     </div>

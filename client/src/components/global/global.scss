@@ -278,13 +278,11 @@ $negro: #252525;
     font-size: 18px;
     color: $violetaUno;
     font-weight: bold;
-    text-transform: uppercase;
   }
 
   .info-inner .p-company {
     font-family: "Lato", sans-serif;
     font-size: 12px;
-    text-transform: uppercase;
     color: #8c8c8c;
   }
 
@@ -390,20 +388,5 @@ $negro: #252525;
     text-transform: uppercase;
     margin-bottom: 15px;
     font-style: italic;
-  }
-}
-
-.btn-buscador-global {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgb(215, 215, 215);
-  border-width: 1px 1px 1px 0;
-  border-radius: 4px;
-
-  &:hover{
-    cursor: pointer;
-    background-color: $violetaUno;
-    transition: 0.3s;
   }
 }
