@@ -43,11 +43,7 @@ export const ProductoContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
-          if (res.data.data.getProductoPorCategoria.length > 0) {
-            categorias = res.data.data.getProductoPorCategoria;
-          } else {
-            window.location.href = "/";
-          }
+          categorias = res.data.data.getProductoPorCategoria;
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
@@ -63,6 +59,9 @@ export const ProductoContext = ({ children }) => {
       .catch((e) => {
         console.log(e);
       });
+    if (categorias.length == 0) {
+      window.location.href = "/";
+    }
     return categorias;
   };
 
@@ -102,11 +101,7 @@ export const ProductoContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
-          if (res.data.data.getProductoPorId.length > 0) {
-            producto = res.data.data.getProductoPorId;
-          } else {
-            window.location.href = "/";
-          }
+          producto = res.data.data.getProductoPorId;
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
@@ -122,6 +117,9 @@ export const ProductoContext = ({ children }) => {
       .catch((e) => {
         console.log(e);
       });
+    if (producto.length == 0) {
+      window.location.href = "/";
+    }
     return producto;
   };
 
@@ -168,11 +166,7 @@ export const ProductoContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
-          if (res.data.data.getProductoPorCategoriaConFiltros.length > 0) {
-            categorias = res.data.data.getProductoPorCategoriaConFiltros;
-          } else {
-            window.location.href = "/";
-          }
+          categorias = res.data.data.getProductoPorCategoriaConFiltros;
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
@@ -188,6 +182,11 @@ export const ProductoContext = ({ children }) => {
       .catch((e) => {
         console.log(e);
       });
+
+    if (categorias.length == 0) {
+      window.location.href = "/";
+    }
+
     return categorias;
   };
 
@@ -228,11 +227,7 @@ export const ProductoContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
-          if (res.data.data.getProductoPorNombre.length > 0) {
-            producto = res.data.data.getProductoPorNombre;
-          } else {
-            window.location.href = "/";
-          }
+          producto = res.data.data.getProductoPorNombre;
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
@@ -248,6 +243,9 @@ export const ProductoContext = ({ children }) => {
       .catch((e) => {
         console.log(e);
       });
+    if (producto.length == 0) {
+      window.location.href = "/";
+    }
     return producto;
   };
 
@@ -288,11 +286,7 @@ export const ProductoContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
-          if (res.data.data.getProductoPorNombreConFiltros.length > 0) {
-            producto = res.data.data.getProductoPorNombreConFiltros;
-          } else {
-            window.location.href = "/";
-          }
+          producto = res.data.data.getProductoPorNombreConFiltros;
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
@@ -308,6 +302,9 @@ export const ProductoContext = ({ children }) => {
       .catch((e) => {
         console.log(e);
       });
+    if (producto.length == 0) {
+      window.location.href = "/";
+    }
     return producto;
   };
 
