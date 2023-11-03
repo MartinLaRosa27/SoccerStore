@@ -42,24 +42,27 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
               })}
           </Nav>
 
-          <div className="user-info">
-            <Nav.Link
-              className="cart"
-              onClick={() => props.setShowBuscador(!props.showBuscador)}
-            >
-              <span className="search-text">Buscar producto</span>
-              <AiOutlineSearch />
-            </Nav.Link>
-            <Nav.Link href="#" className="cart">
-              <AiOutlineShoppingCart />
-              <span className="num-item">3</span>
-            </Nav.Link>
-            <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#">mis compras</NavDropdown.Item>
-              <NavDropdown.Item href="#">cerrar sesión</NavDropdown.Item>
-            </NavDropdown>
-          </div>
-          {/* <Nav.Link href="#">Iniciar sesión</Nav.Link> */}
+          {false && (
+            <div className="user-info">
+              <Nav.Link
+                className="cart"
+                onClick={() => props.setShowBuscador(!props.showBuscador)}
+              >
+                <span className="search-text">Buscar producto</span>
+                <AiOutlineSearch />
+              </Nav.Link>
+              <Nav.Link href="#" className="cart">
+                <AiOutlineShoppingCart />
+                <span className="num-item">3</span>
+              </Nav.Link>
+              <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#">mis compras</NavDropdown.Item>
+                <NavDropdown.Item href="#">cerrar sesión</NavDropdown.Item>
+              </NavDropdown>
+            </div>
+          )}
+
+          {true && <NavLink to={`/login`}>Iniciar sesión</NavLink>}
         </Navbar.Collapse>
       </Container>
     </Navbar>

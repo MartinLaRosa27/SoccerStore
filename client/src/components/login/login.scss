@@ -1,0 +1,78 @@
+$violetaUno: #b57aed;
+
+#login {
+  min-height: 100vh;
+  margin: 25px 0 30px;
+
+  .logo-completo {
+    display: flex;
+    margin: auto;
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  h1,
+  h2 {
+    color: $violetaUno;
+    text-align: center;
+  }
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-form {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+    }
+
+    .btn-cont {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      button {
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      small {
+        cursor: pointer;
+        margin-top: 10px;
+
+        &:hover {
+          transition: 0.3s;
+          color: blue;
+        }
+      }
+    }
+  }
+}
