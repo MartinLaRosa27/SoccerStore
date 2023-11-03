@@ -44,6 +44,7 @@ module.exports.typeDefs = gql`
       filtro: String
     ): [productoType]
     getProductoPorId(idProducto: Int): [productoType]
+    getProductoPorNombre(nombre: String): [productoType]
   }
 
   type Mutation {
