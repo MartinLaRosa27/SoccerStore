@@ -6,6 +6,7 @@ const Marca = DBConfiguration.define("marca", {
   _id: {
     type: Sequelize.INTEGER(11),
     primaryKey: true,
+    autoIncrement: true,
     allowNull: false,
   },
 

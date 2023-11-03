@@ -1,22 +1,29 @@
 const { gql } = require("apollo-server");
 
 module.exports.typeDefs = gql`
-  input pruebaInput {
-    contendio: String!
+  input usuarioInput {
+    nombre: String!
+    email: String!
+    password: String!
   }
 
-  type pruebaType {
-    _id: String
-    contendio: String
+  type usuarioType {
+    _id: Int
+    nombre: String
+    email: String
+    password: String
+    piso: String
+    telefono: String
+    direccion: String
   }
 
   type categoriaType {
-    _id: String
+    _id: Int
     nombre: String
   }
 
   type productoType {
-    _id: String
+    _id: Int
     nombre: String
     descripcion: String
     urlImg: String
@@ -52,6 +59,6 @@ module.exports.typeDefs = gql`
   }
 
   type Mutation {
-    postPrueba(input: pruebaInput): pruebaType
+    postUsuario(input: usuarioInput): usuarioType
   }
 `;

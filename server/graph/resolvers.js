@@ -1,4 +1,3 @@
-const { postPrueba } = require("../controllers/Prueba.controller");
 const { getCategorias } = require("../controllers/Categoria.controller");
 const {
   getProductoPorCategoria,
@@ -7,6 +6,7 @@ const {
   getProductoPorId,
   getProductoPorNombreConFiltros,
 } = require("../controllers/Producto.controller");
+const { postUsuario } = require("../controllers/Usuario.controller");
 
 module.exports.resolvers = {
   Query: {
@@ -40,8 +40,8 @@ module.exports.resolvers = {
   },
 
   Mutation: {
-    postPrueba: (root, { input }, context) => {
-      return postPrueba(input);
+    postUsuario: (root, { input }, context) => {
+      return postUsuario(input);
     },
   },
 };

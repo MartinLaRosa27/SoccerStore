@@ -6,6 +6,7 @@ const Categoria = DBConfiguration.define("categoria", {
   _id: {
     type: Sequelize.INTEGER(11),
     primaryKey: true,
+    autoIncrement: true,
     allowNull: false,
   },
 
