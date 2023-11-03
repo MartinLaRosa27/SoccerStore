@@ -7,7 +7,7 @@ import FiltrosResultado from "./FiltrosResultado";
 import "./resultado.scss";
 
 function Resultado() {
-  const { getProductoPorNombre, getProductoPorCategoriaConFiltro } =
+  const { getProductoPorNombre, getProductoPorNombreConFiltro } =
     useProductoContext();
   const { nombreProducto }: any = useParams();
   const [filtro, setFiltro] = useState<String>("Filtrar por:");
@@ -43,7 +43,7 @@ function Resultado() {
 
   const callGetProductoPorCategoriaConFiltro = async (filtro: String) => {
     setProductos(
-      await getProductoPorCategoriaConFiltro(Number(nombreProducto), filtro)
+      await getProductoPorNombreConFiltro(nombreProducto, filtro)
     );
   };
 

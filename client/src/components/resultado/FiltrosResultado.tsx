@@ -11,7 +11,9 @@ function FiltrosResultado(props: {
 
   return (
     <div id="FiltrosResultado-resultado" className="container mb-4">
-      <h3 className="mb-3">Resultados de: <strong>{props.nombreCategoria}</strong></h3>
+      <h3 className="mb-3">
+        Resultados de: <strong>{props.nombreCategoria}</strong>
+      </h3>
       <Dropdown>
         <Dropdown.Toggle
           variant="secondary"
@@ -28,10 +30,10 @@ function FiltrosResultado(props: {
           <Dropdown.Item onClick={() => handleClick("Mayor precio")}>
             Mayor precio
           </Dropdown.Item>
-          <Dropdown.Item onClick={() => handleClick("Más nuevos")}>
+          <Dropdown.Item onClick={() => handleClick("Mas nuevos")}>
             Más nuevos
           </Dropdown.Item>
-          <Dropdown.Item onClick={() => handleClick("Más viejos")}>
+          <Dropdown.Item onClick={() => handleClick("Mas viejos")}>
             Más viejos
           </Dropdown.Item>
         </Dropdown.Menu>

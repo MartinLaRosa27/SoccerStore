@@ -5,6 +5,7 @@ const {
   getProductoPorCategoriaConFiltros,
   getProductoPorNombre,
   getProductoPorId,
+  getProductoPorNombreConFiltros,
 } = require("../controllers/Producto.controller");
 
 module.exports.resolvers = {
@@ -23,6 +24,10 @@ module.exports.resolvers = {
       context
     ) => {
       return getProductoPorCategoriaConFiltros(categoria, filtro);
+    },
+
+    getProductoPorNombreConFiltros: (root, { nombre, filtro }, context) => {
+      return getProductoPorNombreConFiltros(nombre, filtro);
     },
 
     getProductoPorNombre: (root, { nombre, limite }, context) => {

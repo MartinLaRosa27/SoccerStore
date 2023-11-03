@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { toast } from "react-hot-toast";
 import { useProductoContext } from "../../../context/ProductoContext";
+import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import "./buscador.scss";
 import BuscadorResultado from "./BuscadorResultado";
+import "./buscador.scss";
 
 function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
   const { getProductoPorNombre } = useProductoContext();
+  let history = useHistory();
   const [productos, setProductos] = useState<any[]>([]);
   const [buscar, setBuscar] = useState<string>("");
 
@@ -20,6 +23,25 @@ function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
     setProductos(await getProductoPorNombre(buscar, 4));
   };
 
+  const handleClickBuscar = (e: any) => {
+    e.preventDefault();
+    props.setShowBuscador(false);
+    setProductos([]);
+    if (productos.length > 0) {
+      history.push(`/resultado/${buscar}`);
+    } else {
+      toast.error("No se encontraron resultados para la búsqueda.", {
+        style: {
+          background: "#333",
+          color: "#fff",
+          fontWeight: "bold",
+          textAlign: "center",
+          marginTop: "80px",
+        },
+      });
+    }
+  };
+
   return (
     <div id="Buscador-global">
       <Modal
@@ -29,13 +51,14 @@ function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <div
+          <form
             className="contenedor-buscador w-100"
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
             }}
+            onSubmit={(e) => handleClickBuscar(e)}
           >
             <input
               type="text"
@@ -43,10 +66,10 @@ function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
               placeholder="Buscar producto"
               onChange={(e) => setBuscar(e.target.value)}
             />
-            <div className="w-25 btn-buscador-global">
+            <button className="w-25 btn-buscador-global" type="submit">
               <AiOutlineSearch />
-            </div>
-          </div>
+            </button>
+          </form>
 
           {productos.length > 0 && (
             <>

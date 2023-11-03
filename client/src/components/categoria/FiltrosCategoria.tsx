@@ -28,10 +28,10 @@ function FiltrosCategoria(props: {
           <Dropdown.Item onClick={() => handleClick("Mayor precio")}>
             Mayor precio
           </Dropdown.Item>
-          <Dropdown.Item onClick={() => handleClick("Más nuevos")}>
+          <Dropdown.Item onClick={() => handleClick("Mas nuevos")}>
             Más nuevos
           </Dropdown.Item>
-          <Dropdown.Item onClick={() => handleClick("Más viejos")}>
+          <Dropdown.Item onClick={() => handleClick("Mas viejos")}>
             Más viejos
           </Dropdown.Item>
         </Dropdown.Menu>
