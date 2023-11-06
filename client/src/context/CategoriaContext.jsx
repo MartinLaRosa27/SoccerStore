@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 import { toast } from "react-hot-toast";
 import { print } from "graphql";
 import gql from "graphql-tag";
@@ -25,7 +25,7 @@ export const CategoriaContext = ({ children }) => {
         if (!res.data.errors) {
           categorias = res.data.data.getCategorias;
         } else {
-          toast.error(res.data.errors[0].message, {
+          toast.error("Error al mostrar las categorías", {
             style: {
               background: "#333",
               color: "#fff",
