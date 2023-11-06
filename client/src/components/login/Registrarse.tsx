@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { useUsuarioContext } from "../../context/UsuarioContext";
 import * as Yup from "yup";
 
 function Registrarse(props: { setShowIniciar: any; showIniciar: any }) {
+  const { postUsuario } = useUsuarioContext();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [props.showIniciar]);
@@ -17,16 +20,20 @@ function Registrarse(props: { setShowIniciar: any; showIniciar: any }) {
           passwordAux: "",
         }}
         onSubmit={async (value) => {
-          //   await guardarUser(value);
+          if (await postUsuario(value)) {
+            window.location.href = "/";
+          }
         }}
         validationSchema={Yup.object({
-          email: Yup.string().required("El email es requerido."),
+          email: Yup.string()
+            .required("El email es requerido.")
+            .min(5, "El email debe tener más de 4 caracteres."),
           nombre: Yup.string()
             .required("El nombre es requerido.")
-            .min(3, "La contraseña debe tener más de 3 caracteres."),
+            .min(4, "La contraseña debe tener más de 3 caracteres."),
           password: Yup.string()
             .required("La contraseña es requerida.")
-            .min(8, "La contraseña debe tener más de 8 caracteres.")
+            .min(8, "La contraseña debe tener más de 7 caracteres.")
             .oneOf(
               [Yup.ref("passwordAux")],
               "Las contraseñas ingresadas no coinciden."

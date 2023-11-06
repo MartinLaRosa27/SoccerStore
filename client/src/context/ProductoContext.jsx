@@ -176,9 +176,6 @@ export const ProductoContext = ({ children }) => {
       .catch((e) => {
         console.log(e);
       });
-    if (producto.length == 0) {
-      window.location.href = "/";
-    }
     return producto;
   };
 

@@ -3,16 +3,19 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { CategoriaContext } from "./context/CategoriaContext.jsx";
 import { ProductoContext } from "./context/ProductoContext.jsx";
+import { Toaster } from "react-hot-toast";
+import { UsuarioContext } from "./context/UsuarioContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.scss";
-import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <CategoriaContext>
       <ProductoContext>
-        <Toaster />
-        <App />
+        <UsuarioContext>
+          <Toaster />
+          <App />
+        </UsuarioContext>
       </ProductoContext>
     </CategoriaContext>
   </React.StrictMode>
