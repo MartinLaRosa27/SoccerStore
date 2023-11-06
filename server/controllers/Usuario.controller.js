@@ -1,18 +1,48 @@
 const Usuario = require("../models/Usuario");
-const { QueryTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
+const { createToken } = require("../helpers/jwt");
 
 // ---------------------------------------------------------------------------
 module.exports.postUsuario = async (input) => {
   const { email, nombre, password } = input;
-
   try {
+    const userExists = await Usuario.findOne({
+      where: {
+        email,
+      },
+    });
+    if (userExists) {
+      throw new Error("Email ya registrado");
+    }
     const usuario = await Usuario.create({
       email,
       nombre,
       password,
     });
-    return usuario;
+    return createToken(usuario);
   } catch (e) {
-    throw new Error(e.errors[0].message);
+    console.log(e);
+    throw new Error(e);
+  }
+};
+
+// ---------------------------------------------------------------------------
+module.exports.getUsuario = async (input) => {
+  const { email, password } = input;
+  try {
+    const userExists = await Usuario.findOne({
+      where: {
+        email,
+      },
+    });
+    if (!userExists) {
+      throw new Error("Información incorrecta");
+    }
+    if (!bcrypt.compareSync(password, userExists.password)) {
+      throw new Error("Información incorrecta");
+    }
+    return createToken(userExists);
+  } catch (e) {
+    throw new Error(e);
   }
 };

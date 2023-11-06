@@ -45,7 +45,7 @@ export const ProductoContext = ({ children }) => {
         if (!res.data.errors) {
           categorias = res.data.data.getProductoPorCategoria;
         } else {
-          toast.error(res.data.errors[0].message, {
+          toast.error("Error al mostrar los productos", {
             style: {
               background: "#333",
               color: "#fff",
@@ -103,7 +103,7 @@ export const ProductoContext = ({ children }) => {
         if (!res.data.errors) {
           producto = res.data.data.getProductoPorId;
         } else {
-          toast.error(res.data.errors[0].message, {
+          toast.error("Error al mostrar los productos", {
             style: {
               background: "#333",
               color: "#fff",
@@ -168,7 +168,7 @@ export const ProductoContext = ({ children }) => {
         if (!res.data.errors) {
           categorias = res.data.data.getProductoPorCategoriaConFiltros;
         } else {
-          toast.error(res.data.errors[0].message, {
+          toast.error("Error al mostrar los productos", {
             style: {
               background: "#333",
               color: "#fff",
@@ -229,7 +229,7 @@ export const ProductoContext = ({ children }) => {
         if (!res.data.errors) {
           producto = res.data.data.getProductoPorNombre;
         } else {
-          toast.error(res.data.errors[0].message, {
+          toast.error("Error al mostrar los productos", {
             style: {
               background: "#333",
               color: "#fff",
@@ -288,7 +288,7 @@ export const ProductoContext = ({ children }) => {
         if (!res.data.errors) {
           producto = res.data.data.getProductoPorNombreConFiltros;
         } else {
-          toast.error(res.data.errors[0].message, {
+          toast.error("Error al mostrar los productos", {
             style: {
               background: "#333",
               color: "#fff",

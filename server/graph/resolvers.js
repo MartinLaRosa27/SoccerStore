@@ -6,7 +6,10 @@ const {
   getProductoPorId,
   getProductoPorNombreConFiltros,
 } = require("../controllers/Producto.controller");
-const { postUsuario } = require("../controllers/Usuario.controller");
+const {
+  postUsuario,
+  getUsuario,
+} = require("../controllers/Usuario.controller");
 
 module.exports.resolvers = {
   Query: {
@@ -36,6 +39,10 @@ module.exports.resolvers = {
 
     getProductoPorId: (root, { idProducto }, context) => {
       return getProductoPorId(idProducto);
+    },
+
+    getUsuario: (root, { input }, context) => {
+      return getUsuario(input);
     },
   },
 

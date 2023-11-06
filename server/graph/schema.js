@@ -2,7 +2,7 @@ const { gql } = require("apollo-server");
 
 module.exports.typeDefs = gql`
   input usuarioInput {
-    nombre: String!
+    nombre: String
     email: String!
     password: String!
   }
@@ -10,7 +10,6 @@ module.exports.typeDefs = gql`
   type usuarioType {
     _id: Int
     nombre: String
-    email: String
     password: String
     piso: String
     telefono: String
@@ -56,9 +55,10 @@ module.exports.typeDefs = gql`
     ): [productoType]
     getProductoPorId(idProducto: Int): [productoType]
     getProductoPorNombre(nombre: String, limite: Int): [productoType]
+    getUsuario(input: usuarioInput): String
   }
 
   type Mutation {
-    postUsuario(input: usuarioInput): usuarioType
+    postUsuario(input: usuarioInput): String
   }
 `;
