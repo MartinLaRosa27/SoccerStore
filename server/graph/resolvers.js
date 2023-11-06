@@ -4,7 +4,6 @@ const {
   getProductoPorCategoriaConFiltros,
   getProductoPorNombre,
   getProductoPorId,
-  getProductoPorNombreConFiltros,
 } = require("../controllers/Producto.controller");
 const {
   postUsuario,
@@ -27,10 +26,6 @@ module.exports.resolvers = {
       context
     ) => {
       return getProductoPorCategoriaConFiltros(categoria, filtro);
-    },
-
-    getProductoPorNombreConFiltros: (root, { nombre, filtro }, context) => {
-      return getProductoPorNombreConFiltros(nombre, filtro);
     },
 
     getProductoPorNombre: (root, { nombre, limite }, context) => {

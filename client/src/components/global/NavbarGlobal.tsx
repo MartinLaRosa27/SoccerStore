@@ -42,7 +42,7 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
               })}
           </Nav>
 
-          {false && (
+          {true && (
             <div className="user-info">
               <Nav.Link
                 className="cart"
@@ -62,7 +62,7 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
             </div>
           )}
 
-          {true && <NavLink to={`/login`}>Iniciar sesión</NavLink>}
+          {false && <NavLink to={`/login`}>Iniciar sesión</NavLink>}
         </Navbar.Collapse>
       </Container>
     </Navbar>

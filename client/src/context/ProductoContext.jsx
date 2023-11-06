@@ -250,65 +250,6 @@ export const ProductoContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
-  const getProductoPorNombreConFiltro = async (nombre, filtro) => {
-    let producto = [];
-    const GET_PRODUCTO_X_NOMBRE = gql`
-      query GetProductoPorNombreConFiltros($nombre: String, $filtro: String) {
-        getProductoPorNombreConFiltros(nombre: $nombre, filtro: $filtro) {
-          _id
-          nombre
-          descripcion
-          urlImg
-          precio
-          categoriaNombre
-          marcaNombre
-          talleS
-          talleM
-          talleL
-          talleXL
-          talle37
-          talle39
-          talle41
-          talle43
-          marcaId
-          categoriumId
-          cantidad
-        }
-      }
-    `;
-    await axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}`, {
-        query: print(GET_PRODUCTO_X_NOMBRE),
-        variables: {
-          nombre,
-          filtro,
-        },
-      })
-      .then((res) => {
-        if (!res.data.errors) {
-          producto = res.data.data.getProductoPorNombreConFiltros;
-        } else {
-          toast.error("Error al mostrar los productos", {
-            style: {
-              background: "#333",
-              color: "#fff",
-              fontWeight: "bold",
-              textAlign: "center",
-              marginTop: "80px",
-            },
-          });
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-    if (producto.length == 0) {
-      window.location.href = "/";
-    }
-    return producto;
-  };
-
-  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
@@ -316,7 +257,6 @@ export const ProductoContext = ({ children }) => {
         getProductoPorCategoriaConFiltro,
         getProductoPorId,
         getProductoPorNombre,
-        getProductoPorNombreConFiltro,
       }}
     >
       {children}

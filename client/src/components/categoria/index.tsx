@@ -7,8 +7,7 @@ import ProductCard from "../global/ProductCard";
 import FiltrosCategoria from "./FiltrosCategoria";
 
 function Categoria() {
-  const { getProductoPorCategoria, getProductoPorCategoriaConFiltro } =
-    useProductoContext();
+  const { getProductoPorCategoria } = useProductoContext();
   const { categoriaId }: any = useParams();
   const [filtro, setFiltro] = useState<String>("Filtrar por:");
   const [productos, setProductos] = useState<any[]>([]);
@@ -23,28 +22,30 @@ function Categoria() {
   useEffect(() => {
     if (productos.length > 0) {
       if (filtro == "Menor precio") {
-        callGetProductoPorCategoriaConFiltro("Menor precio");
+        const aux = [...productos].sort(
+          (a: any, b: any) => a.precio - b.precio
+        );
+        setProductos(aux);
       }
       if (filtro == "Mayor precio") {
-        callGetProductoPorCategoriaConFiltro("Mayor precio");
+        const aux = [...productos].sort(
+          (a: any, b: any) => b.precio - a.precio
+        );
+        setProductos(aux);
       }
       if (filtro == "Más nuevos") {
-        callGetProductoPorCategoriaConFiltro("Más nuevos");
+        const aux = [...productos].sort((a: any, b: any) => b._id - a._id);
+        setProductos(aux);
       }
       if (filtro == "Más viejos") {
-        callGetProductoPorCategoriaConFiltro("Más viejos");
+        const aux = [...productos].sort((a: any, b: any) => a._id - b._id);
+        setProductos(aux);
       }
     }
   }, [filtro]);
 
   const callGetProductoPorCategoria = async () => {
     setProductos(await getProductoPorCategoria(Number(categoriaId), 0));
-  };
-
-  const callGetProductoPorCategoriaConFiltro = async (filtro: String) => {
-    setProductos(
-      await getProductoPorCategoriaConFiltro(Number(categoriaId), filtro)
-    );
   };
 
   return (
