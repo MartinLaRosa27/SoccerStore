@@ -47,10 +47,50 @@ export const UsuarioContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
+  const getUsuario = async (input) => {
+    let token = "";
+    const GET_USUARIO = gql`
+      query Query($input: usuarioInput) {
+        getUsuario(input: $input)
+      }
+    `;
+    await axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}`, {
+        query: print(GET_USUARIO),
+        variables: {
+          input: {
+            email: input.email,
+            password: input.password,
+          },
+        },
+      })
+      .then((res) => {
+        if (!res.data.errors) {
+          token = res.data.data.getUsuario;
+        } else {
+          toast.error(res.data.errors[0].message, {
+            style: {
+              background: "#333",
+              color: "#fff",
+              fontWeight: "bold",
+              textAlign: "center",
+              marginTop: "80px",
+            },
+          });
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return token;
+  };
+
+  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
         postUsuario,
+        getUsuario,
       }}
     >
       {children}

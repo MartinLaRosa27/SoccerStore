@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useUsuarioContext } from "../../context/UsuarioContext";
 
 function Iniciar(props: { setShowIniciar: any; showIniciar: any }) {
+  const { getUsuario } = useUsuarioContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +20,9 @@ function Iniciar(props: { setShowIniciar: any; showIniciar: any }) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // await autenticacionUser({ email, password });
+    if (await getUsuario({ email, password })) {
+      window.location.href = "/";
+    }
   };
 
   return (
