@@ -1,5 +1,4 @@
 const jwt = require("jwt-simple");
-const moment = require("moment");
 
 // ---------------------------------------------------------------------------
 module.exports.createToken = (usuario) => {
@@ -10,7 +9,6 @@ module.exports.createToken = (usuario) => {
     direccion: usuario.direccion,
     telefono: usuario.telefono,
     piso: usuario.piso,
-    exp: moment().unix() + process.env.TOKEN_EXP_SEC,
   };
   const token = jwt.encode(payload, process.env.SECRET);
   return token;

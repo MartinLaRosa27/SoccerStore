@@ -3,6 +3,7 @@ import Categoria from "./components/categoria";
 import Home from "./components/home";
 import Resultado from "./components/resultado";
 import Login from "./components/login";
+import Account from "./components/account";
 
 export const routes = [
   {
@@ -24,6 +25,11 @@ export const routes = [
     path: "/resultado/:nombreProducto",
     component: Resultado,
     isLoged: false,
+  },
+  {
+    path: "/account",
+    component: Account,
+    isLoged: true,
   },
   {
     path: "/login",
