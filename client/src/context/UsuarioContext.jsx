@@ -8,7 +8,7 @@ const Context = createContext();
 export const UsuarioContext = ({ children }) => {
   // ---------------------------------------------------------------------------
   const postUsuario = async (input) => {
-    let token = "";
+    let token = false;
     const POST_USUARIO = gql`
       mutation PostUsuario($input: usuarioInput) {
         postUsuario(input: $input)
@@ -27,7 +27,11 @@ export const UsuarioContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
-          token = res.data.data.postUsuario;
+          localStorage.setItem(
+            import.meta.env.VITE_TOKEN_NAME,
+            res.data.data.postUsuario
+          );
+          token = true;
         } else {
           toast.error(res.data.errors[0].message, {
             style: {
@@ -48,7 +52,7 @@ export const UsuarioContext = ({ children }) => {
 
   // ---------------------------------------------------------------------------
   const getUsuario = async (input) => {
-    let token = "";
+    let token = false;
     const GET_USUARIO = gql`
       query Query($input: usuarioInput) {
         getUsuario(input: $input)
@@ -66,7 +70,11 @@ export const UsuarioContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
-          token = res.data.data.getUsuario;
+          localStorage.setItem(
+            import.meta.env.VITE_TOKEN_NAME,
+            res.data.data.getUsuario
+          );
+          token = true;
         } else {
           toast.error(res.data.errors[0].message, {
             style: {

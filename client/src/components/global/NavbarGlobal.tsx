@@ -17,6 +17,15 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
     callGetCategorias();
   }, []);
 
+  const isLoged = () => {
+    return localStorage.getItem(import.meta.env.VITE_TOKEN_NAME);
+  };
+
+  const logout = () => {
+    localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+    window.location.reload();
+  };
+
   const callGetCategorias = async () => {
     setCategorias(await getCategorias());
   };
@@ -42,7 +51,7 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
               })}
           </Nav>
 
-          {true && (
+          {isLoged() && (
             <div className="user-info">
               <Nav.Link
                 className="cart"
@@ -57,12 +66,14 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
               </Nav.Link>
               <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#">mis compras</NavDropdown.Item>
-                <NavDropdown.Item href="#">cerrar sesión</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => logout()}>
+                  cerrar sesión
+                </NavDropdown.Item>
               </NavDropdown>
             </div>
           )}
 
-          {false && <NavLink to={`/login`}>Iniciar sesión</NavLink>}
+          {!isLoged() && <NavLink to={`/login`}>Iniciar sesión</NavLink>}
         </Navbar.Collapse>
       </Container>
     </Navbar>

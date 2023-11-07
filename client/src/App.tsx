@@ -5,8 +5,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavbarGlobal from "./components/global/NavbarGlobal";
 import FooterGlobal from "./components/global/FooterGlobal";
 import Buscador from "./components/global/buscador/Buscador";
+import Login from "./components/login";
 
 function App() {
+  const isLoged = () => {
+    return localStorage.getItem(import.meta.env.VITE_TOKEN_NAME);
+  };
+
   const [showBuscador, setShowBuscador] = useState<boolean>(false);
 
   return (
@@ -18,7 +23,7 @@ function App() {
       <Switch>
         {routes.map((route, i) => (
           <Route exact path={route.path} key={i}>
-            <route.component />
+            {route.isLoged && !isLoged() ? <Login /> : <route.component />}
           </Route>
         ))}
       </Switch>
