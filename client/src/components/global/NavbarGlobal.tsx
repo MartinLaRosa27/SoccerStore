@@ -65,6 +65,7 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
                 <span className="num-item">3</span>
               </Nav.Link>
               <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/account">mis datos</NavDropdown.Item>
                 <NavDropdown.Item href="#">mis compras</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => logout()}>
                   cerrar sesión
