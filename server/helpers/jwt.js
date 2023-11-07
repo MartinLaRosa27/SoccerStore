@@ -1,4 +1,5 @@
 const jwt = require("jwt-simple");
+const moment = require("moment");
 
 // ---------------------------------------------------------------------------
 module.exports.createToken = (usuario) => {
@@ -12,4 +13,14 @@ module.exports.createToken = (usuario) => {
   };
   const token = jwt.encode(payload, process.env.SECRET);
   return token;
+};
+
+// --------------------------------------------------------------------------
+module.exports.decodeToken = (token) => {
+  const tokenAux = token.replace(/['"]+/g, "");
+  const payload = jwt.decode(tokenAux, process.env.SECRET);
+  if (payload.exp <= moment().unix()) {
+    throw new Error("Expired token");
+  }
+  return payload;
 };
