@@ -49,7 +49,7 @@ function Registrarse(props: { setShowIniciar: any; showIniciar: any }) {
                 as="input"
                 type="email"
                 name="email"
-                placeholder="Ingresa correo"
+                placeholder="Ingresa su correo electrónico"
               />
             </div>
             <div className="form-group" style={{ margin: "25px 0" }}>
@@ -107,7 +107,9 @@ function Registrarse(props: { setShowIniciar: any; showIniciar: any }) {
                   formikProps.errors.password != undefined ||
                   formikProps.values.password.length === 0 ||
                   formikProps.errors.passwordAux != undefined ||
-                  formikProps.values.passwordAux.length === 0
+                  formikProps.values.passwordAux.length === 0 ||
+                  formikProps.errors.nombre != undefined ||
+                  formikProps.values.nombre.length === 0
                 }
               >
                 Registrarse

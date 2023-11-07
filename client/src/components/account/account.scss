@@ -1,3 +1,35 @@
-// #Account{
-    
-// }
+$white: #f5f5f5;
+$violetaUno: #b57aed;
+$negro: #252525;
+
+#account {
+  margin-top: 30px;
+  margin-bottom: 40px;
+
+  h3 {
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: bold;
+    color: $negro;
+    margin-bottom: 20px;
+  }
+}
+
+#formulario-account {
+  .direccion {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+      width: 45%;
+    }
+  }
+
+  .btn {
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 100%;
+  }
+}
