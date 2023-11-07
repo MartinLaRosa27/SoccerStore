@@ -4,7 +4,10 @@ module.exports.typeDefs = gql`
   input usuarioInput {
     nombre: String
     email: String!
-    password: String!
+    password: String
+    piso: String
+    telefono: String
+    direccion: String
   }
 
   type usuarioType {
@@ -54,5 +57,6 @@ module.exports.typeDefs = gql`
 
   type Mutation {
     postUsuario(input: usuarioInput): String
+    patchUser(input: usuarioInput): String
   }
 `;

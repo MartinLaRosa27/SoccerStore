@@ -23,7 +23,7 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
 
   const logout = () => {
     localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
-    window.location.reload();
+    window.location.href = "/";
   };
 
   const callGetCategorias = async () => {

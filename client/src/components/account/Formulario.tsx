@@ -1,7 +1,7 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-function Formulario(props: { usuarioInformation: any }) {
+function Formulario(props: { usuarioInformation: any; patchUser: any }) {
   return (
     <div id="formulario-account" className="container">
       <Formik
@@ -13,7 +13,15 @@ function Formulario(props: { usuarioInformation: any }) {
           piso: props.usuarioInformation.piso || "",
         }}
         onSubmit={async (value) => {
-          console.log(value);
+          if (
+            props.patchUser(
+              value,
+              localStorage.getItem(import.meta.env.VITE_TOKEN_NAME)
+            )
+          ) {
+            alert("Datos de usuario modificados correctamente");
+            window.location.reload();
+          }
         }}
         validationSchema={Yup.object({
           email: Yup.string()

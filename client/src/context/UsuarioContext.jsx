@@ -106,9 +106,9 @@ export const UsuarioContext = ({ children }) => {
       .then((res) => {
         if (!res.data.errors) {
           usuario = res.data.data.getUsuarioInformationToken;
-          console.log(usuario);
         } else {
           alert(res.data.errors[0].message);
+          localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
           window.location.href = "/";
         }
       })
@@ -119,12 +119,64 @@ export const UsuarioContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
+  const patchUser = async (input, token) => {
+    let newToken = false;
+    const PATCH_USUARIO = gql`
+      mutation PatchUser($input: usuarioInput) {
+        patchUser(input: $input)
+      }
+    `;
+    await axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}`,
+        {
+          query: print(PATCH_USUARIO),
+          variables: {
+            input: {
+              email: input.email,
+              password: input.password,
+              nombre: input.nombre,
+              direccion: input.direccion,
+              piso: input.piso,
+              telefono: input.telefono,
+            },
+          },
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((res) => {
+        if (!res.data.errors) {
+          localStorage.setItem(
+            import.meta.env.VITE_TOKEN_NAME,
+            res.data.data.patchUser
+          );
+          newToken = true;
+        } else {
+          alert(res.data.errors[0].message);
+          if (res.data.errors[0].message == "session expired") {
+            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+            window.location.href = "/";
+          }
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return newToken;
+  };
+
+  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
         postUsuario,
         getUsuario,
         getUsuarioInformationToken,
+        patchUser,
       }}
     >
       {children}

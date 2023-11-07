@@ -5,7 +5,7 @@ import Spinner from "../global/Spinner";
 import "./account.scss";
 
 function Account() {
-  const { getUsuarioInformationToken } = useUsuarioContext();
+  const { getUsuarioInformationToken, patchUser } = useUsuarioContext();
   const [usuarioInformation, setUsuarioInformation] = useState(false);
 
   useEffect(() => {
@@ -24,7 +24,14 @@ function Account() {
   return (
     <div id="account">
       <h3 className="container">Mis datos</h3>
-      {usuarioInformation ? <Formulario usuarioInformation={usuarioInformation} /> : <Spinner />}
+      {usuarioInformation ? (
+        <Formulario
+          usuarioInformation={usuarioInformation}
+          patchUser={patchUser}
+        />
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 }

@@ -12,7 +12,6 @@ const server = new ApolloServer({
   resolvers,
   context: ({ req }) => {
     const usuario = auth(req.headers.authorization);
-    console.log(usuario);
     return {
       usuario,
     };

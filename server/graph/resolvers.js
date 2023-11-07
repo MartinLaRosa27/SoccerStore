@@ -8,6 +8,7 @@ const {
   postUsuario,
   getUsuario,
   getUsuarioInformationToken,
+  patchUser,
 } = require("../controllers/Usuario.controller");
 
 module.exports.resolvers = {
@@ -40,6 +41,10 @@ module.exports.resolvers = {
   Mutation: {
     postUsuario: (root, { input }, context) => {
       return postUsuario(input);
+    },
+
+    patchUser: (root, { input }, context) => {
+      return patchUser(input, context.usuario);
     },
   },
 };
