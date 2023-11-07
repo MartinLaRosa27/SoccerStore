@@ -21,7 +21,7 @@ function Formulario() {
             .min(5, "El email debe tener más de 4 caracteres."),
           nombre: Yup.string()
             .required("El nombre es requerido.")
-            .min(4, "La contraseña debe tener más de 3 caracteres."),
+            .min(4, "El nombre debe tener más de 3 caracteres."),
           telefono: Yup.string().required("El telefono es requerido."),
           direccion: Yup.string().required("La dirección es requerida."),
         })}
@@ -98,7 +98,19 @@ function Formulario() {
               <ErrorMessage name="email">
                 {(msg) => <small className="text-danger">{msg}</small>}
               </ErrorMessage>
+              <ErrorMessage name="direccion">
+                {(msg) => <small className="text-danger">{msg}</small>}
+              </ErrorMessage>
+              <ErrorMessage name="nombre">
+                {(msg) => <small className="text-danger">{msg}</small>}
+              </ErrorMessage>
               <ErrorMessage name="password">
+                {(msg) => <small className="text-danger">{msg}</small>}
+              </ErrorMessage>
+              <ErrorMessage name="telefono">
+                {(msg) => <small className="text-danger">{msg}</small>}
+              </ErrorMessage>
+              <ErrorMessage name="piso">
                 {(msg) => <small className="text-danger">{msg}</small>}
               </ErrorMessage>
             </div>

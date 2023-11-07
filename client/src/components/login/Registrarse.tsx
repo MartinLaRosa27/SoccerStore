@@ -30,7 +30,7 @@ function Registrarse(props: { setShowIniciar: any; showIniciar: any }) {
             .min(5, "El email debe tener más de 4 caracteres."),
           nombre: Yup.string()
             .required("El nombre es requerido.")
-            .min(4, "La contraseña debe tener más de 3 caracteres."),
+            .min(4, "El nombre debe tener más de 3 caracteres."),
           password: Yup.string()
             .required("La contraseña es requerida.")
             .min(8, "La contraseña debe tener más de 7 caracteres.")
@@ -89,6 +89,9 @@ function Registrarse(props: { setShowIniciar: any; showIniciar: any }) {
               }}
             >
               <ErrorMessage name="email">
+                {(msg) => <small className="text-danger">{msg}</small>}
+              </ErrorMessage>
+              <ErrorMessage name="nombre">
                 {(msg) => <small className="text-danger">{msg}</small>}
               </ErrorMessage>
               <ErrorMessage name="password">
