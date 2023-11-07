@@ -1,5 +1,4 @@
 import { createContext, useContext } from "react";
-import { toast } from "react-hot-toast";
 import { print } from "graphql";
 import gql from "graphql-tag";
 import axios from "axios";
@@ -33,15 +32,7 @@ export const UsuarioContext = ({ children }) => {
           );
           token = true;
         } else {
-          toast.error(res.data.errors[0].message, {
-            style: {
-              background: "#333",
-              color: "#fff",
-              fontWeight: "bold",
-              textAlign: "center",
-              marginTop: "80px",
-            },
-          });
+          alert(res.data.errors[0].message);
         }
       })
       .catch((e) => {
@@ -76,15 +67,7 @@ export const UsuarioContext = ({ children }) => {
           );
           token = true;
         } else {
-          toast.error(res.data.errors[0].message, {
-            style: {
-              background: "#333",
-              color: "#fff",
-              fontWeight: "bold",
-              textAlign: "center",
-              marginTop: "80px",
-            },
-          });
+          alert(res.data.errors[0].message);
         }
       })
       .catch((e) => {
@@ -94,11 +77,54 @@ export const UsuarioContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
+  const getUsuarioInformationToken = async (token) => {
+    let usuario = {};
+    const GET_USUARIO = gql`
+      query GetUsuarioInformationToken {
+        getUsuarioInformationToken {
+          _id
+          nombre
+          email
+          piso
+          telefono
+          direccion
+        }
+      }
+    `;
+    await axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}`,
+        {
+          query: print(GET_USUARIO),
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((res) => {
+        if (!res.data.errors) {
+          usuario = res.data.data.getUsuarioInformationToken;
+          console.log(usuario);
+        } else {
+          alert(res.data.errors[0].message);
+          window.location.href = "/";
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return usuario;
+  };
+
+  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
         postUsuario,
         getUsuario,
+        getUsuarioInformationToken,
       }}
     >
       {children}

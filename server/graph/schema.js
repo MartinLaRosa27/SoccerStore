@@ -9,6 +9,7 @@ module.exports.typeDefs = gql`
 
   type usuarioType {
     _id: Int
+    email: String
     nombre: String
     password: String
     piso: String
@@ -48,6 +49,7 @@ module.exports.typeDefs = gql`
     getProductoPorId(idProducto: Int): [productoType]
     getProductoPorNombre(nombre: String, limite: Int): [productoType]
     getUsuario(input: usuarioInput): String
+    getUsuarioInformationToken: usuarioType
   }
 
   type Mutation {

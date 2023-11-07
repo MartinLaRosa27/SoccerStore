@@ -27,21 +27,12 @@ module.exports.postUsuario = async (input) => {
 };
 
 // ---------------------------------------------------------------------------
-module.exports.getUsuario = async (input) => {
-  const { email, password } = input;
+module.exports.getUsuarioInformationToken = async (usuario) => {
   try {
-    const userExists = await Usuario.findOne({
-      where: {
-        email,
-      },
-    });
-    if (!userExists) {
-      throw new Error("Información incorrecta");
+    if (!usuario) {
+      throw new Error("Error, por favor registrese nuevamente");
     }
-    if (!bcrypt.compareSync(password, userExists.password)) {
-      throw new Error("Información incorrecta");
-    }
-    return createToken(userExists);
+    return usuario;
   } catch (e) {
     throw new Error(e);
   }

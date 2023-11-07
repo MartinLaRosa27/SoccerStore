@@ -1,16 +1,16 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-function Formulario() {
+function Formulario(props: { usuarioInformation: any }) {
   return (
     <div id="formulario-account" className="container">
       <Formik
         initialValues={{
-          email: "",
-          nombre: "",
-          direccion: "",
-          telefono: "",
-          piso: "",
+          email: props.usuarioInformation.email || "",
+          nombre: props.usuarioInformation.nombre || "",
+          direccion: props.usuarioInformation.direccion || "",
+          telefono: props.usuarioInformation.telefono || "",
+          piso: props.usuarioInformation.piso || "",
         }}
         onSubmit={async (value) => {
           console.log(value);

@@ -7,6 +7,7 @@ const {
 const {
   postUsuario,
   getUsuario,
+  getUsuarioInformationToken,
 } = require("../controllers/Usuario.controller");
 
 module.exports.resolvers = {
@@ -29,6 +30,10 @@ module.exports.resolvers = {
 
     getUsuario: (root, { input }, context) => {
       return getUsuario(input);
+    },
+
+    getUsuarioInformationToken: (root, {}, context) => {
+      return getUsuarioInformationToken(context.usuario);
     },
   },
 
