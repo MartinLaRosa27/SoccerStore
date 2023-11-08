@@ -33,11 +33,11 @@ function Categoria() {
         );
         setProductos(aux);
       }
-      if (filtro == "Más nuevos") {
+      if (filtro == "Mas nuevos") {
         const aux = [...productos].sort((a: any, b: any) => b._id - a._id);
         setProductos(aux);
       }
-      if (filtro == "Más viejos") {
+      if (filtro == "Mas viejos") {
         const aux = [...productos].sort((a: any, b: any) => a._id - b._id);
         setProductos(aux);
       }

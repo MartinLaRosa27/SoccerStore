@@ -31,7 +31,11 @@ function Precarrito() {
                 <div className="images">
                   <img src={producto[0].urlImg} />
                 </div>
-                <p className="pick">Selecciona talle:</p>
+
+                {producto[0].cantidad > 0 && (
+                  <p className="pick">Selecciona talle:</p>
+                )}
+
                 {producto[0].categoriumId != 3 ? (
                   <div className="sizes">
                     {producto[0].talleS ? <div className="size">S</div> : ""}
@@ -54,15 +58,23 @@ function Precarrito() {
                 <h1>{producto[0].nombre}</h1>
                 <h2 className="price">${formatPrecio(producto[0].precio)}</h2>
                 <p className="desc">{producto[0].descripcion}</p>
-                <span>
-                  Disponibles: <strong>{producto[0].cantidad}</strong>
-                </span>
-                <div className="buttons mt-2">
-                  <button className="add">agregar</button>
-                  <button className="like">
-                    <span>♥</span>
-                  </button>
-                </div>
+
+                {producto[0].cantidad > 0 ? (
+                  <>
+                    {" "}
+                    <span>
+                      Disponibles: <strong>{producto[0].cantidad}</strong>
+                    </span>
+                    <div className="buttons mt-2">
+                      <button className="add">agregar</button>
+                      <button className="like">
+                        <span>♥</span>
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <h3 className="pick text-danger fw-bold">Sin stock</h3>
+                )}
               </div>
             </div>
           </div>

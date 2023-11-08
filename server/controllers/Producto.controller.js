@@ -71,6 +71,7 @@ module.exports.getProductoPorNombre = async (nombre, limite) => {
         INNER JOIN categoria AS c ON c._id = p.categoriumId
         INNER JOIN marcas AS m ON m._id = p.marcaId
         WHERE p.nombre LIKE "%${nombre}%"
+        ORDER BY _id DESC
         LIMIT ${limite};`,
         {
           type: QueryTypes.SELECT,
@@ -82,7 +83,8 @@ module.exports.getProductoPorNombre = async (nombre, limite) => {
         FROM productos AS p 
         INNER JOIN categoria AS c ON c._id = p.categoriumId
         INNER JOIN marcas AS m ON m._id = p.marcaId
-        WHERE p.nombre LIKE "%${nombre}%";`,
+        WHERE p.nombre LIKE "%${nombre}%"
+        ORDER BY _id DESC;`,
         {
           type: QueryTypes.SELECT,
         }

@@ -74,7 +74,16 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
             </div>
           )}
 
-          {!isLoged() && <NavLink to={`/login`}>Iniciar sesión</NavLink>}
+          {!isLoged() && <div className="user-info">
+            <Nav.Link
+                className="cart"
+                onClick={() => props.setShowBuscador(!props.showBuscador)}
+              >
+                <span className="search-text">Buscar producto</span>
+                <AiOutlineSearch />
+              </Nav.Link>
+            <NavLink to={`/login`}>Iniciar sesión</NavLink>
+          </div>}
         </Navbar.Collapse>
       </Container>
     </Navbar>

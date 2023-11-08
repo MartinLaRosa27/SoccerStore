@@ -142,6 +142,7 @@ $negro: #252525;
     background-color: #fff;
     border: 3px solid $violetaUno;
     border-radius: 12px;
+    cursor: pointer;
   }
 
   @media (max-width: 991px) {
@@ -212,7 +213,6 @@ $negro: #252525;
 
   .el-wrapper .img {
     width: 85%;
-    background-color: rebeccapurple;
     height: auto;
     -webkit-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
     -moz-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
