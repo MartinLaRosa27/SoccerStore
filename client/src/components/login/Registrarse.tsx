@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useUsuarioContext } from "../../context/UsuarioContext";
+import { AiFillLock } from "react-icons/ai";
 import * as Yup from "yup";
 
 function Registrarse(props: { setShowIniciar: any; showIniciar: any }) {
+  const [shown, setShown] = useState(false);
+  const [show, setShow] = useState(false);
   const { postUsuario } = useUsuarioContext();
 
   useEffect(() => {
@@ -63,21 +66,47 @@ function Registrarse(props: { setShowIniciar: any; showIniciar: any }) {
             </div>
             <div className="form-group" style={{ margin: "25px 0" }}>
               <label>Contraseña:</label>
-              <Field
-                as="input"
-                type="password"
-                name="password"
-                placeholder="Ingresa contraseña"
-              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Field
+                  as="input"
+                  type={show ? "text" : "password"}
+                  name="password"
+                  placeholder="Ingresa contraseña"
+                />
+                <AiFillLock
+                  className="icon-lock"
+                  onClick={() => setShow(!show)}
+                />
+              </div>
             </div>
             <div className="form-group" style={{ margin: "25px 0" }}>
               <label>Confirmar contraseña:</label>
-              <Field
-                as="input"
-                type="password"
-                name="passwordAux"
-                placeholder="Ingresa contraseña nuevamente"
-              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Field
+                  as="input"
+                  type={shown ? "text" : "password"}
+                  name="passwordAux"
+                  placeholder="Contraseña nuevamente"
+                />
+                <AiFillLock
+                  className="icon-lock"
+                  onClick={() => setShown(!shown)}
+                />
+              </div>
             </div>
 
             <div

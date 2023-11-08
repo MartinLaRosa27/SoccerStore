@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useUsuarioContext } from "../../context/UsuarioContext";
+import { AiFillLock } from "react-icons/ai";
 
 function Iniciar(props: { setShowIniciar: any; showIniciar: any }) {
+  const [shown, setShown] = useState(false);
   const { getUsuario } = useUsuarioContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,14 +44,27 @@ function Iniciar(props: { setShowIniciar: any; showIniciar: any }) {
         </div>
         <div className="form-group" style={{ margin: "25px 0" }}>
           <label htmlFor="password">Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Ingresa tu contraseña"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <input
+              type={shown ? "text" : "password"}
+              id="password"
+              placeholder="Ingresa tu contraseña"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+            <AiFillLock
+              className="icon-lock"
+              onClick={() => setShown(!shown)}
+            />
+          </div>
         </div>
 
         <div className="btn-cont">

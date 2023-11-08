@@ -1,4 +1,5 @@
 $violetaUno: #b57aed;
+$negro: #252525;
 
 #login {
   min-height: 100vh;
@@ -22,6 +23,18 @@ $violetaUno: #b57aed;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .icon-lock {
+    color: $violetaUno;
+    font-size: 2rem;
+    margin: 5px;
+
+    &:hover {
+      cursor: pointer;
+      transition: 0.3s;
+      color: $negro;
+    }
   }
 
   .login-form {
