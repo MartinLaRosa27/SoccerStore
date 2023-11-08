@@ -138,7 +138,7 @@ function FooterGlobal() {
         >
           <span>SoccerStore© 2023</span>
           <span className="mt-2">
-            Desarrollado por:{" "}
+          Sitio web con fines educativos | Desarrollado por:{" "}
             <a
               href="https://www.linkedin.com/in/martin-la-rosa/"
               className="text-dark mt-2 fw-bold"
