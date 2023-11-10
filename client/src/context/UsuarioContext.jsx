@@ -107,7 +107,7 @@ export const UsuarioContext = ({ children }) => {
         if (!res.data.errors) {
           usuario = res.data.data.getUsuarioInformationToken;
         } else {
-          alert(res.data.errors[0].message);
+          alert("Por favor, inicie sesión nuevamente");
           localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
           window.location.href = "/";
         }
@@ -156,11 +156,9 @@ export const UsuarioContext = ({ children }) => {
           );
           newToken = true;
         } else {
-          alert(res.data.errors[0].message);
-          if (res.data.errors[0].message == "session expired") {
-            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
-            window.location.href = "/";
-          }
+          alert("Por favor, inicie sesión nuevamente");
+          localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+          window.location.href = "/";
         }
       })
       .catch((e) => {

@@ -35,7 +35,7 @@ module.exports.getUsuarioInformationToken = async (usuario) => {
     }
     return usuario;
   } catch (e) {
-    throw new Error("Error, inicie  sesión nuevamente");
+    throw new Error("Por favor, inicie sesión nuevamente");
   }
 };
 

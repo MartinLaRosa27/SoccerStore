@@ -1,4 +1,5 @@
 const { getCategorias } = require("../controllers/Categoria.controller");
+const { postCarrito } = require("../controllers/Carrito.controller");
 const {
   getProductoPorCategoria,
   getProductoPorNombre,
@@ -41,6 +42,10 @@ module.exports.resolvers = {
   Mutation: {
     postUsuario: (root, { input }, context) => {
       return postUsuario(input);
+    },
+
+    postCarrito: (root, { input }, context) => {
+      return postCarrito(input, context.usuario);
     },
 
     patchUser: (root, { input }, context) => {

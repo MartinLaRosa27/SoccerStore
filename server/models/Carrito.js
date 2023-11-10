@@ -19,7 +19,7 @@ const Carrito = DBConfiguration.define("carrito", {
   },
 
   talle: {
-    type: Sequelize.STRING(1),
+    type: Sequelize.STRING(11),
     allowNull: false,
     validate: {
       notEmpty: true,

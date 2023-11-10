@@ -10,6 +10,12 @@ module.exports.typeDefs = gql`
     direccion: String
   }
 
+  input carritoInput {
+    cantidad: Int!
+    talle: String!
+    productoId: Int!
+  }
+
   type usuarioType {
     _id: Int
     email: String
@@ -18,6 +24,12 @@ module.exports.typeDefs = gql`
     piso: String
     telefono: String
     direccion: String
+  }
+
+  type carritoType {
+    _id: Int
+    cantidad: Int
+    talle: String
   }
 
   type categoriaType {
@@ -58,5 +70,6 @@ module.exports.typeDefs = gql`
   type Mutation {
     postUsuario(input: usuarioInput): String
     patchUser(input: usuarioInput): String
+    postCarrito(input: carritoInput): carritoType
   }
 `;
