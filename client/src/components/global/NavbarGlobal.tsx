@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import { useCategoriaContext } from "../../context/CategoriaContext";
+import { useCarritoContext } from "../../context/CarritoContext";
 import logoSimple from "../../assets/img/global/logo-simple.webp";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -10,11 +11,17 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "./global.scss";
 
 function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
+  const { getCarritoCount } = useCarritoContext();
   const { getCategorias } = useCategoriaContext();
   const [categorias, setCategorias] = useState<any[]>([]);
+  const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
     callGetCategorias();
+  }, []);
+
+  useEffect(() => {
+    callGetCarritoCount();
   }, []);
 
   const isLoged = () => {
@@ -28,6 +35,10 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
 
   const callGetCategorias = async () => {
     setCategorias(await getCategorias());
+  };
+
+  const callGetCarritoCount = async () => {
+    setTotal(await getCarritoCount());
   };
 
   return (
@@ -62,7 +73,7 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
               </Nav.Link>
               <Nav.Link href="#" className="cart">
                 <AiOutlineShoppingCart />
-                <span className="num-item">3</span>
+                {total ? <span className="num-item">{total}</span> : ""}
               </Nav.Link>
               <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/account">mis datos</NavDropdown.Item>
@@ -74,16 +85,18 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
             </div>
           )}
 
-          {!isLoged() && <div className="user-info">
-            <Nav.Link
+          {!isLoged() && (
+            <div className="user-info">
+              <Nav.Link
                 className="cart"
                 onClick={() => props.setShowBuscador(!props.showBuscador)}
               >
                 <span className="search-text">Buscar producto</span>
                 <AiOutlineSearch />
               </Nav.Link>
-            <NavLink to={`/login`}>Iniciar sesión</NavLink>
-          </div>}
+              <NavLink to={`/login`}>Iniciar sesión</NavLink>
+            </div>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

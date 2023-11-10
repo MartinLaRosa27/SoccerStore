@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createContext, useContext } from "react";
 import { print } from "graphql";
 import { errorToast, successToast } from "../helpers/toast";
@@ -57,10 +58,52 @@ export const CarritoContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
+  const getCarritoCount = async () => {
+    let total = 0;
+    const GET_CARRITO_COUNT = gql`
+      query Query {
+        getCarritoCount
+      }
+    `;
+    await axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}`,
+        {
+          query: print(GET_CARRITO_COUNT),
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem(
+              import.meta.env.VITE_TOKEN_NAME
+            ),
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.errors) {
+          if (res.data.errors[0].message == "session expired") {
+            errorToast("Por favor, inicie sesión nuevamente");
+            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+            window.location.href = "/";
+          } else {
+            errorToast(res.data.errors[0].message);
+          }
+        } else {
+          total = res.data.data.getCarritoCount;
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return total;
+  };
+
+  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
         postCarrito,
+        getCarritoCount,
       }}
     >
       {children}
