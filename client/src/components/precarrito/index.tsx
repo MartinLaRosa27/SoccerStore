@@ -17,6 +17,7 @@ function Precarrito() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setTalleSeleccionado("")
     setProducto([]);
     callGetProductoPorId();
   }, [productoId]);

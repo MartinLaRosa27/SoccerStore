@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { print } from "graphql";
-import { toast } from "react-hot-toast";
+import { errorToast, successToast } from "../helpers/toast";
 import gql from "graphql-tag";
 import axios from "axios";
 const Context = createContext();
@@ -40,19 +40,15 @@ export const CarritoContext = ({ children }) => {
       )
       .then((res) => {
         if (res.data.errors) {
-          alert("Por favor, inicie sesión nuevamente");
-          localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
-          window.location.href = "/";
+          if (res.data.errors[0].message == "session expired") {
+            errorToast("Por favor, inicie sesión nuevamente");
+            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+            window.location.href = "/";
+          } else {
+            errorToast(res.data.errors[0].message);
+          }
         } else {
-          toast.success("Producto agregado al carrito exitosamente", {
-            style: {
-              background: "#333",
-              color: "#fff",
-              fontWeight: "bold",
-              textAlign: "center",
-              marginTop: "80px",
-            },
-          });
+          successToast("Producto agregado al carrito exitosamente");
         }
       })
       .catch((e) => {

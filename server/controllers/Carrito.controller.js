@@ -5,6 +5,15 @@ module.exports.postCarrito = async (input, usuario) => {
   const { talle, productoId } = input;
   if (usuario) {
     try {
+      const carritoExists = await Carrito.findOne({
+        where: {
+          usuarioId: usuario._id,
+          productoId,
+        },
+      });
+      if (carritoExists) {
+        throw new Error("Producto ya agregado al carrito");
+      }
       const carrito = await Carrito.create({
         talle,
         cantidad: 1,

@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import { print } from "graphql";
+import { errorToast, successToast } from "../helpers/toast";
 import gql from "graphql-tag";
 import axios from "axios";
 const Context = createContext();
@@ -26,13 +27,14 @@ export const UsuarioContext = ({ children }) => {
       })
       .then((res) => {
         if (!res.data.errors) {
+          successToast("Usuario registrado correctamente");
           localStorage.setItem(
             import.meta.env.VITE_TOKEN_NAME,
             res.data.data.postUsuario
           );
           token = true;
         } else {
-          alert(res.data.errors[0].message);
+          errorToast(res.data.errors[0].message);
         }
       })
       .catch((e) => {
@@ -67,7 +69,7 @@ export const UsuarioContext = ({ children }) => {
           );
           token = true;
         } else {
-          alert(res.data.errors[0].message);
+          errorToast(res.data.errors[0].message);
         }
       })
       .catch((e) => {
@@ -107,9 +109,13 @@ export const UsuarioContext = ({ children }) => {
         if (!res.data.errors) {
           usuario = res.data.data.getUsuarioInformationToken;
         } else {
-          alert("Por favor, inicie sesión nuevamente");
-          localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
-          window.location.href = "/";
+          if (res.data.errors[0].message == "session expired") {
+            errorToast("Por favor, inicie sesión nuevamente");
+            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+            window.location.href = "/";
+          } else {
+            errorToast(res.data.errors[0].message);
+          }
         }
       })
       .catch((e) => {
@@ -156,9 +162,13 @@ export const UsuarioContext = ({ children }) => {
           );
           newToken = true;
         } else {
-          alert("Por favor, inicie sesión nuevamente");
-          localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
-          window.location.href = "/";
+          if (res.data.errors[0].message == "session expired") {
+            errorToast("Por favor, inicie sesión nuevamente");
+            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+            window.location.href = "/";
+          } else {
+            errorToast(res.data.errors[0].message);
+          }
         }
       })
       .catch((e) => {
