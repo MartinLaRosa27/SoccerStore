@@ -10,6 +10,7 @@ module.exports.postCarrito = async (input, usuario) => {
         where: {
           usuarioId: usuario._id,
           productoId,
+          talle
         },
       });
       if (carritoExists) {

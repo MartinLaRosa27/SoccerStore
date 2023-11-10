@@ -22,8 +22,10 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
   }, []);
 
   useEffect(() => {
-    callGetCarritoCount();
-    setRealoadTotalCarrito(false);
+    if(isLoged()){
+      callGetCarritoCount();
+      setRealoadTotalCarrito(false);
+    }
   }, [realoadTotalCarrito]);
 
   const isLoged = () => {
