@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const Carrito = require("./Carrito");
 const { DBConfiguration } = require("../config/DBConfiguration");
 
 const Producto = DBConfiguration.define("producto", {
@@ -114,5 +115,7 @@ const Producto = DBConfiguration.define("producto", {
     default: 0,
   },
 });
+
+Producto.hasMany(Carrito);
 
 module.exports = Producto;

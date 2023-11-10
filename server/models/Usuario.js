@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
+const Carrito = require("./Carrito");
 const { DBConfiguration } = require("../config/DBConfiguration");
 
 const Usuario = DBConfiguration.define("usuario", {
@@ -50,6 +51,8 @@ const Usuario = DBConfiguration.define("usuario", {
     allowNull: true,
   },
 });
+
+Usuario.hasMany(Carrito);
 
 Usuario.afterValidate(async (user) => {
   const password = await bcrypt.hash(user.password, 10);

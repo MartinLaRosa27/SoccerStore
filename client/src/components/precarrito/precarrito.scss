@@ -144,6 +144,16 @@ $negro: #252525;
   .size {
     font-weight: bold;
     padding: 9px;
+    border: 1px solid $white;
+    font-size: 0.7em;
+    text-align: center;
+    color: $white;
+    background-color: $violetaUno;
+  }
+
+  .size-selected {
+    font-weight: bold;
+    padding: 9px;
     border: 1px solid $violetaUno;
     font-size: 0.7em;
     text-align: center;
