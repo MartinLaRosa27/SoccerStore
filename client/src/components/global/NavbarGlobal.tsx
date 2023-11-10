@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import { useCategoriaContext } from "../../context/CategoriaContext";
 import { useCarritoContext } from "../../context/CarritoContext";
+import { useHistory } from "react-router-dom";
 import logoSimple from "../../assets/img/global/logo-simple.webp";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -11,6 +12,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "./global.scss";
 
 function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
+  let history = useHistory();
   const { getCarritoCount, setRealoadTotalCarrito, realoadTotalCarrito } =
     useCarritoContext();
   const { getCategorias } = useCategoriaContext();
@@ -22,7 +24,7 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
   }, []);
 
   useEffect(() => {
-    if(isLoged()){
+    if (isLoged()) {
       callGetCarritoCount();
       setRealoadTotalCarrito(false);
     }
@@ -75,12 +77,17 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
                 <span className="search-text">Buscar producto</span>
                 <AiOutlineSearch />
               </Nav.Link>
-              <Nav.Link href="#" className="cart">
+              <Nav.Link
+                onClick={() => history.push(`/carrito`)}
+                className="cart"
+              >
                 <AiOutlineShoppingCart />
                 {total ? <span className="num-item">{total}</span> : ""}
               </Nav.Link>
               <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/account">mis datos</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => history.push(`/account`)}>
+                  mis datos
+                </NavDropdown.Item>
                 <NavDropdown.Item href="#">mis compras</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => logout()}>
                   cerrar sesión

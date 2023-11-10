@@ -4,6 +4,7 @@ import Home from "./components/home";
 import Resultado from "./components/resultado";
 import Login from "./components/login";
 import Account from "./components/account";
+import Carrito from "./components/carrito";
 
 export const routes = [
   {
@@ -29,6 +30,11 @@ export const routes = [
   {
     path: "/account",
     component: Account,
+    isLoged: true,
+  },
+  {
+    path: "/carrito",
+    component: Carrito,
     isLoged: true,
   },
   {
