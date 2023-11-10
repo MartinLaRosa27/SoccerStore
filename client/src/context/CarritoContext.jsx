@@ -7,6 +7,8 @@ import axios from "axios";
 const Context = createContext();
 
 export const CarritoContext = ({ children }) => {
+  const [realoadTotalCarrito, setRealoadTotalCarrito] = useState(true);
+
   // ---------------------------------------------------------------------------
   const postCarrito = async (talle, productoId) => {
     const POST_CARRITO = gql`
@@ -104,6 +106,8 @@ export const CarritoContext = ({ children }) => {
       value={{
         postCarrito,
         getCarritoCount,
+        setRealoadTotalCarrito,
+        realoadTotalCarrito,
       }}
     >
       {children}

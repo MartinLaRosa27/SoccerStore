@@ -3,21 +3,21 @@ import { useProductoContext } from "../../context/ProductoContext";
 import { useCarritoContext } from "../../context/CarritoContext";
 import { formatPrecio } from "../../helpers/formatPrecio";
 import { useParams } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import { errorToast } from "../../helpers/toast";
 import ProductCarousel from "../global/ProductCarousel";
 import Spinner from "../global/Spinner";
 import "./precarrito.scss";
 
 function Precarrito() {
   const { getProductoPorId } = useProductoContext();
-  const { postCarrito } = useCarritoContext();
+  const { postCarrito, setRealoadTotalCarrito } = useCarritoContext();
   const { productoId }: any = useParams();
   const [producto, setProducto] = useState<any[]>([]);
   const [talleSeleccionado, setTalleSeleccionado] = useState<string>("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setTalleSeleccionado("")
+    setTalleSeleccionado("");
     setProducto([]);
     callGetProductoPorId();
   }, [productoId]);
@@ -28,17 +28,10 @@ function Precarrito() {
 
   const agregarCarrito = async () => {
     if (!talleSeleccionado) {
-      toast.error("Por favor, seleccione un talle del producto", {
-        style: {
-          background: "#333",
-          color: "#fff",
-          fontWeight: "bold",
-          textAlign: "center",
-          marginTop: "80px",
-        },
-      });
+      errorToast("Por favor, seleccione un talle del producto");
     } else {
       await postCarrito(talleSeleccionado, productoId);
+      setRealoadTotalCarrito(true);
     }
   };
 

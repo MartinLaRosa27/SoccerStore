@@ -11,7 +11,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "./global.scss";
 
 function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
-  const { getCarritoCount } = useCarritoContext();
+  const { getCarritoCount, setRealoadTotalCarrito, realoadTotalCarrito } =
+    useCarritoContext();
   const { getCategorias } = useCategoriaContext();
   const [categorias, setCategorias] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);
@@ -22,7 +23,8 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
 
   useEffect(() => {
     callGetCarritoCount();
-  }, []);
+    setRealoadTotalCarrito(false);
+  }, [realoadTotalCarrito]);
 
   const isLoged = () => {
     return localStorage.getItem(import.meta.env.VITE_TOKEN_NAME);
