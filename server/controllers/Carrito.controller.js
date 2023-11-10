@@ -57,7 +57,7 @@ module.exports.getCarritoProducts = async (usuario) => {
   if (usuario) {
     try {
       const productos = await Carrito.sequelize.query(
-        `SELECT c._id, p.nombre, p.precio, p.urlImg, c.cantidad, c.talle
+        `SELECT p.nombre, p.precio, p.urlImg, c.cantidad, c.talle, p._id AS _id
         FROM carritos AS c
         INNER JOIN productos AS p ON c.productoId = p._id
         WHERE usuarioId='${usuario._id}';`,

@@ -5,6 +5,12 @@ $negro: #252525;
   margin: 30px 0 40px;
   min-height: 100dvh;
 
+  .carrito-vacio-msg {
+    text-align: center;
+    color: $violetaUno;
+    font-weight: bold;
+  }
+
   h3 {
     color: $negro;
     text-transform: uppercase;
