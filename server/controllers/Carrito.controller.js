@@ -73,3 +73,24 @@ module.exports.getCarritoProducts = async (usuario) => {
     throw new Error("session expired");
   }
 };
+
+// ---------------------------------------------------------------------------
+module.exports.deleteCarrito = async (input, usuario) => {
+  const { talle, productoId } = input;
+  if (usuario) {
+    try {
+      await Carrito.sequelize.query(
+        `DELETE FROM carritos
+        WHERE usuarioId='${usuario._id}' AND productoId = ${productoId} AND talle = "${talle}";`,
+        {
+          type: QueryTypes.DELETE,
+        }
+      );
+      return "Producto eliminado del carrito";
+    } catch (e) {
+      throw new Error(e);
+    }
+  } else {
+    throw new Error("session expired");
+  }
+};

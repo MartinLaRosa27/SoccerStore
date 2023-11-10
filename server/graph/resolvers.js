@@ -3,6 +3,7 @@ const {
   postCarrito,
   getCarritoCount,
   getCarritoProducts,
+  deleteCarrito,
 } = require("../controllers/Carrito.controller");
 const {
   getProductoPorCategoria,
@@ -62,6 +63,10 @@ module.exports.resolvers = {
 
     patchUser: (root, { input }, context) => {
       return patchUser(input, context.usuario);
+    },
+
+    deleteCarrito: (root, { input }, context) => {
+      return deleteCarrito(input, context.usuario);
     },
   },
 };
