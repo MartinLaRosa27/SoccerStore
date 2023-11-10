@@ -27,18 +27,18 @@ $negro: #252525;
 }
 
 #tarjeta-carrito {
+  .card-title {
+    strong {
+      color: $violetaUno;
+    }
+  }
+
   .card {
     width: 70%;
     margin: auto;
 
     @media (max-width: 400px) {
       width: 85%;
-    }
-
-    &:hover {
-      cursor: pointer;
-      transition: 0.3s;
-      background-color: #ececec;
     }
 
     .roww {
@@ -51,9 +51,15 @@ $negro: #252525;
       align-items: center;
       justify-content: center;
 
+      &:hover {
+        cursor: pointer;
+        transition: 0.3s;
+        background-color: #ececec;
+      }
+
       img {
         height: 80%;
-        width: 100px;
+        width: 150px;
       }
     }
   }
