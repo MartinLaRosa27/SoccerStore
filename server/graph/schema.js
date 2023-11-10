@@ -30,6 +30,9 @@ module.exports.typeDefs = gql`
     _id: Int
     cantidad: Int
     talle: String
+    urlImg: String
+    precio: Float
+    nombre: String
   }
 
   type categoriaType {
@@ -66,6 +69,7 @@ module.exports.typeDefs = gql`
     getUsuario(input: usuarioInput): String
     getUsuarioInformationToken: usuarioType
     getCarritoCount: Int
+    getCarritoProducts: [carritoType]
   }
 
   type Mutation {

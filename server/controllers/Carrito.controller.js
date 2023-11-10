@@ -10,7 +10,7 @@ module.exports.postCarrito = async (input, usuario) => {
         where: {
           usuarioId: usuario._id,
           productoId,
-          talle
+          talle,
         },
       });
       if (carritoExists) {
@@ -44,6 +44,28 @@ module.exports.getCarritoCount = async (usuario) => {
         }
       );
       return parseInt(value[0].value);
+    } catch (e) {
+      throw new Error("Error al obtener productos de usuario");
+    }
+  } else {
+    throw new Error("session expired");
+  }
+};
+
+// ---------------------------------------------------------------------------
+module.exports.getCarritoProducts = async (usuario) => {
+  if (usuario) {
+    try {
+      const productos = await Carrito.sequelize.query(
+        `SELECT c._id, p.nombre, p.precio, p.urlImg, c.cantidad, c.talle
+        FROM carritos AS c
+        INNER JOIN productos AS p ON c.productoId = p._id
+        WHERE usuarioId='${usuario._id}';`,
+        {
+          type: QueryTypes.SELECT,
+        }
+      );
+      return productos;
     } catch (e) {
       throw new Error("Error al obtener productos de usuario");
     }

@@ -2,6 +2,7 @@ const { getCategorias } = require("../controllers/Categoria.controller");
 const {
   postCarrito,
   getCarritoCount,
+  getCarritoProducts,
 } = require("../controllers/Carrito.controller");
 const {
   getProductoPorCategoria,
@@ -43,6 +44,10 @@ module.exports.resolvers = {
 
     getCarritoCount: (root, {}, context) => {
       return getCarritoCount(context.usuario);
+    },
+
+    getCarritoProducts: (root, {}, context) => {
+      return getCarritoProducts(context.usuario);
     },
   },
 
