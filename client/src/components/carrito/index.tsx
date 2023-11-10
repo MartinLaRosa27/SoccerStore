@@ -5,11 +5,17 @@ import "./carrito.scss";
 
 function Carrito() {
   const [products, setProducts] = useState<any>(false);
+  const [recallEffect, setRecallEffect] = useState<any>(true);
   const { getCarritoProducts } = useCarritoContext();
 
   useEffect(() => {
-    callGetCarritoProducts();
+    window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    callGetCarritoProducts();
+    setRecallEffect(false);
+  }, [recallEffect]);
 
   const callGetCarritoProducts = async () => {
     setProducts(await getCarritoProducts());
@@ -21,7 +27,13 @@ function Carrito() {
       {products.length > 0 ? (
         <>
           {products.map((product: any, i: number) => {
-            return <Tarjeta key={i} producto={product} />;
+            return (
+              <Tarjeta
+                key={i}
+                producto={product}
+                setRecallEffect={setRecallEffect}
+              />
+            );
           })}
           <div className="container">
             <button type="button" className="btn btn-primary">

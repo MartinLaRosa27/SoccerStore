@@ -149,11 +149,57 @@ export const CarritoContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
+  const deleteCarrito = async (talle, productoId) => {
+    const DELETE_CARRITO = gql`
+      mutation DeleteCarrito($input: carritoInput) {
+        deleteCarrito(input: $input)
+      }
+    `;
+    await axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}`,
+        {
+          query: print(DELETE_CARRITO),
+          variables: {
+            input: {
+              talle,
+              productoId: Number(productoId),
+            },
+          },
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem(
+              import.meta.env.VITE_TOKEN_NAME
+            ),
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.errors) {
+          if (res.data.errors[0].message == "session expired") {
+            errorToast("Por favor, inicie sesión nuevamente");
+            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+            window.location.href = "/";
+          } else {
+            errorToast(res.data.errors[0].message);
+          }
+        } else {
+          successToast("Producto eliminado del carrito con éxito");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
         postCarrito,
         getCarritoCount,
+        deleteCarrito,
         getCarritoProducts,
         setRealoadTotalCarrito,
         realoadTotalCarrito,
