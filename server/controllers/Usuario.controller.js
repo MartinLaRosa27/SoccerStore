@@ -29,13 +29,17 @@ module.exports.postUsuario = async (input) => {
 
 // ---------------------------------------------------------------------------
 module.exports.getUsuarioInformationToken = async (usuario) => {
-  try {
-    if (!usuario) {
-      throw new Error("Error, por favor registrese nuevamente");
+  if (usuario) {
+    try {
+      if (!usuario) {
+        throw new Error("Error, por favor registrese nuevamente");
+      }
+      return usuario;
+    } catch (e) {
+      throw new Error("Por favor, inicie sesión nuevamente");
     }
-    return usuario;
-  } catch (e) {
-    throw new Error("Por favor, inicie sesión nuevamente");
+  } else {
+    throw new Error("session expired");
   }
 };
 
@@ -64,24 +68,24 @@ module.exports.getUsuario = async (input) => {
 module.exports.patchUser = async (input, usuario) => {
   const { email, nombre, direccion, telefono, piso } = input;
   if (usuario) {
-    if (piso) {
-      await Usuario.sequelize.query(
-        `UPDATE usuarios SET email='${email}', nombre='${nombre}', direccion='${direccion}', telefono='${telefono}', piso='${piso}'
-        WHERE _id='${usuario._id}';`,
-        {
-          type: QueryTypes.UPDATE,
-        }
-      );
-    } else {
-      await Usuario.sequelize.query(
-        `UPDATE usuarios SET email='${email}', nombre='${nombre}', direccion='${direccion}', telefono='${telefono}'
-        WHERE _id='${usuario._id}';`,
-        {
-          type: QueryTypes.UPDATE,
-        }
-      );
-    }
     try {
+      if (piso) {
+        await Usuario.sequelize.query(
+          `UPDATE usuarios SET email='${email}', nombre='${nombre}', direccion='${direccion}', telefono='${telefono}', piso='${piso}'
+          WHERE _id='${usuario._id}';`,
+          {
+            type: QueryTypes.UPDATE,
+          }
+        );
+      } else {
+        await Usuario.sequelize.query(
+          `UPDATE usuarios SET email='${email}', nombre='${nombre}', direccion='${direccion}', telefono='${telefono}'
+          WHERE _id='${usuario._id}';`,
+          {
+            type: QueryTypes.UPDATE,
+          }
+        );
+      }
       const modifyUser = await Usuario.findOne({
         where: {
           _id: usuario._id,

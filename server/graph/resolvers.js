@@ -1,5 +1,8 @@
 const { getCategorias } = require("../controllers/Categoria.controller");
-const { postCarrito } = require("../controllers/Carrito.controller");
+const {
+  postCarrito,
+  getCarritoCount,
+} = require("../controllers/Carrito.controller");
 const {
   getProductoPorCategoria,
   getProductoPorNombre,
@@ -36,6 +39,10 @@ module.exports.resolvers = {
 
     getUsuarioInformationToken: (root, {}, context) => {
       return getUsuarioInformationToken(context.usuario);
+    },
+
+    getCarritoCount: (root, {}, context) => {
+      return getCarritoCount(context.usuario);
     },
   },
 

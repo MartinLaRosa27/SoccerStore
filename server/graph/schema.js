@@ -65,6 +65,7 @@ module.exports.typeDefs = gql`
     getProductoPorNombre(nombre: String, limite: Int): [productoType]
     getUsuario(input: usuarioInput): String
     getUsuarioInformationToken: usuarioType
+    getCarritoCount: Int
   }
 
   type Mutation {
