@@ -5,6 +5,7 @@ import Resultado from "./components/resultado";
 import Login from "./components/login";
 import Account from "./components/account";
 import Carrito from "./components/carrito";
+import MisCompras from "./components/mis-compras";
 
 export const routes = [
   {
@@ -35,6 +36,11 @@ export const routes = [
   {
     path: "/carrito",
     component: Carrito,
+    isLoged: true,
+  },
+  {
+    path: "/mis-compras",
+    component: MisCompras,
     isLoged: true,
   },
   {

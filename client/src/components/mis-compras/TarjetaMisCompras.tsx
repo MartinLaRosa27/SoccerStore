@@ -1,23 +1,15 @@
 import { formatPrecio } from "../../helpers/formatPrecio";
-import { useCarritoContext } from "../../context/CarritoContext";
 import { useHistory } from "react-router-dom";
 
-function Tarjeta(props: { producto: any; setRecallEffect: any }) {
-  const { deleteCarrito, setRealoadTotalCarrito } = useCarritoContext();
+function TarjetaMisCompras(props: { producto: any }) {
   let history = useHistory();
 
   const handleClickRedirect = () => {
     history.push(`/precarrito/${props.producto._id}`);
   };
 
-  const handleClickRemove = async () => {
-    await deleteCarrito(props.producto.talle, props.producto._id);
-    props.setRecallEffect(true);
-    setRealoadTotalCarrito(true);
-  };
-
   return (
-    <div id="tarjeta-carrito" className="container mt-3 mb-5">
+    <div id="tarjeta-mis-compras" className="container mt-3 mb-5">
       <div className="card mb-3">
         <div className="roww g-0">
           <div className="col-md-2" onClick={() => handleClickRedirect()}>
@@ -38,14 +30,10 @@ function Tarjeta(props: { producto: any; setRecallEffect: any }) {
                   Talle <strong>{props.producto.talle}</strong> -{" "}
                   <strong>${formatPrecio(props.producto.precio)}</strong> c/u
                 </small>
+                <small className="text-muted">
+                  Estado: <strong>Retiro pendiente</strong>
+                </small>
               </p>
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={() => handleClickRemove()}
-              >
-                REMOVER
-              </button>
             </div>
           </div>
         </div>
@@ -54,4 +42,4 @@ function Tarjeta(props: { producto: any; setRecallEffect: any }) {
   );
 }
 
-export default Tarjeta;
+export default TarjetaMisCompras;

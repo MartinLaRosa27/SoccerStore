@@ -1,7 +1,7 @@
 $violetaUno: #b57aed;
 $negro: #252525;
 
-#carrito {
+#mis-compras {
   margin: 30px 0 40px;
   min-height: 100dvh;
 
@@ -26,7 +26,7 @@ $negro: #252525;
   }
 }
 
-#tarjeta-carrito {
+#tarjeta-mis-compras {
   .card-title {
     strong {
       color: $violetaUno;
@@ -38,6 +38,9 @@ $negro: #252525;
     margin: auto;
 
     .card-text {
+      display: flex;
+      flex-direction: column;
+
       strong {
         color: $violetaUno;
       }

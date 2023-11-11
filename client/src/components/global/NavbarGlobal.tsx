@@ -88,7 +88,9 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
                 <NavDropdown.Item onClick={() => history.push(`/account`)}>
                   mis datos
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#">mis compras</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => history.push(`/mis-compras`)}>
+                  mis compras
+                </NavDropdown.Item>
                 <NavDropdown.Item onClick={() => logout()}>
                   cerrar sesión
                 </NavDropdown.Item>
