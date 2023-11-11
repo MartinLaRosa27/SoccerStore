@@ -70,3 +70,20 @@ $negro: #252525;
     }
   }
 }
+
+#envio-carrito {
+  margin-bottom: 40px;
+
+  h6 {
+    font-weight: bold;
+  }
+
+  select {
+    width: 70%;
+    margin: auto;
+
+    @media (max-width: 768px) {
+      width: 90%;
+    }
+  }
+}
