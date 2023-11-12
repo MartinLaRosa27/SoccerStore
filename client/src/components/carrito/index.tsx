@@ -24,8 +24,25 @@ function Carrito() {
   };
 
   const handleClickConfirmarCompra = () => {
+    let auxArray: any[] = [];
+    let pertenece: boolean = false;
     if (metodoEnvio != "0") {
-      alert("ok");
+      products.map((product: any) => {
+        auxArray.map((aux) => {
+          if (aux._id == product._id) {
+            aux.cantidad += product.cantidad;
+            pertenece = true;
+          }
+        });
+        if (!pertenece) {
+          auxArray.push({
+            _id: product._id,
+            cantidad: product.cantidad,
+            nombre: product.nombre,
+          });
+        }
+      });
+      console.log(auxArray);
     }
   };
 

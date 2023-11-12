@@ -8,10 +8,12 @@ function Envio(props: { metodoEnvio: string; setMetodoEnvio: any }) {
         value={props.metodoEnvio}
         onChange={(e) => props.setMetodoEnvio(e.target.value)}
       >
-        <option value="0" disabled>
+        <option value="0" disabled className="text-center">
           Seleccione método de envío
         </option>
-        <option value="1">retiro en local</option>
+        <option value="1" className="text-center">
+          Retiro en local
+        </option>
       </select>
     </div>
   );
