@@ -18,6 +18,16 @@ const Carrito = DBConfiguration.define("carrito", {
     default: 0,
   },
 
+  // procesando - entregado - retiro pendiente
+  estado: {
+    type: Sequelize.STRING(100),
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+    default: "procesando",
+  },
+
   talle: {
     type: Sequelize.STRING(11),
     allowNull: false,

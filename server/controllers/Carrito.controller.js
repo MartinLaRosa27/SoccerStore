@@ -11,6 +11,7 @@ module.exports.postCarrito = async (input, usuario) => {
           usuarioId: usuario._id,
           productoId,
           talle,
+          estado: "procesando"
         },
       });
       if (carritoExists) {
@@ -21,6 +22,7 @@ module.exports.postCarrito = async (input, usuario) => {
         cantidad: 1,
         productoId,
         usuarioId: usuario._id,
+        estado: "procesando"
       });
       return carrito;
     } catch (e) {
@@ -38,7 +40,7 @@ module.exports.getCarritoCount = async (usuario) => {
       const value = await Carrito.sequelize.query(
         `SELECT COUNT(productoId) as value
         FROM carritos
-        WHERE usuarioId='${usuario._id}';`,
+        WHERE usuarioId = '${usuario._id}' AND estado = "procesando";`,
         {
           type: QueryTypes.SELECT,
         }
@@ -60,7 +62,7 @@ module.exports.getCarritoProducts = async (usuario) => {
         `SELECT p.nombre, p.precio, p.urlImg, c.cantidad, c.talle, p._id AS _id
         FROM carritos AS c
         INNER JOIN productos AS p ON c.productoId = p._id
-        WHERE usuarioId='${usuario._id}';`,
+        WHERE usuarioId = '${usuario._id}' AND estado = "procesando";`,
         {
           type: QueryTypes.SELECT,
         }
@@ -81,7 +83,7 @@ module.exports.deleteCarrito = async (input, usuario) => {
     try {
       await Carrito.sequelize.query(
         `DELETE FROM carritos
-        WHERE usuarioId='${usuario._id}' AND productoId = ${productoId} AND talle = "${talle}";`,
+        WHERE usuarioId='${usuario._id}' AND productoId = ${productoId} AND talle = "${talle}" AND estado = "procesando";`,
         {
           type: QueryTypes.DELETE,
         }
