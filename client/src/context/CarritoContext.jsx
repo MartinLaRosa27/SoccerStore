@@ -243,6 +243,48 @@ export const CarritoContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
+  const crearCompra = async (valores) => {
+    const CREAR_COMPRA = gql`
+      mutation CrearCompra($input: [carritoInput]) {
+        crearCompra(input: $input)
+      }
+    `;
+    await axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}`,
+        {
+          query: print(CREAR_COMPRA),
+          variables: {
+            input: valores,
+          },
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem(
+              import.meta.env.VITE_TOKEN_NAME
+            ),
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.errors) {
+          if (res.data.errors[0].message == "session expired") {
+            errorToast("Por favor, inicie sesión nuevamente");
+            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+            window.location.href = "/";
+          } else {
+            errorToast(res.data.errors[0].message);
+          }
+        } else {
+          successToast("Compra registrada correctamente");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
@@ -252,6 +294,7 @@ export const CarritoContext = ({ children }) => {
         getCarritoProducts,
         setRealoadTotalCarrito,
         getCarritoCompras,
+        crearCompra,
         realoadTotalCarrito,
       }}
     >

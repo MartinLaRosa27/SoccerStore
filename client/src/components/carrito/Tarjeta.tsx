@@ -35,7 +35,8 @@ function Tarjeta(props: { producto: any; setRecallEffect: any }) {
               </h5>
               <p className="card-text">
                 <small className="text-muted">
-                  Talle <strong  className="talle">{props.producto.talle}</strong> -{" "}
+                  Talle{" "}
+                  <strong className="talle">{props.producto.talle}</strong> -{" "}
                   <strong>${formatPrecio(props.producto.precio)}</strong> c/u
                 </small>
               </p>

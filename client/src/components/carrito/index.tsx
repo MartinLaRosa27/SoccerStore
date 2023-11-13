@@ -8,13 +8,11 @@ function Carrito() {
   const [metodoEnvio, setMetodoEnvio] = useState<string>("0");
   const [products, setProducts] = useState<any>(false);
   const [recallEffect, setRecallEffect] = useState<any>(true);
-  const { getCarritoProducts } = useCarritoContext();
+  const { getCarritoProducts, crearCompra, setRealoadTotalCarrito } =
+    useCarritoContext();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     callGetCarritoProducts();
     setRecallEffect(false);
   }, [recallEffect]);
@@ -23,7 +21,7 @@ function Carrito() {
     setProducts(await getCarritoProducts());
   };
 
-  const handleClickConfirmarCompra = () => {
+  const handleClickConfirmarCompra = async () => {
     let auxArray: any[] = [];
     let pertenece: boolean = false;
     if (metodoEnvio != "0") {
@@ -42,7 +40,9 @@ function Carrito() {
           });
         }
       });
-      console.log(auxArray);
+      await crearCompra(auxArray);
+      setRealoadTotalCarrito(true);
+      setRecallEffect(true);
     }
   };
 
