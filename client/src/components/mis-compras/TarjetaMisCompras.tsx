@@ -27,11 +27,13 @@ function TarjetaMisCompras(props: { producto: any }) {
               </h5>
               <p className="card-text">
                 <small className="text-muted">
-                  Talle <strong>{props.producto.talle}</strong> -{" "}
+                  Talle{" "}
+                  <strong className="talle">{props.producto.talle}</strong> -{" "}
                   <strong>${formatPrecio(props.producto.precio)}</strong> c/u
                 </small>
                 <small className="text-muted">
-                  Estado: <strong>Retiro pendiente</strong>
+                  Estado:{" "}
+                  <strong className="estado">{props.producto.estado}</strong>
                 </small>
               </p>
             </div>

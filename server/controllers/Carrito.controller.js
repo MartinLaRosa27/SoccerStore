@@ -157,3 +157,25 @@ module.exports.crearCompra = async (input, usuario) => {
     throw new Error("session expired");
   }
 };
+
+// ---------------------------------------------------------------------------
+module.exports.getCarritoCompras = async (usuario) => {
+  if (usuario) {
+    try {
+      const productos = await Carrito.sequelize.query(
+        `SELECT p.nombre, p.precio, p.urlImg, c.cantidad, c.talle, p._id AS _id, c.estado AS estado
+        FROM carritos AS c
+        INNER JOIN productos AS p ON c.productoId = p._id
+        WHERE usuarioId = '${usuario._id}' AND estado = "retiro pendiente" OR estado = "entrega pendiente";`,
+        {
+          type: QueryTypes.SELECT,
+        }
+      );
+      return productos;
+    } catch (e) {
+      throw new Error("Error al obtener productos de usuario");
+    }
+  } else {
+    throw new Error("session expired");
+  }
+};

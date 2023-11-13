@@ -49,7 +49,7 @@ function Carrito() {
   return (
     <div id="carrito">
       <h3 className="container">Carrito</h3>
-      {products.length > 0 ? (
+      {products && products.length > 0 ? (
         <>
           {products.map((product: any, i: number) => {
             return (

@@ -194,6 +194,55 @@ export const CarritoContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
+  const getCarritoCompras = async () => {
+    let productos = [];
+    const GET_CARRITO_COMPRAS = gql`
+      query GetCarritoCompras {
+        getCarritoCompras {
+          _id
+          cantidad
+          talle
+          precio
+          nombre
+          urlImg
+          estado
+        }
+      }
+    `;
+    await axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}`,
+        {
+          query: print(GET_CARRITO_COMPRAS),
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem(
+              import.meta.env.VITE_TOKEN_NAME
+            ),
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.errors) {
+          if (res.data.errors[0].message == "session expired") {
+            errorToast("Por favor, inicie sesión nuevamente");
+            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+            window.location.href = "/";
+          } else {
+            errorToast(res.data.errors[0].message);
+          }
+        } else {
+          productos = res.data.data.getCarritoCompras;
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return productos;
+  };
+
+  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
@@ -202,6 +251,7 @@ export const CarritoContext = ({ children }) => {
         deleteCarrito,
         getCarritoProducts,
         setRealoadTotalCarrito,
+        getCarritoCompras,
         realoadTotalCarrito,
       }}
     >

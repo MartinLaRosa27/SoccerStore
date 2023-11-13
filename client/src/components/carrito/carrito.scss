@@ -38,6 +38,10 @@ $negro: #252525;
     margin: auto;
 
     .card-text {
+      .talle {
+        text-transform: uppercase;
+      }
+
       strong {
         color: $violetaUno;
       }

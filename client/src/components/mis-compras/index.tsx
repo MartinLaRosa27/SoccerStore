@@ -5,21 +5,21 @@ import "./mis-compras.scss";
 
 function MisCompras() {
   const [products, setProducts] = useState<any>(false);
-  const { getCarritoProducts } = useCarritoContext();
+  const { getCarritoCompras } = useCarritoContext();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    callGetCarritoProducts();
+    callGetCarritoCompras();
   }, []);
 
-  const callGetCarritoProducts = async () => {
-    setProducts(await getCarritoProducts());
+  const callGetCarritoCompras = async () => {
+    setProducts(await getCarritoCompras());
   };
 
   return (
     <div id="carrito">
       <h3 className="container">Mis Compras</h3>
-      {products.length > 0 ? (
+      {products && products.length > 0 ? (
         <>
           {products.map((product: any, i: number) => {
             return <TarjetaMisCompras key={i} producto={product} />;
