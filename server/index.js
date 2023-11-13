@@ -30,13 +30,10 @@ server.listen().then(({ url }) => {
 // ------------------------------- INTERVALO RENDER SERVER -------------------------------
 const smallOperation = async () => {
   try {
-    const productos = await Producto.sequelize.query(
-      `SELECT * FROM productos;`,
-      {
-        type: QueryTypes.SELECT,
-      }
-    );
-    console.log(productos);
+    await Producto.sequelize.query(`SELECT * FROM productos;`, {
+      type: QueryTypes.SELECT,
+    });
+    console.log("Ok");
   } catch (e) {
     console.log(e);
   }
@@ -44,5 +41,5 @@ const smallOperation = async () => {
 
 setInterval(() => {
   smallOperation();
-}, 600000);
+}, 10000);
 // ------------------------------- INTERVALO RENDER SERVER -------------------------------
