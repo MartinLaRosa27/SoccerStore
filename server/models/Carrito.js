@@ -18,7 +18,7 @@ const Carrito = DBConfiguration.define("carrito", {
     default: 0,
   },
 
-  // procesando - entregado - retiro pendiente
+  // procesando - retiro pendiente - entrega pendiente - entregado
   estado: {
     type: Sequelize.STRING(100),
     allowNull: false,

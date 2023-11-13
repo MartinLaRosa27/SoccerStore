@@ -1,4 +1,5 @@
 const Carrito = require("../models/Carrito");
+const Producto = require("../models/Producto");
 const { QueryTypes, INTEGER } = require("sequelize");
 
 // ---------------------------------------------------------------------------
@@ -99,14 +100,12 @@ module.exports.deleteCarrito = async (input, usuario) => {
 
 // ---------------------------------------------------------------------------
 module.exports.crearCompra = async (input, usuario) => {
-
   if (usuario) {
-    let producto = "";
-
     try {
+      // Verifica cantidad:
       await Promise.all(
         input.map(async (valor) => {
-          const value = await Carrito.sequelize.query(
+          const value = await Producto.sequelize.query(
             `SELECT cantidad AS cantidad
           FROM productos
           WHERE _id = ${valor._id};`,
@@ -115,19 +114,42 @@ module.exports.crearCompra = async (input, usuario) => {
             }
           );
           if (value[0].cantidad < valor.cantidad) {
-            producto = `${valor.nombre}`;
+            throw new Error(
+              `No hay cantidad de ${valor.nombre} necesarias para satisfacer tu demanda.`
+            );
           }
         })
       );
 
-      if (producto) {
-        throw new Error(
-          `No hay cantidad de ${producto} necesarias para satisfacer tu demanda.`
-        );
-      }
+      // Elimina cantidad:
+      await Promise.all(
+        input.map(async (valor) => {
+          await Producto.sequelize.query(
+            `UPDATE productos
+            SET cantidad = cantidad - ${valor.cantidad}
+          WHERE _id = ${valor._id};`,
+            {
+              type: QueryTypes.UPDATE,
+            }
+          );
+        })
+      );
+
+      // Modifica estado carrito:
+      await Promise.all(
+        input.map(async (valor) => {
+          await Carrito.sequelize.query(
+            `UPDATE carritos
+            SET estado = "retiro pendiente"
+          WHERE productoId = ${valor._id} AND usuarioId = ${usuario._id} AND estado = "procesando";`,
+            {
+              type: QueryTypes.UPDATE,
+            }
+          );
+        })
+      );
 
       return true;
-      
     } catch (e) {
       throw new Error(e);
     }
