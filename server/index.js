@@ -4,6 +4,7 @@ const { typeDefs } = require("./graph/schema");
 const { resolvers } = require("./graph/resolvers");
 const { DBConnection } = require("./config/DBConnection");
 const { auth } = require("./middleware/auth");
+require("./renderReload");
 
 DBConnection();
 
