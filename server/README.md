@@ -1,8 +1,9 @@
 # Global:
+
 SECRET=
-TOKEN_EXP_SEC=
 
 # MySQL:
+
 BD_NAME=
 BD_USER=
 BD_PASS=
