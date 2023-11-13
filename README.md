@@ -2,7 +2,7 @@
 
 ### Descripción:
 
-Aplicación web que busca ser un ecommerce de indumentaria de fútbol.  
+El propósito de este sitio web, es el ser un ecommerce de indumentaria de fútbol.  
 _Todos usuarios podrán realizar las siguientes acciones:_
 
 - Ver los productos ofrecidos.
