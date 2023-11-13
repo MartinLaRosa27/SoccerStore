@@ -11,9 +11,11 @@ module.exports.typeDefs = gql`
   }
 
   input carritoInput {
+    _id: Int
     cantidad: Int
-    talle: String!
-    productoId: Int!
+    nombre: String
+    talle: String
+    productoId: Int
   }
 
   type usuarioType {
@@ -77,5 +79,6 @@ module.exports.typeDefs = gql`
     patchUser(input: usuarioInput): String
     postCarrito(input: carritoInput): carritoType
     deleteCarrito(input: carritoInput): String
+    crearCompra(input: [carritoInput]): Boolean
   }
 `;

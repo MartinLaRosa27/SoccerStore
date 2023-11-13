@@ -4,6 +4,7 @@ const {
   getCarritoCount,
   getCarritoProducts,
   deleteCarrito,
+  crearCompra,
 } = require("../controllers/Carrito.controller");
 const {
   getProductoPorCategoria,
@@ -67,6 +68,10 @@ module.exports.resolvers = {
 
     deleteCarrito: (root, { input }, context) => {
       return deleteCarrito(input, context.usuario);
+    },
+
+    crearCompra: (root, { input }, context) => {
+      return crearCompra(input, context.usuario);
     },
   },
 };

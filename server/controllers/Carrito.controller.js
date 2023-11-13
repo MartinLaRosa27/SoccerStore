@@ -11,7 +11,7 @@ module.exports.postCarrito = async (input, usuario) => {
           usuarioId: usuario._id,
           productoId,
           talle,
-          estado: "procesando"
+          estado: "procesando",
         },
       });
       if (carritoExists) {
@@ -22,7 +22,7 @@ module.exports.postCarrito = async (input, usuario) => {
         cantidad: 1,
         productoId,
         usuarioId: usuario._id,
-        estado: "procesando"
+        estado: "procesando",
       });
       return carrito;
     } catch (e) {
@@ -89,6 +89,45 @@ module.exports.deleteCarrito = async (input, usuario) => {
         }
       );
       return "Producto eliminado del carrito";
+    } catch (e) {
+      throw new Error(e);
+    }
+  } else {
+    throw new Error("session expired");
+  }
+};
+
+// ---------------------------------------------------------------------------
+module.exports.crearCompra = async (input, usuario) => {
+
+  if (usuario) {
+    let producto = "";
+
+    try {
+      await Promise.all(
+        input.map(async (valor) => {
+          const value = await Carrito.sequelize.query(
+            `SELECT cantidad AS cantidad
+          FROM productos
+          WHERE _id = ${valor._id};`,
+            {
+              type: QueryTypes.SELECT,
+            }
+          );
+          if (value[0].cantidad < valor.cantidad) {
+            producto = `${valor.nombre}`;
+          }
+        })
+      );
+
+      if (producto) {
+        throw new Error(
+          `No hay cantidad de ${producto} necesarias para satisfacer tu demanda.`
+        );
+      }
+
+      return true;
+      
     } catch (e) {
       throw new Error(e);
     }
