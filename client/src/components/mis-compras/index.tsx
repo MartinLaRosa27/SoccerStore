@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useCarritoContext } from "../../context/CarritoContext";
 import TarjetaMisCompras from "./TarjetaMisCompras";
 import "./mis-compras.scss";
+import Spinner from "../global/Spinner";
 
 function MisCompras() {
   const [products, setProducts] = useState<any>(false);
@@ -19,16 +20,24 @@ function MisCompras() {
   return (
     <div id="carrito">
       <h3 className="container">Mis Compras</h3>
-      {products && products.length > 0 ? (
+      {products ? (
         <>
-          {products.map((product: any, i: number) => {
-            return <TarjetaMisCompras key={i} producto={product} />;
-          })}
+          {products.length > 0 ? (
+            <>
+              {products.map((product: any, i: number) => {
+                return <TarjetaMisCompras key={i} producto={product} />;
+              })}
+            </>
+          ) : (
+            <h2 className="carrito-vacio-msg">
+              No se encontraron compras registradas
+            </h2>
+          )}
         </>
       ) : (
-        <h2 className="carrito-vacio-msg">
-          No se encontraron compras registradas
-        </h2>
+        <>
+          <Spinner />
+        </>
       )}
     </div>
   );

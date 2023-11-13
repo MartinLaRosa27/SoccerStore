@@ -3,6 +3,7 @@ import { useCarritoContext } from "../../context/CarritoContext";
 import Tarjeta from "./Tarjeta";
 import "./carrito.scss";
 import Envio from "./Envio";
+import Spinner from "../global/Spinner";
 
 function Carrito() {
   const [metodoEnvio, setMetodoEnvio] = useState<string>("0");
@@ -55,31 +56,43 @@ function Carrito() {
   return (
     <div id="carrito">
       <h3 className="container">Carrito</h3>
-      {products && products.length > 0 ? (
+      {products.length > 0 ? (
         <>
-          {products.map((product: any, i: number) => {
-            return (
-              <Tarjeta
-                key={i}
-                producto={product}
-                setRecallEffect={setRecallEffect}
-              />
-            );
-          })}
-          <div className="container">
-            <Envio metodoEnvio={metodoEnvio} setMetodoEnvio={setMetodoEnvio} />
-            <button
-              type="button"
-              className="btn btn-primary"
-              disabled={metodoEnvio == "0"}
-              onClick={() => handleClickConfirmarCompra()}
-            >
-              CONFIRMAR
-            </button>
-          </div>
+          {" "}
+          {products.length > 0 ? (
+            <>
+              {products.map((product: any, i: number) => {
+                return (
+                  <Tarjeta
+                    key={i}
+                    producto={product}
+                    setRecallEffect={setRecallEffect}
+                  />
+                );
+              })}
+              <div className="container">
+                <Envio
+                  metodoEnvio={metodoEnvio}
+                  setMetodoEnvio={setMetodoEnvio}
+                />
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  disabled={metodoEnvio == "0"}
+                  onClick={() => handleClickConfirmarCompra()}
+                >
+                  CONFIRMAR
+                </button>
+              </div>
+            </>
+          ) : (
+            <h2 className="carrito-vacio-msg">El carrito esta vacio</h2>
+          )}
         </>
       ) : (
-        <h2 className="carrito-vacio-msg">El carrito esta vacio</h2>
+        <>
+          <Spinner />
+        </>
       )}
     </div>
   );
