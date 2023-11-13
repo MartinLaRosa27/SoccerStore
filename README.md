@@ -7,6 +7,7 @@ _Todos usuarios podrán realizar las siguientes acciones:_
 
 - Ver los productos ofrecidos.
 - Ver los productos por categoría.
+- Ver los productos por marca.
 - Buscar los productos que deseen.
 - Filtrar los resultados obtenidos.
 

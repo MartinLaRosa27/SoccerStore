@@ -166,7 +166,12 @@ function Precarrito() {
               </div>
 
               <div className="product">
-                <p className="marca">{producto[0].marcaNombre}</p>
+                <p
+                  className="marca"
+                  onClick={() => history.push(`/marca/${producto[0].marcaId}`)}
+                >
+                  {producto[0].marcaNombre}
+                </p>
                 <h1>{producto[0].nombre}</h1>
                 <h2 className="price">${formatPrecio(producto[0].precio)}</h2>
                 <p className="desc">{producto[0].descripcion}</p>

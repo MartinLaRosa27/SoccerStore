@@ -144,6 +144,15 @@ $negro: #252525;
     margin-left: 20px;
   }
 
+  .marca {
+    font-weight: bold;
+    &:hover {
+      cursor: pointer;
+      transition: 0.3s;
+      color: $negro;
+    }
+  }
+
   .size {
     font-weight: bold;
     padding: 9px;

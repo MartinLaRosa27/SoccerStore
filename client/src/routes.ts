@@ -6,6 +6,7 @@ import Login from "./components/login";
 import Account from "./components/account";
 import Carrito from "./components/carrito";
 import MisCompras from "./components/mis-compras";
+import Marca from "./components/marca";
 
 export const routes = [
   {
@@ -21,6 +22,11 @@ export const routes = [
   {
     path: "/categoria/:categoriaId",
     component: Categoria,
+    isLoged: false,
+  },
+  {
+    path: "/marca/:marcaId",
+    component: Marca,
     isLoged: false,
   },
   {
