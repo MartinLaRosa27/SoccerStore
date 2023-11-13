@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { toast } from "react-hot-toast";
+import { errorToast } from "../helpers/toast";
 import { print } from "graphql";
 import gql from "graphql-tag";
 import axios from "axios";
@@ -25,15 +25,7 @@ export const CategoriaContext = ({ children }) => {
         if (!res.data.errors) {
           categorias = res.data.data.getCategorias;
         } else {
-          toast.error("Error al mostrar las categorías", {
-            style: {
-              background: "#333",
-              color: "#fff",
-              fontWeight: "bold",
-              textAlign: "center",
-              marginTop: "80px",
-            },
-          });
+          errorToast("Error al mostrar las categorías");
         }
       })
       .catch((e) => {
