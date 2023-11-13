@@ -67,6 +67,7 @@ module.exports.typeDefs = gql`
   type Query {
     getCategorias: [categoriaType]
     getProductoPorCategoria(categoria: Int, limite: Int): [productoType]
+    getProductoPorMarca(marca: Int): [productoType]
     getProductoPorId(idProducto: Int): [productoType]
     getProductoPorNombre(nombre: String, limite: Int): [productoType]
     getUsuario(input: usuarioInput): String

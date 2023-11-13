@@ -150,12 +150,60 @@ export const ProductoContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
+  const getProductoPorMarca = async (marca) => {
+    let categorias = [];
+    const GET_PRODUCTO_X_MARCA = gql`
+      query GetProductoPorMarca($marca: Int) {
+        getProductoPorMarca(marca: $marca) {
+          _id
+          nombre
+          descripcion
+          urlImg
+          marcaNombre
+          categoriaNombre
+          precio
+          talleS
+          talleM
+          talleL
+          talleXL
+          talle37
+          talle39
+          talle41
+          talle43
+          categoriumId
+          marcaId
+          cantidad
+        }
+      }
+    `;
+    await axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}`, {
+        query: print(GET_PRODUCTO_X_MARCA),
+        variables: {
+          marca,
+        },
+      })
+      .then((res) => {
+        if (!res.data.errors) {
+          categorias = res.data.data.getProductoPorMarca;
+        } else {
+          errorToast("Error al mostrar los productos");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    return categorias;
+  };
+
+  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
         getProductoPorCategoria,
         getProductoPorId,
         getProductoPorNombre,
+        getProductoPorMarca,
       }}
     >
       {children}

@@ -96,3 +96,25 @@ module.exports.getProductoPorNombre = async (nombre, limite) => {
     throw new Error("ERROR");
   }
 };
+
+// ---------------------------------------------------------------------------
+module.exports.getProductoPorMarca = async (marca) => {
+  try {
+    let productos;
+    productos = await Producto.sequelize.query(
+      `SELECT p.*, m.nombre AS marcaNombre, c.nombre AS categoriaNombre
+        FROM productos AS p 
+        INNER JOIN categoria AS c ON c._id = p.categoriumId
+        INNER JOIN marcas AS m ON m._id = p.marcaId
+        WHERE marcaId = ${marca}
+        ORDER BY _id DESC;`,
+      {
+        type: QueryTypes.SELECT,
+      }
+    );
+    return productos;
+  } catch (e) {
+    console.log(e);
+    throw new Error("ERROR");
+  }
+};
