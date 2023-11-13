@@ -4,16 +4,22 @@ import { useCarritoContext } from "../../context/CarritoContext";
 import { formatPrecio } from "../../helpers/formatPrecio";
 import { useParams } from "react-router-dom";
 import { errorToast } from "../../helpers/toast";
+import { useHistory } from "react-router-dom";
 import ProductCarousel from "../global/ProductCarousel";
 import Spinner from "../global/Spinner";
 import "./precarrito.scss";
 
 function Precarrito() {
+  const history = useHistory();
   const { getProductoPorId } = useProductoContext();
   const { postCarrito, setRealoadTotalCarrito } = useCarritoContext();
   const { productoId }: any = useParams();
   const [producto, setProducto] = useState<any[]>([]);
   const [talleSeleccionado, setTalleSeleccionado] = useState<string>("");
+
+  const isLoged = () => {
+    return localStorage.getItem(import.meta.env.VITE_TOKEN_NAME);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,11 +33,15 @@ function Precarrito() {
   };
 
   const agregarCarrito = async () => {
-    if (!talleSeleccionado) {
-      errorToast("Por favor, seleccione un talle del producto");
+    if (isLoged()) {
+      if (!talleSeleccionado) {
+        errorToast("Por favor, seleccione un talle del producto");
+      } else {
+        await postCarrito(talleSeleccionado, productoId);
+        setRealoadTotalCarrito(true);
+      }
     } else {
-      await postCarrito(talleSeleccionado, productoId);
-      setRealoadTotalCarrito(true);
+      history.push("/login");
     }
   };
 

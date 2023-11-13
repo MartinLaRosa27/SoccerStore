@@ -22,27 +22,33 @@ function Carrito() {
   };
 
   const handleClickConfirmarCompra = async () => {
-    let auxArray: any[] = [];
-    let pertenece: boolean = false;
-    if (metodoEnvio != "0") {
-      products.map((product: any) => {
-        auxArray.map((aux) => {
-          if (aux._id == product._id) {
-            aux.cantidad += product.cantidad;
-            pertenece = true;
+    if (
+      window.confirm(
+        'Este sitio web tiene fines educativos, por lo que las compras no son reales.\n¿Está seguro que desea continuar con la "compra"?'
+      )
+    ) {
+      let auxArray: any[] = [];
+      let pertenece: boolean = false;
+      if (metodoEnvio != "0") {
+        products.map((product: any) => {
+          auxArray.map((aux) => {
+            if (aux._id == product._id) {
+              aux.cantidad += product.cantidad;
+              pertenece = true;
+            }
+          });
+          if (!pertenece) {
+            auxArray.push({
+              _id: product._id,
+              cantidad: product.cantidad,
+              nombre: product.nombre,
+            });
           }
         });
-        if (!pertenece) {
-          auxArray.push({
-            _id: product._id,
-            cantidad: product.cantidad,
-            nombre: product.nombre,
-          });
-        }
-      });
-      await crearCompra(auxArray);
-      setRealoadTotalCarrito(true);
-      setRecallEffect(true);
+        await crearCompra(auxArray);
+        setRealoadTotalCarrito(true);
+        setRecallEffect(true);
+      }
     }
   };
 

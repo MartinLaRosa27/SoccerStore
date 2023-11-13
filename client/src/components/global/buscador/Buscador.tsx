@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import { toast } from "react-hot-toast";
+import { errorToast } from "../../../helpers/toast";
 import { useProductoContext } from "../../../context/ProductoContext";
 import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
@@ -30,15 +30,7 @@ function Buscador(props: { setShowBuscador: any; showBuscador: boolean }) {
     if (productos.length > 0) {
       history.push(`/resultado/${buscar}`);
     } else {
-      toast.error("No se encontraron resultados para la búsqueda.", {
-        style: {
-          background: "#333",
-          color: "#fff",
-          fontWeight: "bold",
-          textAlign: "center",
-          marginTop: "80px",
-        },
-      });
+      errorToast("No se encontraron resultados para la búsqueda.");
     }
   };
 

@@ -1,7 +1,11 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { successToast } from "../../helpers/toast";
+import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
 function Formulario(props: { usuarioInformation: any; patchUser: any }) {
+  const history = useHistory();
+
   return (
     <div id="formulario-account" className="container">
       <Formik
@@ -19,8 +23,8 @@ function Formulario(props: { usuarioInformation: any; patchUser: any }) {
               localStorage.getItem(import.meta.env.VITE_TOKEN_NAME)
             )
           ) {
-            alert("Datos de usuario modificados correctamente");
-            window.location.reload();
+            successToast("Datos de usuario modificados correctamente");
+            history.push("/");
           }
         }}
         validationSchema={Yup.object({
