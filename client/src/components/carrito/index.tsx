@@ -69,14 +69,16 @@ function Carrito() {
                   metodoEnvio={metodoEnvio}
                   setMetodoEnvio={setMetodoEnvio}
                 />
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  disabled={metodoEnvio == "0"}
-                  onClick={() => handleClickConfirmarCompra()}
-                >
-                  CONFIRMAR
-                </button>
+                {!preferenceId && (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    disabled={metodoEnvio == "0"}
+                    onClick={() => handleClickConfirmarCompra()}
+                  >
+                    CONFIRMAR
+                  </button>
+                )}
               </div>
             </>
           ) : (
