@@ -158,7 +158,6 @@ module.exports.crearCompra = async (input, usuario) => {
           console.log(error);
         });
 
-      /*
       // Elimina cantidad:
       await Promise.all(
         input.map(async (valor) => {
@@ -186,7 +185,6 @@ module.exports.crearCompra = async (input, usuario) => {
           );
         })
       );
-      */
 
       return preferenceId;
     } catch (e) {
