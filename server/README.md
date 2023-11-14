@@ -1,6 +1,8 @@
 # Global:
 
 SECRET=
+URL=
+MP_AT=
 
 # MySQL:
 

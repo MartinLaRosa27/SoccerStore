@@ -82,6 +82,6 @@ module.exports.typeDefs = gql`
     patchUser(input: usuarioInput): String
     postCarrito(input: carritoInput): carritoType
     deleteCarrito(input: carritoInput): String
-    crearCompra(input: [carritoInput]): Boolean
+    crearCompra(input: [carritoInput]): String
   }
 `;

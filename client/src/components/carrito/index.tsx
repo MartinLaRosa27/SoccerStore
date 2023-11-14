@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { useCarritoContext } from "../../context/CarritoContext";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import Tarjeta from "./Tarjeta";
-import "./carrito.scss";
 import Envio from "./Envio";
 import Spinner from "../global/Spinner";
+import "./carrito.scss";
 
 function Carrito() {
+  const [preferenceId, setPreferenceId] = useState<any>("");
+  initMercadoPago(import.meta.env.VITE_MP_PK);
   const [metodoEnvio, setMetodoEnvio] = useState<string>("0");
   const [products, setProducts] = useState<any>(false);
   const [recallEffect, setRecallEffect] = useState<any>(true);
-  const { getCarritoProducts, crearCompra, setRealoadTotalCarrito } =
-    useCarritoContext();
+  const { getCarritoProducts, crearCompra } = useCarritoContext();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,33 +25,25 @@ function Carrito() {
   };
 
   const handleClickConfirmarCompra = async () => {
-    if (
-      window.confirm(
-        'Este sitio web tiene fines educativos, por lo que las compras no son reales.\n¿Está seguro que desea continuar con la "compra"?'
-      )
-    ) {
-      let auxArray: any[] = [];
-      let pertenece: boolean = false;
-      if (metodoEnvio != "0") {
-        products.map((product: any) => {
-          auxArray.map((aux) => {
-            if (aux._id == product._id) {
-              aux.cantidad += product.cantidad;
-              pertenece = true;
-            }
-          });
-          if (!pertenece) {
-            auxArray.push({
-              _id: product._id,
-              cantidad: product.cantidad,
-              nombre: product.nombre,
-            });
+    let auxArray: any[] = [];
+    let pertenece: boolean = false;
+    if (metodoEnvio != "0") {
+      products.map((product: any) => {
+        auxArray.map((aux) => {
+          if (aux._id == product._id) {
+            aux.cantidad += product.cantidad;
+            pertenece = true;
           }
         });
-        await crearCompra(auxArray);
-        setRealoadTotalCarrito(true);
-        setRecallEffect(true);
-      }
+        if (!pertenece) {
+          auxArray.push({
+            _id: product._id,
+            cantidad: product.cantidad,
+            nombre: product.nombre,
+          });
+        }
+      });
+      setPreferenceId(await crearCompra(auxArray));
     }
   };
 
@@ -94,6 +88,9 @@ function Carrito() {
           <Spinner />
         </>
       )}
+      <div className="container">
+        {preferenceId && <Wallet initialization={{ preferenceId }} />}
+      </div>
     </div>
   );
 }

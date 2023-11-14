@@ -1,6 +1,7 @@
 const Carrito = require("../models/Carrito");
 const Producto = require("../models/Producto");
-const { QueryTypes, INTEGER } = require("sequelize");
+const mercadopago = require("mercadopago");
+const { QueryTypes } = require("sequelize");
 
 // ---------------------------------------------------------------------------
 module.exports.postCarrito = async (input, usuario) => {
@@ -101,18 +102,21 @@ module.exports.deleteCarrito = async (input, usuario) => {
 // ---------------------------------------------------------------------------
 module.exports.crearCompra = async (input, usuario) => {
   if (usuario) {
+    let preferenceId = "";
+
     try {
       // Verifica cantidad:
       await Promise.all(
         input.map(async (valor) => {
           const value = await Producto.sequelize.query(
-            `SELECT cantidad AS cantidad
+            `SELECT cantidad AS cantidad, precio AS precio
           FROM productos
           WHERE _id = ${valor._id};`,
             {
               type: QueryTypes.SELECT,
             }
           );
+          valor.precio = value[0].precio;
           if (value[0].cantidad < valor.cantidad) {
             throw new Error(
               `No hay cantidad de ${valor.nombre} necesarias para satisfacer tu demanda.`
@@ -121,6 +125,40 @@ module.exports.crearCompra = async (input, usuario) => {
         })
       );
 
+      // MERCADO PAGO:
+      await Promise.all(
+        input.map((valor) => {
+          valor.title = valor.nombre;
+          valor.unit_price = valor.precio;
+          valor.quantity = valor.cantidad;
+          valor.currency_id = "ARS";
+        })
+      );
+
+      mercadopago.configure({
+        access_token: process.env.MP_AT,
+      });
+
+      let preference = {
+        items: input,
+        back_urls: {
+          success: process.env.URL,
+          failure: process.env.URL,
+          pending: "",
+        },
+        auto_return: "approved",
+      };
+
+      await mercadopago.preferences
+        .create(preference)
+        .then(function (response) {
+          preferenceId = response.body.id;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      /*
       // Elimina cantidad:
       await Promise.all(
         input.map(async (valor) => {
@@ -148,8 +186,9 @@ module.exports.crearCompra = async (input, usuario) => {
           );
         })
       );
+      */
 
-      return true;
+      return preferenceId;
     } catch (e) {
       throw new Error(e);
     }

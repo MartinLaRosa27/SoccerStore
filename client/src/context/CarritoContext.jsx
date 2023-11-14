@@ -244,6 +244,7 @@ export const CarritoContext = ({ children }) => {
 
   // ---------------------------------------------------------------------------
   const crearCompra = async (valores) => {
+    let preferenceId = "";
     const CREAR_COMPRA = gql`
       mutation CrearCompra($input: [carritoInput]) {
         crearCompra(input: $input)
@@ -276,12 +277,13 @@ export const CarritoContext = ({ children }) => {
             errorToast(res.data.errors[0].message);
           }
         } else {
-          successToast("Compra registrada correctamente");
+          preferenceId = res.data.data.crearCompra;
         }
       })
       .catch((e) => {
         console.log(e);
       });
+    return preferenceId;
   };
 
   // ---------------------------------------------------------------------------
