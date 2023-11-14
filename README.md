@@ -18,6 +18,7 @@ _Los usuarios registrados podrán realizar las siguientes acciones:_
 - Indicar tipo de envío para la compra.
 - Ver las compras realizadas y sus estados.
 - Modificar su información personal.
+- Los pagos se van a realizar a través de mercado pago.
 
 ### Tecnologías:
 
