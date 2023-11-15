@@ -8,6 +8,8 @@ const { auth } = require("./middleware/auth");
 DBConnection();
 
 const server = new ApolloServer({
+  cache: 'bounded',
+  persistedQueries: false,
   typeDefs,
   resolvers,
   context: ({ req }) => {
