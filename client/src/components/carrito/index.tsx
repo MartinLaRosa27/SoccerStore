@@ -8,6 +8,7 @@ import "./carrito.scss";
 
 function Carrito() {
   const [preferenceId, setPreferenceId] = useState<any>("");
+  const [showSpinner, setShowSpinner] = useState<boolean>(false);
   initMercadoPago(import.meta.env.VITE_MP_PK);
   const [metodoEnvio, setMetodoEnvio] = useState<string>("0");
   const [products, setProducts] = useState<any>(false);
@@ -17,6 +18,7 @@ function Carrito() {
   useEffect(() => {
     window.scrollTo(0, 0);
     callGetCarritoProducts();
+    setShowSpinner(false);
     setRecallEffect(false);
   }, [recallEffect]);
 
@@ -26,6 +28,7 @@ function Carrito() {
 
   const handleClickConfirmarCompra = async () => {
     let auxArray: any[] = [];
+    setShowSpinner(true);
     let pertenece: boolean = false;
     if (metodoEnvio != "0") {
       products.map((product: any) => {
@@ -50,9 +53,8 @@ function Carrito() {
   return (
     <div id="carrito">
       <h3 className="container">Carrito</h3>
-      {products.length > 0 ? (
+      {products ? (
         <>
-          {" "}
           {products.length > 0 ? (
             <>
               {products.map((product: any, i: number) => {
@@ -79,6 +81,7 @@ function Carrito() {
                     CONFIRMAR
                   </button>
                 )}
+                {!preferenceId && showSpinner && <Spinner />}
               </div>
             </>
           ) : (
