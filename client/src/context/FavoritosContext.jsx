@@ -147,6 +147,48 @@ export const FavoritoContext = ({ children }) => {
   };
 
   // ---------------------------------------------------------------------------
+  const deleteFavorito = async (productoId) => {
+    const DELETE_FAVORITO = gql`
+      mutation DeleteFavorito($productoId: Int) {
+        deleteFavorito(productoId: $productoId)
+      }
+    `;
+    await axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}`,
+        {
+          query: print(DELETE_FAVORITO),
+          variables: {
+            productoId: Number(productoId),
+          },
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem(
+              import.meta.env.VITE_TOKEN_NAME
+            ),
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.errors) {
+          if (res.data.errors[0].message == "session expired") {
+            errorToast("Por favor, inicie sesión nuevamente");
+            localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+            window.location.href = "/";
+          } else {
+            errorToast(res.data.errors[0].message);
+          }
+        } else {
+          successToast("Producto removido de favoritos con éxito");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  // ---------------------------------------------------------------------------
   return (
     <Context.Provider
       value={{
@@ -154,6 +196,7 @@ export const FavoritoContext = ({ children }) => {
         getFavoritoCount,
         getFavoritosProducts,
         setRealoadTotalFavoritos,
+        deleteFavorito,
         realoadTotalFavoritos,
       }}
     >

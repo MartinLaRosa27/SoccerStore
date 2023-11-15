@@ -69,3 +69,23 @@ module.exports.getFavoritosProducts = async (usuario) => {
     throw new Error("session expired");
   }
 };
+
+// ---------------------------------------------------------------------------
+module.exports.deleteFavorito = async (productoId, usuario) => {
+  if (usuario) {
+    try {
+      await Favorito.sequelize.query(
+        `DELETE FROM favoiritos
+        WHERE usuarioId='${usuario._id}' AND productoId = ${productoId};`,
+        {
+          type: QueryTypes.DELETE,
+        }
+      );
+      return "Producto removido de favoritos";
+    } catch (e) {
+      throw new Error(e);
+    }
+  } else {
+    throw new Error("session expired");
+  }
+};

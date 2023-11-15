@@ -6,15 +6,19 @@ import "./favoritos.scss";
 
 function Favoritos() {
   const [products, setProducts] = useState<any>(false);
-  const { getFavoritosProducts } = useFavoritoContext();
+  const [recallEffect, setRecallEffect] = useState<boolean>(true);
+  const { getFavoritosProducts, setRealoadTotalFavoritos } =
+    useFavoritoContext();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     callGetCarritoCompras();
-  }, []);
+    setRecallEffect(false);
+  }, [recallEffect]);
 
   const callGetCarritoCompras = async () => {
     setProducts(await getFavoritosProducts());
+    setRealoadTotalFavoritos(true);
   };
 
   return (
@@ -25,7 +29,13 @@ function Favoritos() {
           {products.length > 0 ? (
             <>
               {products.map((product: any, i: number) => {
-                return <TarjetaFavoritos key={i} producto={product} />;
+                return (
+                  <TarjetaFavoritos
+                    key={i}
+                    producto={product}
+                    setRecallEffect={setRecallEffect}
+                  />
+                );
               })}
             </>
           ) : (

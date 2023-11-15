@@ -1,11 +1,20 @@
 import { formatPrecio } from "../../helpers/formatPrecio";
 import { useHistory } from "react-router-dom";
+import { useFavoritoContext } from "../../context/FavoritosContext";
 
-function TarjetaFavoritos(props: { producto: any }) {
+function TarjetaFavoritos(props: { producto: any; setRecallEffect: any }) {
   let history = useHistory();
+
+  const { deleteFavorito, setRealoadTotalFavoritos } = useFavoritoContext();
 
   const handleClickRedirect = () => {
     history.push(`/precarrito/${props.producto._id}`);
+  };
+
+  const handleClickRemove = async () => {
+    await deleteFavorito(props.producto._id);
+    props.setRecallEffect(true);
+    setRealoadTotalFavoritos(true);
   };
 
   return (
@@ -29,6 +38,13 @@ function TarjetaFavoritos(props: { producto: any }) {
                   <strong>${formatPrecio(props.producto.precio)}</strong>
                 </small>
               </p>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => handleClickRemove()}
+              >
+                REMOVER
+              </button>
             </div>
           </div>
         </div>

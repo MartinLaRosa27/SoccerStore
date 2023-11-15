@@ -11,6 +11,7 @@ const {
   postFavorito,
   getFavoritoCount,
   getFavoritosProducts,
+  deleteFavorito,
 } = require("../controllers/favorito.controller");
 const {
   getProductoPorCategoria,
@@ -99,6 +100,10 @@ module.exports.resolvers = {
 
     postFavorito: (root, { productoId }, context) => {
       return postFavorito(productoId, context.usuario);
+    },
+
+    deleteFavorito: (root, { productoId }, context) => {
+      return deleteFavorito(productoId, context.usuario);
     },
   },
 };

@@ -86,5 +86,6 @@ module.exports.typeDefs = gql`
     deleteCarrito(input: carritoInput): String
     crearCompra(input: [carritoInput]): String
     postFavorito(productoId: Int): carritoType
+    deleteFavorito(productoId: Int): String
   }
 `;
