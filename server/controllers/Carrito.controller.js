@@ -1,6 +1,6 @@
 const Carrito = require("../models/Carrito");
 const Producto = require("../models/Producto");
-const mercadopago = require("mercadopago");
+// const mercadopago = require("mercadopago");
 const { QueryTypes } = require("sequelize");
 
 // ---------------------------------------------------------------------------
@@ -126,6 +126,7 @@ module.exports.crearCompra = async (input, usuario) => {
       );
 
       // MERCADO PAGO:
+      /*
       await Promise.all(
         input.map((valor) => {
           valor.title = valor.nombre;
@@ -157,6 +158,7 @@ module.exports.crearCompra = async (input, usuario) => {
         .catch(function (error) {
           console.log(error);
         });
+        */
 
       // Elimina cantidad:
       await Promise.all(
