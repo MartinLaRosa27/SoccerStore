@@ -52,7 +52,7 @@ function Carrito() {
 
   return (
     <div id="carrito">
-      <h3 className="container">Carrito</h3>
+      <h3 className="container">Mi Carrito</h3>
       {products ? (
         <>
           {products.length > 0 ? (

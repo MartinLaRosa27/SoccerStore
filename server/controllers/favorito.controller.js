@@ -15,7 +15,7 @@ module.exports.postFavorito = async (productoId, usuario) => {
         throw new Error("Producto ya esta en favoritos");
       }
       const favorito = await Favorito.create({
-        cantidad: 1,
+        productoId,
         usuarioId: usuario._id,
       });
       return favorito;
@@ -31,10 +31,10 @@ module.exports.postFavorito = async (productoId, usuario) => {
 module.exports.getFavoritoCount = async (usuario) => {
   if (usuario) {
     try {
-      const value = await Carrito.sequelize.query(
+      const value = await Favorito.sequelize.query(
         `SELECT COUNT(productoId) as value
         FROM favoiritos
-        WHERE usuarioId = '${usuario._id}';`,
+        WHERE usuarioId = ${usuario._id};`,
         {
           type: QueryTypes.SELECT,
         }
@@ -52,11 +52,11 @@ module.exports.getFavoritoCount = async (usuario) => {
 module.exports.getFavoritosProducts = async (usuario) => {
   if (usuario) {
     try {
-      const productos = await Carrito.sequelize.query(
-        `SELECT p.nombre, p.precio, p.urlImg, c.cantidad, c.talle, p._id AS _id
+      const productos = await Favorito.sequelize.query(
+        `SELECT p.nombre, p.precio, p.urlImg, p._id AS _id
         FROM favoiritos AS c
         INNER JOIN productos AS p ON c.productoId = p._id
-        WHERE usuarioId = '${usuario._id}';`,
+        WHERE usuarioId = ${usuario._id};`,
         {
           type: QueryTypes.SELECT,
         }

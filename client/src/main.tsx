@@ -8,6 +8,7 @@ import { UsuarioContext } from "./context/UsuarioContext.jsx";
 import { CarritoContext } from "./context/CarritoContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.scss";
+import { FavoritoContext } from "./context/FavoritosContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -15,8 +16,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ProductoContext>
         <UsuarioContext>
           <CarritoContext>
-            <Toaster />
-            <App />
+            <FavoritoContext>
+              <Toaster />
+              <App />
+            </FavoritoContext>
           </CarritoContext>
         </UsuarioContext>
       </ProductoContext>

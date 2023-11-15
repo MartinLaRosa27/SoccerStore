@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useCarritoContext } from "../../context/CarritoContext";
+import { useFavoritoContext } from "../../context/FavoritosContext";
 import TarjetaFavoritos from "./TarjetaFavoritos";
 import Spinner from "../global/Spinner";
 import "./favoritos.scss";
 
 function Favoritos() {
   const [products, setProducts] = useState<any>(false);
-  const { getCarritoCompras } = useCarritoContext();
+  const { getFavoritosProducts } = useFavoritoContext();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,12 +14,12 @@ function Favoritos() {
   }, []);
 
   const callGetCarritoCompras = async () => {
-    setProducts(await getCarritoCompras());
+    setProducts(await getFavoritosProducts());
   };
 
   return (
     <div id="Favoritos">
-      <h3 className="container">Mis Compras</h3>
+      <h3 className="container">Favoritos</h3>
       {products ? (
         <>
           {products.length > 0 ? (

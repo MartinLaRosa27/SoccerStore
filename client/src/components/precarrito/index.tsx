@@ -5,6 +5,8 @@ import { formatPrecio } from "../../helpers/formatPrecio";
 import { useParams } from "react-router-dom";
 import { errorToast } from "../../helpers/toast";
 import { useHistory } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
+import { useFavoritoContext } from "../../context/FavoritosContext";
 import ProductCarousel from "../global/ProductCarousel";
 import Spinner from "../global/Spinner";
 import "./precarrito.scss";
@@ -12,6 +14,7 @@ import "./precarrito.scss";
 function Precarrito() {
   const history = useHistory();
   const { getProductoPorId } = useProductoContext();
+  const { postFavorito, setRealoadTotalFavoritos } = useFavoritoContext();
   const { postCarrito, setRealoadTotalCarrito } = useCarritoContext();
   const { productoId }: any = useParams();
   const [producto, setProducto] = useState<any[]>([]);
@@ -40,6 +43,15 @@ function Precarrito() {
         await postCarrito(talleSeleccionado, productoId);
         setRealoadTotalCarrito(true);
       }
+    } else {
+      history.push("/login");
+    }
+  };
+
+  const agregarFavorito = async () => {
+    if (isLoged()) {
+      await postFavorito(productoId);
+      setRealoadTotalFavoritos(true);
     } else {
       history.push("/login");
     }
@@ -186,9 +198,14 @@ function Precarrito() {
                       <button className="add" onClick={() => agregarCarrito()}>
                         agregar
                       </button>
-                      {/* <button className="like">
-                        <span>♥</span>
-                      </button> */}
+                      <button
+                        className="like"
+                        onClick={() => agregarFavorito()}
+                      >
+                        <span>
+                          <FaHeart />
+                        </span>
+                      </button>
                     </div>
                   </>
                 ) : (

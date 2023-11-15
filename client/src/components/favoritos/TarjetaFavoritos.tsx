@@ -22,18 +22,11 @@ function TarjetaFavoritos(props: { producto: any }) {
           <div className="col-md-10">
             <div className="card-body">
               <h5 className="card-title">
-                <strong>{props.producto.nombre}</strong>{" "}
-                {`(x${props.producto.cantidad})`}
+                <strong>{props.producto.nombre}</strong>
               </h5>
               <p className="card-text">
                 <small className="text-muted">
-                  Talle{" "}
-                  <strong className="talle">{props.producto.talle}</strong> -{" "}
-                  <strong>${formatPrecio(props.producto.precio)}</strong> c/u
-                </small>
-                <small className="text-muted">
-                  Estado:{" "}
-                  <strong className="estado">{props.producto.estado}</strong>
+                  <strong>${formatPrecio(props.producto.precio)}</strong>
                 </small>
               </p>
             </div>

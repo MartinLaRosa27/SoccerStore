@@ -4,6 +4,7 @@ import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { useCategoriaContext } from "../../context/CategoriaContext";
 import { useCarritoContext } from "../../context/CarritoContext";
+import { useFavoritoContext } from "../../context/FavoritosContext";
 import { useHistory } from "react-router-dom";
 import logoSimple from "../../assets/img/global/logo-simple.webp";
 import Container from "react-bootstrap/Container";
@@ -16,9 +17,13 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
   let history = useHistory();
   const { getCarritoCount, setRealoadTotalCarrito, realoadTotalCarrito } =
     useCarritoContext();
+    const { getFavoritoCount, setRealoadTotalFavoritos, realoadTotalFavoritos } =
+    useFavoritoContext();
   const { getCategorias } = useCategoriaContext();
   const [categorias, setCategorias] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);
+  const [totalFavoritos, setTotalFavoritos] = useState<number>(0);
+
 
   useEffect(() => {
     callGetCategorias();
@@ -26,10 +31,17 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
 
   useEffect(() => {
     if (isLoged()) {
+      callGetFavoritoCount();
+      setRealoadTotalFavoritos(false);
+    }
+  }, [realoadTotalCarrito]);
+
+  useEffect(() => {
+    if (isLoged()) {
       callGetCarritoCount();
       setRealoadTotalCarrito(false);
     }
-  }, [realoadTotalCarrito]);
+  }, [realoadTotalFavoritos]);
 
   const isLoged = () => {
     return localStorage.getItem(import.meta.env.VITE_TOKEN_NAME);
@@ -46,6 +58,10 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
 
   const callGetCarritoCount = async () => {
     setTotal(await getCarritoCount());
+  };
+
+  const callGetFavoritoCount = async () => {
+    setTotalFavoritos(await getFavoritoCount());
   };
 
   return (
@@ -84,7 +100,7 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
               >
                 <span className="search-text">Favoritos</span>
                 <IoMdHeartEmpty />
-                {total ? <span className="num-item">{total}</span> : ""}
+                {totalFavoritos ? <span className="num-item">{totalFavoritos}</span> : ""}
               </Nav.Link>
               <Nav.Link
                 onClick={() => history.push(`/carrito`)}
