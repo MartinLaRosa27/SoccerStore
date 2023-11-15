@@ -17,7 +17,7 @@ module.exports.postCarrito = async (input, usuario) => {
         },
       });
       if (carritoExists) {
-        throw new Error("Producto ya agregado al carrito");
+        throw new Error("El producto ya se encuntra en el carrito");
       }
       const carrito = await Carrito.create({
         talle,

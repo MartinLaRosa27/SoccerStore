@@ -75,6 +75,8 @@ module.exports.typeDefs = gql`
     getCarritoCount: Int
     getCarritoProducts: [carritoType]
     getCarritoCompras: [carritoType]
+    getFavoritoCount: Int
+    getFavoritosProducts: [carritoType]
   }
 
   type Mutation {
@@ -83,5 +85,6 @@ module.exports.typeDefs = gql`
     postCarrito(input: carritoInput): carritoType
     deleteCarrito(input: carritoInput): String
     crearCompra(input: [carritoInput]): String
+    postFavorito(productoId: Int): carritoType
   }
 `;

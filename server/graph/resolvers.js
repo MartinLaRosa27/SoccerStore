@@ -8,6 +8,11 @@ const {
   getCarritoCompras,
 } = require("../controllers/Carrito.controller");
 const {
+  postFavorito,
+  getFavoritoCount,
+  getFavoritosProducts,
+} = require("../controllers/favorito.controller");
+const {
   getProductoPorCategoria,
   getProductoPorNombre,
   getProductoPorId,
@@ -61,6 +66,14 @@ module.exports.resolvers = {
     getCarritoCompras: (root, {}, context) => {
       return getCarritoCompras(context.usuario);
     },
+
+    getFavoritosProducts: (root, {}, context) => {
+      return getFavoritosProducts(context.usuario);
+    },
+
+    getFavoritoCount: (root, {}, context) => {
+      return getFavoritoCount(context.usuario);
+    },
   },
 
   Mutation: {
@@ -82,6 +95,10 @@ module.exports.resolvers = {
 
     crearCompra: (root, { input }, context) => {
       return crearCompra(input, context.usuario);
+    },
+
+    postFavorito: (root, { productoId }, context) => {
+      return postFavorito(productoId, context.usuario);
     },
   },
 };
