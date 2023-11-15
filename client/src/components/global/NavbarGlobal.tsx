@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
+import { IoMdHeartEmpty } from "react-icons/io";
 import { useCategoriaContext } from "../../context/CategoriaContext";
 import { useCarritoContext } from "../../context/CarritoContext";
 import { useHistory } from "react-router-dom";
@@ -78,9 +79,18 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
                 <AiOutlineSearch />
               </Nav.Link>
               <Nav.Link
+                onClick={() => history.push(`/favoritos`)}
+                className="cart"
+              >
+                <span className="search-text">Favoritos</span>
+                <IoMdHeartEmpty />
+                {total ? <span className="num-item">{total}</span> : ""}
+              </Nav.Link>
+              <Nav.Link
                 onClick={() => history.push(`/carrito`)}
                 className="cart"
               >
+                <span className="search-text">Mi Carrito</span>
                 <AiOutlineShoppingCart />
                 {total ? <span className="num-item">{total}</span> : ""}
               </Nav.Link>

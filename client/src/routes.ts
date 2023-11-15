@@ -7,6 +7,7 @@ import Account from "./components/account";
 import Carrito from "./components/carrito";
 import MisCompras from "./components/mis-compras";
 import Marca from "./components/marca";
+import Favoritos from "./components/favoritos";
 
 export const routes = [
   {
@@ -47,6 +48,11 @@ export const routes = [
   {
     path: "/mis-compras",
     component: MisCompras,
+    isLoged: true,
+  },
+  {
+    path: "/favoritos",
+    component: Favoritos,
     isLoged: true,
   },
   {

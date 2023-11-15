@@ -15,6 +15,7 @@ _Los usuarios registrados podrán realizar las siguientes acciones:_
 
 - Agregar varios productos al carrito.
 - Gestionar su carrito de compras.
+- Agregar productos a favoritos.
 - Indicar tipo de envío para la compra.
 - Ver las compras realizadas y sus estados.
 - Modificar su información personal.
