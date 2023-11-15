@@ -17,13 +17,12 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
   let history = useHistory();
   const { getCarritoCount, setRealoadTotalCarrito, realoadTotalCarrito } =
     useCarritoContext();
-    const { getFavoritoCount, setRealoadTotalFavoritos, realoadTotalFavoritos } =
+  const { getFavoritoCount, setRealoadTotalFavoritos, realoadTotalFavoritos } =
     useFavoritoContext();
   const { getCategorias } = useCategoriaContext();
   const [categorias, setCategorias] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [totalFavoritos, setTotalFavoritos] = useState<number>(0);
-
 
   useEffect(() => {
     callGetCategorias();
@@ -31,15 +30,15 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
 
   useEffect(() => {
     if (isLoged()) {
-      callGetFavoritoCount();
-      setRealoadTotalFavoritos(false);
+      callGetCarritoCount();
+      setRealoadTotalCarrito(false);
     }
   }, [realoadTotalCarrito]);
 
   useEffect(() => {
     if (isLoged()) {
-      callGetCarritoCount();
-      setRealoadTotalCarrito(false);
+      callGetFavoritoCount();
+      setRealoadTotalFavoritos(false);
     }
   }, [realoadTotalFavoritos]);
 
@@ -100,7 +99,11 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
               >
                 <span className="search-text">Favoritos</span>
                 <IoMdHeartEmpty />
-                {totalFavoritos ? <span className="num-item">{totalFavoritos}</span> : ""}
+                {totalFavoritos ? (
+                  <span className="num-item">{totalFavoritos}</span>
+                ) : (
+                  ""
+                )}
               </Nav.Link>
               <Nav.Link
                 onClick={() => history.push(`/carrito`)}
