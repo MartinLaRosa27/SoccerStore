@@ -64,84 +64,91 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" id="NavbarGlobal-global">
-      <Container>
-        <NavLink to="/">
-          <img src={logoSimple} alt="SoccerStore" title="home" />
-        </NavLink>
+    <>
+      <Navbar expand="lg" className="bg-body-tertiary" id="NavbarGlobal-global">
+        <Container>
+          <NavLink to="/">
+            <img src={logoSimple} alt="SoccerStore" title="home" />
+          </NavLink>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto contenedor-opt">
-            {categorias.length > 0 &&
-              categorias.map((categoria, i) => {
-                return (
-                  <NavLink to={`/categoria/${categoria._id}`} key={i}>
-                    {categoria.nombre}
-                  </NavLink>
-                );
-              })}
-          </Nav>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto contenedor-opt">
+              {categorias.length > 0 &&
+                categorias.map((categoria, i) => {
+                  return (
+                    <NavLink to={`/categoria/${categoria._id}`} key={i}>
+                      {categoria.nombre}
+                    </NavLink>
+                  );
+                })}
+            </Nav>
 
-          {isLoged() && (
-            <div className="user-info">
-              <Nav.Link
-                className="cart"
-                onClick={() => props.setShowBuscador(!props.showBuscador)}
-              >
-                <span className="search-text">Buscar producto</span>
-                <AiOutlineSearch />
-              </Nav.Link>
-              <Nav.Link
-                onClick={() => history.push(`/favoritos`)}
-                className="cart"
-              >
-                <span className="search-text">Favoritos</span>
-                <IoMdHeartEmpty />
-                {totalFavoritos ? (
-                  <span className="num-item">{totalFavoritos}</span>
-                ) : (
-                  ""
-                )}
-              </Nav.Link>
-              <Nav.Link
-                onClick={() => history.push(`/carrito`)}
-                className="cart"
-              >
-                <span className="search-text">Mi Carrito</span>
-                <AiOutlineShoppingCart />
-                {total ? <span className="num-item">{total}</span> : ""}
-              </Nav.Link>
-              <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
-                <NavDropdown.Item onClick={() => history.push(`/account`)}>
-                  mis datos
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => history.push(`/mis-compras`)}>
-                  mis compras
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => logout()}>
-                  cerrar sesión
-                </NavDropdown.Item>
-              </NavDropdown>
-            </div>
-          )}
+            {isLoged() && (
+              <div className="user-info">
+                <Nav.Link
+                  className="cart"
+                  onClick={() => props.setShowBuscador(!props.showBuscador)}
+                >
+                  <span className="search-text">Buscar producto</span>
+                  <AiOutlineSearch />
+                </Nav.Link>
+                <Nav.Link
+                  onClick={() => history.push(`/favoritos`)}
+                  className="cart"
+                >
+                  <span className="search-text">Favoritos</span>
+                  <IoMdHeartEmpty />
+                  {totalFavoritos ? (
+                    <span className="num-item">{totalFavoritos}</span>
+                  ) : (
+                    ""
+                  )}
+                </Nav.Link>
+                <Nav.Link
+                  onClick={() => history.push(`/carrito`)}
+                  className="cart"
+                >
+                  <span className="search-text">Mi Carrito</span>
+                  <AiOutlineShoppingCart />
+                  {total ? <span className="num-item">{total}</span> : ""}
+                </Nav.Link>
+                <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
+                  <NavDropdown.Item onClick={() => history.push(`/account`)}>
+                    mis datos
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    onClick={() => history.push(`/mis-compras`)}
+                  >
+                    mis compras
+                  </NavDropdown.Item>
+                  <NavDropdown.Item onClick={() => logout()}>
+                    cerrar sesión
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </div>
+            )}
 
-          {!isLoged() && (
-            <div className="user-info">
-              <Nav.Link
-                className="cart"
-                onClick={() => props.setShowBuscador(!props.showBuscador)}
-              >
-                <span className="search-text">Buscar producto</span>
-                <AiOutlineSearch />
-              </Nav.Link>
-              <NavLink to={`/login`}>Iniciar sesión</NavLink>
-            </div>
-          )}
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            {!isLoged() && (
+              <div className="user-info">
+                <Nav.Link
+                  className="cart"
+                  onClick={() => props.setShowBuscador(!props.showBuscador)}
+                >
+                  <span className="search-text">Buscar producto</span>
+                  <AiOutlineSearch />
+                </Nav.Link>
+                <NavLink to={`/login`}>Iniciar sesión</NavLink>
+              </div>
+            )}
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <div className="oferta-navbar">
+        ¡15% OFF SUSCRIBIÉNDOTE AL NEWSLETTER!
+      </div>
+    </>
   );
 }
 
