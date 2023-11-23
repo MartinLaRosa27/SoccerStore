@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
-import { useCategoriaContext } from "../../context/CategoriaContext";
 import { useCarritoContext } from "../../context/CarritoContext";
 import { useFavoritoContext } from "../../context/FavoritosContext";
 import { useHistory } from "react-router-dom";
@@ -19,14 +18,8 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
     useCarritoContext();
   const { getFavoritoCount, setRealoadTotalFavoritos, realoadTotalFavoritos } =
     useFavoritoContext();
-  const { getCategorias } = useCategoriaContext();
-  const [categorias, setCategorias] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [totalFavoritos, setTotalFavoritos] = useState<number>(0);
-
-  useEffect(() => {
-    callGetCategorias();
-  }, []);
 
   useEffect(() => {
     if (isLoged()) {
@@ -51,10 +44,6 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
     window.location.href = "/";
   };
 
-  const callGetCategorias = async () => {
-    setCategorias(await getCategorias());
-  };
-
   const callGetCarritoCount = async () => {
     setTotal(await getCarritoCount());
   };
@@ -75,14 +64,9 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto contenedor-opt">
-              {categorias.length > 0 &&
-                categorias.map((categoria, i) => {
-                  return (
-                    <NavLink to={`/categoria/${categoria._id}`} key={i}>
-                      {categoria.nombre}
-                    </NavLink>
-                  );
-                })}
+              <NavLink to={`/categoria/1`}>camisetas</NavLink>
+              <NavLink to={`/categoria/2`}>shorts</NavLink>
+              <NavLink to={`/categoria/3`}>botines</NavLink>
             </Nav>
 
             {isLoged() && (

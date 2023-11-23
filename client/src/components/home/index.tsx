@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import CarouselBanner from "./CarouselBanner";
 import cuotas from "../../assets/img/home/cuotas.webp";
 import ProductCarousel from "../global/ProductCarousel";
+import NewsletterForm from "./NewsletterForm";
 import "./home.scss";
 
 function Home() {
@@ -15,6 +16,7 @@ function Home() {
       <ProductCarousel categoria="camisetas" categoriaId={1} />
       <ProductCarousel categoria="shorts" categoriaId={2} />
       <img src={cuotas} alt="Mejores ofertas" className="ofertas" />
+      <NewsletterForm />
     </div>
   );
 }

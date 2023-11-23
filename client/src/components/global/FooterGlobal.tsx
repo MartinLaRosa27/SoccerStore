@@ -1,8 +1,11 @@
 import { AiOutlineInstagram, AiOutlineFacebook } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
+import { useHistory } from "react-router-dom";
 import "./global.scss";
 
 function FooterGlobal() {
+  let history = useHistory();
+
   return (
     <footer id="FooterGlobal-global">
       <div
@@ -37,27 +40,27 @@ function FooterGlobal() {
                 />
                 <p>
                   <a
-                    href="#"
+                    onClick={() => history.push(`/categoria/1`)}
                     className="text-dark"
-                    style={{ textDecoration: "none" }}
+                    style={{ textDecoration: "none", cursor: "pointer" }}
                   >
                     Camisetas
                   </a>
                 </p>
                 <p>
                   <a
-                    href="#"
+                    onClick={() => history.push(`/categoria/2`)}
                     className="text-dark"
-                    style={{ textDecoration: "none" }}
+                    style={{ textDecoration: "none", cursor: "pointer" }}
                   >
                     Shorts
                   </a>
                 </p>
                 <p>
                   <a
-                    href="#"
+                    onClick={() => history.push(`/categoria/3`)}
                     className="text-dark"
-                    style={{ textDecoration: "none" }}
+                    style={{ textDecoration: "none", cursor: "pointer" }}
                   >
                     Botines
                   </a>
@@ -138,7 +141,7 @@ function FooterGlobal() {
         >
           <span>SoccerStore© 2023</span>
           <span className="mt-2">
-          Sitio web con fines educativos | Desarrollado por:{" "}
+            Sitio web con fines educativos | Desarrollado por:{" "}
             <a
               href="https://www.linkedin.com/in/martin-la-rosa/"
               className="text-dark mt-2 fw-bold"
