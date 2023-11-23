@@ -44,6 +44,11 @@ $negro: #252525;
   margin-bottom: 50px;
   margin-top: 10px;
 
+  @media (max-width: 768px) {
+    width: 80%;
+    padding: 50px 0;
+  }
+
   .single {
     max-width: 650px;
     margin: 0 auto;
@@ -53,11 +58,14 @@ $negro: #252525;
 
     h2 {
       font-size: 22px;
-      color: white;
       text-transform: uppercase;
       margin-bottom: 40px;
       color: $violetaUno;
       font-weight: bold;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
     }
 
     .form-control {
@@ -70,15 +78,25 @@ $negro: #252525;
         box-shadow: none;
         border-color: #243c4f;
       }
+
+      @media (max-width: 768px) {
+        height: 35px;
+        margin-left: 10px;
+      }
     }
 
     .btn {
-      min-height: 50px;
+      height: 50px;
       border-radius: 0 20px 20px 0;
       background: #243c4f;
       color: #fff;
       text-transform: uppercase;
       font-size: 0.9rem;
+
+      @media (max-width: 768px) {
+        height: 35px;
+        margin-right: 10px;
+      }
     }
   }
 }
