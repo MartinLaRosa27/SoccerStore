@@ -8,6 +8,7 @@ _Todos usuarios podrán realizar las siguientes acciones:_
 - Ver los productos ofrecidos.
 - Ver los productos por categoría.
 - Ver los productos por marca.
+- Los usuarios podran suscribirse al newsletter, para obtener beneficios exclucivos.
 - Buscar los productos que deseen.
 - Filtrar los resultados obtenidos.
 
@@ -23,7 +24,7 @@ _Los usuarios registrados podrán realizar las siguientes acciones:_
 
 ### Tecnologías:
 
-HTML / CSS / SCSS / JavaScript / TypeScript / React.js / Vite / Node.js / GraphQL / MySQL / Bootstrap
+HTML / CSS / SCSS / Bootstrap / JavaScript / TypeScript / React.js / Vite / Node.js / GraphQL / MySQL
 
 ### Deploy:
 
