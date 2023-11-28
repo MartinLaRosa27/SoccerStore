@@ -100,3 +100,25 @@ $negro: #252525;
     }
   }
 }
+
+#TodasMarcas-home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 11%;
+    height: auto;
+    margin: 0 5%;
+    cursor: pointer;
+
+    @media (max-width: 1000px) {
+      width: 20%;
+    }
+
+    @media (max-width: 400px) {
+      width: 25%;
+    }
+  }
+}
