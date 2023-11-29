@@ -179,7 +179,11 @@ $negro: #252525;
   }
 
   .el-wrapper:hover .info-inner {
-    bottom: 155px;
+    bottom: 145px;
+
+    @media (max-width: 767px) {
+      bottom: 65px;
+    }
   }
 
   .el-wrapper:hover .a-size {
@@ -190,6 +194,10 @@ $negro: #252525;
     opacity: 1;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 767px) {
+      display: none !important;
+    }
   }
 
   .el-wrapper .box-down {
@@ -201,13 +209,13 @@ $negro: #252525;
 
   .el-wrapper .box-up {
     width: 100%;
-    height: 250px;
+    height: 240px;
     position: relative;
     overflow: hidden;
     text-align: center;
 
     @media (max-width: 767px) {
-      height: 240px;
+      height: 200px;
     }
   }
 
@@ -391,10 +399,9 @@ $negro: #252525;
   }
 }
 
-
 .oferta-navbar {
   text-align: center;
   padding: 5px 0 5px;
   font-size: 0.8rem;
-  background-color: #FAE2E2;
+  background-color: #fae2e2;
 }

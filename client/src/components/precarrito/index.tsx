@@ -213,12 +213,12 @@ function Precarrito() {
                 )}
               </div>
             </div>
-
-            <ProductCarousel
-              categoria="Prductos similares"
-              categoriaId={producto[0].categoriumId}
-            />
           </div>
+
+          <ProductCarousel
+            categoria="Prductos similares"
+            categoriaId={producto[0].categoriumId}
+          />
         </>
       )}
       {producto.length == 0 && <Spinner />}
