@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useCarritoContext } from "../../context/CarritoContext";
+import { Helmet } from "react-helmet";
 import TarjetaMisCompras from "./TarjetaMisCompras";
-import "./mis-compras.scss";
 import Spinner from "../global/Spinner";
+import "./mis-compras.scss";
 
 function MisCompras() {
   const [products, setProducts] = useState<any>(false);
@@ -19,6 +20,9 @@ function MisCompras() {
 
   return (
     <div id="carrito">
+      <Helmet>
+        <title>SoccerStore | Mis Compras</title>
+      </Helmet>
       <h3 className="container">Mis Compras</h3>
       {products ? (
         <>

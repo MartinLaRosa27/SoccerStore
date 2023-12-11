@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCarritoContext } from "../../context/CarritoContext";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { Helmet } from "react-helmet";
 import Tarjeta from "./Tarjeta";
 import Envio from "./Envio";
 import Spinner from "../global/Spinner";
@@ -52,6 +53,9 @@ function Carrito() {
 
   return (
     <div id="carrito">
+      <Helmet>
+        <title>SoccerStore | Carrito</title>
+      </Helmet>
       <h3 className="container">Mi Carrito</h3>
       {products ? (
         <>

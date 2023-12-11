@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import logoCompleto from "../../assets/img/global/logo-completo.webp";
 import Iniciar from "./Iniciar";
 import Registrarse from "./Registrarse";
@@ -9,8 +10,10 @@ function Login() {
 
   return (
     <div id="login">
+      <Helmet>
+        <title>SoccerStore | Iniciar Sesión</title>
+      </Helmet>
       <img className="logo-completo" src={logoCompleto} alt="SoccerStore" />
-
       {showIniciar ? (
         <Iniciar setShowIniciar={setShowIniciar} showIniciar={showIniciar} />
       ) : (

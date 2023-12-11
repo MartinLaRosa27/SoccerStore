@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useProductoContext } from "../../context/ProductoContext";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Spinner from "../global/Spinner";
 import ProductCard from "../global/ProductCard";
 import FiltrosMarca from "./FiltrosMarca";
@@ -52,6 +53,14 @@ function Marca() {
     <div id="Marca">
       {productos.length > 0 && (
         <>
+          <Helmet>
+            <title>
+              SoccerStore |{" "}
+              {productos[0].marcaNombre &&
+                productos[0].marcaNombre.charAt(0).toUpperCase() +
+                  productos[0].marcaNombre.slice(1)}
+            </title>
+          </Helmet>
           <FiltrosMarca
             nombreCategoria={productos[0].marcaNombre}
             setFiltro={setFiltro}

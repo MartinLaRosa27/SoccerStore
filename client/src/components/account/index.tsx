@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useUsuarioContext } from "../../context/UsuarioContext";
+import { Helmet } from "react-helmet";
 import Formulario from "./Formulario";
 import Spinner from "../global/Spinner";
 import "./account.scss";
@@ -23,6 +24,9 @@ function Account() {
 
   return (
     <div id="account">
+      <Helmet>
+        <title>SoccerStore | Mi Datos</title>
+      </Helmet>
       <h3 className="container">Mis datos</h3>
       {usuarioInformation ? (
         <Formulario

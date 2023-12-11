@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFavoritoContext } from "../../context/FavoritosContext";
+import { Helmet } from "react-helmet";
 import TarjetaFavoritos from "./TarjetaFavoritos";
 import Spinner from "../global/Spinner";
 import "./favoritos.scss";
@@ -23,6 +24,9 @@ function Favoritos() {
 
   return (
     <div id="Favoritos">
+      <Helmet>
+        <title>SoccerStore | Favoritos</title>
+      </Helmet>
       <h3 className="container">Favoritos</h3>
       {products ? (
         <>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useProductoContext } from "../../context/ProductoContext";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Spinner from "../global/Spinner";
 import ProductCard from "../global/ProductCard";
 import FiltrosResultado from "./FiltrosResultado";
@@ -50,6 +51,9 @@ function Resultado() {
 
   return (
     <div id="Resultado">
+      <Helmet>
+        <title>SoccerStore | {nombreProducto}</title>
+      </Helmet>
       {productos.length > 0 && (
         <>
           <FiltrosResultado

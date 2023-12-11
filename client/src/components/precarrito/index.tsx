@@ -7,6 +7,7 @@ import { errorToast } from "../../helpers/toast";
 import { useHistory } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { useFavoritoContext } from "../../context/FavoritosContext";
+import { Helmet } from "react-helmet";
 import ProductCarousel from "../global/ProductCarousel";
 import Spinner from "../global/Spinner";
 import "./precarrito.scss";
@@ -61,6 +62,14 @@ function Precarrito() {
     <>
       {producto.length > 0 && !producto[0].error && (
         <>
+          <Helmet>
+            <title>
+              SoccerStore |{" "}
+              {producto[0].nombre &&
+                producto[0].nombre.charAt(0).toUpperCase() +
+                  producto[0].nombre.slice(1)}
+            </title>
+          </Helmet>
           <div id="Precarrito">
             <div className="container-prod">
               <div className="info">

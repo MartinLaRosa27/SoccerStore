@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useProductoContext } from "../../context/ProductoContext";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Spinner from "../global/Spinner";
-import "./categoria.scss";
 import ProductCard from "../global/ProductCard";
 import FiltrosCategoria from "./FiltrosCategoria";
+import "./categoria.scss";
 
 function Categoria() {
   const { getProductoPorCategoria } = useProductoContext();
@@ -52,6 +53,14 @@ function Categoria() {
     <div id="Categoria">
       {productos.length > 0 && (
         <>
+          <Helmet>
+            <title>
+              SoccerStore |{" "}
+              {productos[0].categoriaNombre &&
+                productos[0].categoriaNombre.charAt(0).toUpperCase() +
+                  productos[0].categoriaNombre.slice(1)}
+            </title>
+          </Helmet>
           <FiltrosCategoria
             nombreCategoria={productos[0].categoriaNombre}
             setFiltro={setFiltro}
