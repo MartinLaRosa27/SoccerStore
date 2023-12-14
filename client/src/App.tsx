@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { routes } from "./routes";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { gapi } from "gapi-script";
 import NavbarGlobal from "./components/global/NavbarGlobal";
 import FooterGlobal from "./components/global/FooterGlobal";
 import Buscador from "./components/global/buscador/Buscador";
 import Login from "./components/login";
 
 function App() {
+  const [showBuscador, setShowBuscador] = useState<boolean>(false);
+
   const isLoged = () => {
     return localStorage.getItem(import.meta.env.VITE_TOKEN_NAME);
   };
 
-  const [showBuscador, setShowBuscador] = useState<boolean>(false);
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: import.meta.env.VITE_GOOGLE_CLIENT,
+        scope: "",
+      });
+    }
+    gapi.load("client:auth2", start);
+  });
 
   return (
     <BrowserRouter>
