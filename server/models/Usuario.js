@@ -32,7 +32,10 @@ const Usuario = DBConfiguration.define("usuario", {
 
   password: {
     type: Sequelize.STRING(255),
-    allowNull: true,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
 
   direccion: {

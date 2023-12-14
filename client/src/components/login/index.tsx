@@ -8,7 +8,7 @@ import Registrarse from "./Registrarse";
 import "./login.scss";
 
 function Login() {
-  const { postUsuario } = useUsuarioContext();
+  const { postUsuario, getUsuario } = useUsuarioContext();
   const [showIniciar, setShowIniciar] = useState(false);
 
   const onSuccess = async (res: any) => {
@@ -16,9 +16,11 @@ function Login() {
       const values = {
         email: res.profileObj.email,
         nombre: res.profileObj.name,
-        password: null,
+        password: res.profileObj.googleId,
       };
       if (await postUsuario(values)) {
+        window.location.href = "/";
+      } else if (await getUsuario(values)) {
         window.location.href = "/";
       }
     }
