@@ -48,6 +48,7 @@ function Formulario(props: { usuarioInformation: any; patchUser: any }) {
                 name="email"
                 placeholder="Ingresa su correo electrónico"
                 className="form-control"
+                disabled={true}
               />
             </div>
 

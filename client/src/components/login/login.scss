@@ -5,6 +5,24 @@ $negro: #252525;
   min-height: 100vh;
   margin: 25px 0 30px;
 
+  .contener-google {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+
+    button {
+      width: 100%;
+      border: 1px solid rgb(222, 222, 222) !important;
+    }
+
+    p {
+      margin: 10px;
+      padding: 0;
+    }
+  }
+
   .logo-completo {
     display: flex;
     margin: auto;

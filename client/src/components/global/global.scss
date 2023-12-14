@@ -326,6 +326,28 @@ $negro: #252525;
   max-height: 75px;
   background-color: rgb(241, 241, 241) !important;
 
+  .btn-salir {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-left: 15px !important;
+    margin-top: 4px;
+
+    span {
+      font-weight: bold !important;
+      color: $negro !important;
+      font-size: 1rem;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-style: italic;
+      text-transform: uppercase;
+    }
+
+    div {
+      display: none !important;
+    }
+  }
+
   .user-info {
     display: flex;
     flex-direction: row;

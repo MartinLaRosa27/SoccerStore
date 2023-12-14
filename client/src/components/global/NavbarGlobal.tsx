@@ -4,6 +4,7 @@ import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { useCarritoContext } from "../../context/CarritoContext";
 import { useFavoritoContext } from "../../context/FavoritosContext";
+import { GoogleLogout } from "react-google-login";
 import { useHistory } from "react-router-dom";
 import logoSimple from "../../assets/img/global/logo-simple.webp";
 import Container from "react-bootstrap/Container";
@@ -39,17 +40,17 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
     return localStorage.getItem(import.meta.env.VITE_TOKEN_NAME);
   };
 
-  const logout = () => {
-    localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
-    window.location.href = "/";
-  };
-
   const callGetCarritoCount = async () => {
     setTotal(await getCarritoCount());
   };
 
   const callGetFavoritoCount = async () => {
     setTotalFavoritos(await getFavoritoCount());
+  };
+
+  const onSuccessLogout = () => {
+    localStorage.removeItem(import.meta.env.VITE_TOKEN_NAME);
+    window.location.href = "/";
   };
 
   return (
@@ -107,9 +108,13 @@ function NavbarGlobal(props: { setShowBuscador: any; showBuscador: boolean }) {
                   >
                     mis compras
                   </NavDropdown.Item>
-                  <NavDropdown.Item onClick={() => logout()}>
-                    cerrar sesión
-                  </NavDropdown.Item>
+
+                  <GoogleLogout
+                    clientId={import.meta.env.VITE_GOOGLE_CLIENT}
+                    buttonText="Cerrar sesión"
+                    onLogoutSuccess={onSuccessLogout}
+                    className="btn-salir"
+                  />
                 </NavDropdown>
               </div>
             )}
