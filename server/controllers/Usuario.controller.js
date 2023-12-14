@@ -15,11 +15,19 @@ module.exports.postUsuario = async (input) => {
     if (userExists) {
       throw new Error("Email ya registrado");
     }
-    const usuario = await Usuario.create({
-      email,
-      nombre,
-      password,
-    });
+    let usuario;
+    if (password) {
+      usuario = await Usuario.create({
+        email,
+        nombre,
+        password,
+      });
+    } else {
+      usuario = await Usuario.create({
+        email,
+        nombre,
+      });
+    }
     return createToken(usuario);
   } catch (e) {
     console.log(e);

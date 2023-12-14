@@ -1,16 +1,27 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { GoogleLogin } from "react-google-login";
+import { useUsuarioContext } from "../../context/UsuarioContext";
 import logoCompleto from "../../assets/img/global/logo-completo.webp";
 import Iniciar from "./Iniciar";
 import Registrarse from "./Registrarse";
 import "./login.scss";
 
 function Login() {
+  const { postUsuario } = useUsuarioContext();
   const [showIniciar, setShowIniciar] = useState(false);
 
-  const onSuccess = (res: any) => {
-    console.log("ok", res.profileObj);
+  const onSuccess = async (res: any) => {
+    if (res.profileObj) {
+      const values = {
+        email: res.profileObj.email,
+        nombre: res.profileObj.name,
+        password: null,
+      };
+      if (await postUsuario(values)) {
+        window.location.href = "/";
+      }
+    }
   };
 
   const onFailure = (res: any) => {

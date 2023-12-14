@@ -32,10 +32,7 @@ const Usuario = DBConfiguration.define("usuario", {
 
   password: {
     type: Sequelize.STRING(255),
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    allowNull: true,
   },
 
   direccion: {
@@ -58,8 +55,10 @@ Usuario.hasMany(Carrito);
 Usuario.hasMany(Favorito);
 
 Usuario.afterValidate(async (user) => {
-  const password = await bcrypt.hash(user.password, 10);
-  user.password = password;
+  if (user.password) {
+    const password = await bcrypt.hash(user.password, 10);
+    user.password = password;
+  }
 });
 
 module.exports = Usuario;

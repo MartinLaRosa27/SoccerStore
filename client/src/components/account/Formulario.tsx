@@ -41,18 +41,6 @@ function Formulario(props: { usuarioInformation: any; patchUser: any }) {
         {(formikProps) => (
           <Form>
             <div className="mb-3">
-              <label className="form-label">Correo Electrónico:</label>
-              <Field
-                as="input"
-                type="email"
-                name="email"
-                placeholder="Ingresa su correo electrónico"
-                className="form-control"
-                disabled={true}
-              />
-            </div>
-
-            <div className="mb-3">
               <label className="form-label">Nombre completo:</label>
               <Field
                 as="input"
