@@ -3,10 +3,10 @@ import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { routes } from "./routes";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { gapi } from "gapi-script";
-import NavbarGlobal from "./components/global/NavbarGlobal";
 import FooterGlobal from "./components/global/FooterGlobal";
 import Buscador from "./components/global/buscador/Buscador";
 import Login from "./components/login";
+import HeaderGlobal from "./components/global/header/Header";
 
 function App() {
   const [showBuscador, setShowBuscador] = useState<boolean>(false);
@@ -27,9 +27,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavbarGlobal
-        showBuscador={showBuscador}
+      <HeaderGlobal
         setShowBuscador={setShowBuscador}
+        showBuscador={showBuscador}
       />
       <Switch>
         {routes.map((route, i) => (
