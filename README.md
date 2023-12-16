@@ -11,6 +11,7 @@ _Todos usuarios podrán realizar las siguientes acciones:_
 - Los usuarios podran suscribirse al newsletter, para obtener beneficios exclucivos.
 - Buscar los productos que deseen.
 - Filtrar los resultados obtenidos.
+- Los usuarios podrán registrarse con su cuenta de google.
 
 _Los usuarios registrados podrán realizar las siguientes acciones:_
 
