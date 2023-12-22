@@ -1,2 +1,14 @@
 .env
 node_modules
+
+# env:
+# -- Global:
+# SECRET=   
+# URL=   
+# MP_AT=   
+# -- MySQL:
+# BD_NAME=   
+# BD_USER=  
+# BD_PASS=  
+# BD_HOST=  
+# BD_PORT=  

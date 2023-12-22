@@ -30,3 +30,11 @@ HTML / CSS / SCSS / Bootstrap / JavaScript / TypeScript / React.js / Vite / Node
 ### Deploy:
 
 👉 https://soccerstore.netlify.app/
+
+### Screenshots:
+
+![alt text](https://github.com/MartinLaRosa27/SoccerStore/blob/main/resources/screenshots/screenshots1.png?raw=true)
+![alt text](https://github.com/MartinLaRosa27/SoccerStore/blob/main/resources/screenshots/screenshots2.png?raw=true)
+![alt text](https://github.com/MartinLaRosa27/SoccerStore/blob/main/resources/screenshots/screenshots3.png?raw=true)
+![alt text](https://github.com/MartinLaRosa27/SoccerStore/blob/main/resources/screenshots/screenshots4.png?raw=true)
+![alt text](https://github.com/MartinLaRosa27/SoccerStore/blob/main/resources/screenshots/screenshots5.png?raw=true)
