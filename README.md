@@ -27,10 +27,6 @@ _Los usuarios registrados podrán realizar las siguientes acciones:_
 
 HTML / CSS / SCSS / Bootstrap / JavaScript / TypeScript / React.js / Vite / Node.js / GraphQL / MySQL
 
-### Deploy:
-
-👉 https://soccerstore.netlify.app/
-
 ### Screenshots:
 
 ![alt text](https://github.com/MartinLaRosa27/SoccerStore/blob/main/resources/screenshots/screenshots1.png?raw=true)
